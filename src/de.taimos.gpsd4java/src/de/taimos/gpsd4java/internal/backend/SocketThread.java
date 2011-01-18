@@ -29,8 +29,6 @@ public class SocketThread extends Thread {
 	
 	private GPSdEndpoint endpoint;
 	
-	private boolean running = true;
-	
 
 	/**
 	 * @param reader the socket input
@@ -39,11 +37,12 @@ public class SocketThread extends Thread {
 	public SocketThread(BufferedReader reader, GPSdEndpoint endpoint) {
 		this.reader = reader;
 		this.endpoint = endpoint;
+		this.setDaemon(true);
 	}
 	
 	@Override
 	public void run() {
-		while (this.running) {
+		while (true) {
 			try {
 				String s = this.reader.readLine();
 				if (s == null) {

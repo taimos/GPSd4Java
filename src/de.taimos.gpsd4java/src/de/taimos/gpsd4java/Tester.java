@@ -15,7 +15,12 @@
  */
 package de.taimos.gpsd4java;
 
+import de.taimos.gpsd4java.api.ObjectListener;
 import de.taimos.gpsd4java.internal.backend.GPSdEndpoint;
+import de.taimos.gpsd4java.types.DeviceObject;
+import de.taimos.gpsd4java.types.DevicesObject;
+import de.taimos.gpsd4java.types.PollObject;
+import de.taimos.gpsd4java.types.TPVObject;
 
 /**
  * This class provides tests during the startup phase of GPSd4Java<br>
@@ -30,8 +35,43 @@ public class Tester {
 	 * @param args the args
 	 */
 	public static void main(String[] args) {
-		GPSdEndpoint ep = new GPSdEndpoint("192.168.1.115", 2947);
-		ep.start();
-		ep.watch(true);
+		try {
+			GPSdEndpoint ep = new GPSdEndpoint("192.168.1.115", 2947);
+			
+			ep.addListener(new ObjectListener() {
+				
+				@Override
+				public void handleTPV(TPVObject tpv) {
+					System.out.println("Listener: " + tpv);
+				}
+				
+				@Override
+				public void handleDevices(DevicesObject devices) {
+					for (DeviceObject d : devices.getDevices()) {
+						System.out.println(d);
+					}
+				}
+			});
+			
+			ep.start();
+			
+			System.out.println(ep.version());
+			
+			System.out.println(ep.watch(true, true));
+			
+			System.out.println("Polling...");
+			PollObject poll = ep.poll();
+			System.out.println(poll);
+			for (TPVObject tpv : poll.getFixes()) {
+				System.out.println(tpv);
+			}
+			System.out.println("...polling done");
+			
+			while (true) {
+				//
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
