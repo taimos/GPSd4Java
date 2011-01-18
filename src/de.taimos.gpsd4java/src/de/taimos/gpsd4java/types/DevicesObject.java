@@ -77,8 +77,7 @@ public class DevicesObject implements IGPSObject {
 	
 	@Override
 	public String toString() {
-		// TODO make it nicer
-		return "DevicesObject [devices=" + this.devices + "]";
+		return "DevicesObject [devices=" + this.devices.size() + "]";
 	}
 	
 }

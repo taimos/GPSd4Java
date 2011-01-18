@@ -136,7 +136,7 @@ public class TPVObject implements IGPSObject {
 	}
 	
 	/**
-	 * Latitude in degrees: +/- signifies West/East
+	 * Latitude in degrees: +/- signifies North/South
 	 * 
 	 * @return the latitude
 	 */
@@ -145,8 +145,7 @@ public class TPVObject implements IGPSObject {
 	}
 	
 	/**
-	 * TODO check +/-<br>
-	 * Latitude in degrees: +/- signifies West/East
+	 * Latitude in degrees: +/- signifies North/South
 	 * 
 	 * @param latitude the latitude to set
 	 */
@@ -155,7 +154,7 @@ public class TPVObject implements IGPSObject {
 	}
 	
 	/**
-	 * Longitude in degrees: +/- signifies North/South.
+	 * Longitude in degrees: +/- signifies East/West
 	 * 
 	 * @return the longitude
 	 */
@@ -164,7 +163,7 @@ public class TPVObject implements IGPSObject {
 	}
 	
 	/**
-	 * Longitude in degrees: +/- signifies North/South.
+	 * Longitude in degrees: +/- signifies East/West
 	 * 
 	 * @param longitude the longitude to set
 	 */
