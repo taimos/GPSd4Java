@@ -16,7 +16,7 @@
 package de.taimos.gpsd4java;
 
 import de.taimos.gpsd4java.api.ObjectListener;
-import de.taimos.gpsd4java.internal.backend.GPSdEndpoint;
+import de.taimos.gpsd4java.backend.GPSdEndpoint;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.PollObject;

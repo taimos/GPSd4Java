@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package de.taimos.gpsd4java.internal.backend;
+package de.taimos.gpsd4java.backend;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
