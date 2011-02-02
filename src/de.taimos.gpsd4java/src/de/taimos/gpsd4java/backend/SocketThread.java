@@ -21,7 +21,7 @@ import java.net.SocketException;
 /**
  * thread reading input from GPSd server
  * 
- * created: 18.01.2011
+ * @author thoeger
  */
 public class SocketThread extends Thread {
 	
@@ -44,17 +44,20 @@ public class SocketThread extends Thread {
 	public void run() {
 		while (true) {
 			try {
+				// read line from socket
 				String s = this.reader.readLine();
 				if (s == null) {
 					break;
 				}
 				if (!s.isEmpty()) {
+					// parse line and handle it accordingly
 					this.endpoint.handle(ResultParser.parse(s));
 				}
 			} catch (SocketException e) {
-				// e.printStackTrace();
+				// stop if socket fails
 				break;
 			} catch (Exception e) {
+				// TODO handle this better
 				e.printStackTrace();
 			}
 		}

@@ -18,7 +18,7 @@ package de.taimos.gpsd4java.types;
 /**
  * NMEA Mode of GPSd response
  * 
- * created: 17.01.2011
+ * @author thoeger
  */
 public enum ENMEAMode {
 	

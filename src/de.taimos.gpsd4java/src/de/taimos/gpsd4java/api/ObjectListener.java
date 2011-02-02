@@ -23,7 +23,7 @@ import de.taimos.gpsd4java.types.TPVObject;
 /**
  * Adapter class for {@link IObjectListener}
  * 
- * created: 18.01.2011
+ * @author thoeger
  */
 public class ObjectListener implements IObjectListener {
 	

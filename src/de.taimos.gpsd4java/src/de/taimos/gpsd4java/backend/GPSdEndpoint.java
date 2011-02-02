@@ -42,7 +42,7 @@ import de.taimos.gpsd4java.types.WatchObject;
 /**
  * GPSd client endpoint
  * 
- * created: 17.01.2011
+ * @author thoeger
  */
 public class GPSdEndpoint {
 	
@@ -61,6 +61,8 @@ public class GPSdEndpoint {
 	
 
 	/**
+	 * Instantiate this class to connect to a GPSd server
+	 * 
 	 * @param server the server name or IP
 	 * @param port the server port
 	 */
@@ -170,6 +172,9 @@ public class GPSdEndpoint {
 	
 	// ########################################################
 	
+	/*
+	 * send command to GPSd and wait for response
+	 */
 	private <T extends IGPSObject> T syncCommand(String command, Class<T> responseClass) throws IOException {
 		synchronized (this.asyncMutex) {
 			this.out.write(command + "\n");
@@ -185,7 +190,9 @@ public class GPSdEndpoint {
 		}
 	}
 	
-	// will be used later on
+	/*
+	 * send command without response
+	 */
 	@SuppressWarnings("unused")
 	private void voidCommand(String command) throws IOException {
 		synchronized (this.asyncMutex) {
@@ -194,6 +201,9 @@ public class GPSdEndpoint {
 		}
 	}
 	
+	/*
+	 * wait for a response for one second
+	 */
 	private IGPSObject waitForResult() {
 		synchronized (this.asyncWaitMutex) {
 			this.asnycResult = null;
@@ -209,6 +219,9 @@ public class GPSdEndpoint {
 		return null;
 	}
 	
+	/*
+	 * handle incoming messages and dispatch them
+	 */
 	void handle(IGPSObject object) {
 		if (object instanceof TPVObject) {
 			for (IObjectListener l : this.listeners) {
@@ -218,6 +231,7 @@ public class GPSdEndpoint {
 			for (IObjectListener l : this.listeners) {
 				l.handleSKY((SKYObject) object);
 			}
+			// TODO activate after ATT is implemented
 			// } else if (object instanceof ATTObject) {
 			// for (IObjectListener l : this.listeners) {
 			// l.handleATT((ATTObject) object);
@@ -231,6 +245,7 @@ public class GPSdEndpoint {
 				l.handleDevice((DeviceObject) object);
 			}
 		} else {
+			// object was requested, so put it in the response object
 			synchronized (this.asyncWaitMutex) {
 				this.asnycResult = object;
 				this.asyncWaitMutex.notifyAll();

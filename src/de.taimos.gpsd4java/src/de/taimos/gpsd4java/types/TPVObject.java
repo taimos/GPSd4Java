@@ -18,9 +18,11 @@ package de.taimos.gpsd4java.types;
 /**
  * Time-Position-Velocity Report Object<br>
  * <br>
- * all getters may return Double.NaN if value is not present
+ * all getters for double values may return <code>Double.NaN</code> if value is
+ * not present<br>
+ * other getters may return <code>null</code>
  * 
- * created: 17.01.2011
+ * @author thoeger
  */
 public class TPVObject implements IGPSObject {
 	

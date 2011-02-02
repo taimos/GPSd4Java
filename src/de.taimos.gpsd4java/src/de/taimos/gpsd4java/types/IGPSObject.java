@@ -18,10 +18,10 @@ package de.taimos.gpsd4java.types;
 /**
  * Interface for generic GPSd object
  * 
- * created: 17.01.2011
+ * @author thoeger
  */
 public interface IGPSObject {
 	
-	// only marker interface
+	// this is only a marker interface
 	
 }

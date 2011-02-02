@@ -17,8 +17,7 @@ package de.taimos.gpsd4java.types;
 
 /**
  * 
- * created: 17.01.2011
- * 
+ * @author thoeger
  */
 public class VersionObject implements IGPSObject {
 	

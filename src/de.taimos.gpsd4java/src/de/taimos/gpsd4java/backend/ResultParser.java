@@ -37,20 +37,20 @@ import de.taimos.gpsd4java.types.WatchObject;
 /**
  * This class is used to parse responses from GPSd<br>
  * 
- * created: 17.01.2011
- * 
+ * @author thoeger
  */
 public class ResultParser {
 	
 	/**
+	 * Parse a received line into a {@link IGPSObject}
+	 * 
 	 * @param line the line read from GPSd
-	 * @return the parsed location
+	 * @return the parsed object
 	 * @throws ParseException if parsing fails
 	 */
 	public static IGPSObject parse(String line) throws ParseException {
-		JSONObject json = null;
 		try {
-			json = new JSONObject(line);
+			JSONObject json = new JSONObject(line);
 			return ResultParser.parse(json);
 		} catch (JSONException e) {
 			throw new ParseException("Parsing failed", e);
@@ -58,8 +58,10 @@ public class ResultParser {
 	}
 	
 	/**
+	 * parse {@link JSONObject} into {@link IGPSObject}
+	 * 
 	 * @param json the {@link JSONObject} to parse
-	 * @return the parsed location
+	 * @return the parsed object
 	 * @throws ParseException if parsing fails
 	 */
 	public static IGPSObject parse(JSONObject json) throws ParseException {
@@ -88,10 +90,10 @@ public class ResultParser {
 			gps = tpv;
 		} else if (clazz.equals("SKY")) {
 			SKYObject sky = new SKYObject();
-			// TODO implement
+			// TODO implement SKY object
 			gps = sky;
 		} else if (clazz.equals("ATT")) {
-			// TODO implement
+			// TODO implement ATT object
 			throw new ParseException("object class not yet implemented: ATT");
 		} else if (clazz.equals("VERSION")) {
 			VersionObject ver = new VersionObject();
@@ -138,6 +140,9 @@ public class ResultParser {
 		return gps;
 	}
 	
+	/*
+	 * parse a whole JSONArray into a list of IGPSObjects
+	 */
 	@SuppressWarnings("unchecked")
 	private static <T extends IGPSObject> List<T> parseObjectArray(JSONArray array, Class<T> componentType) throws ParseException {
 		try {

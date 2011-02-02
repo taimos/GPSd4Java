@@ -19,7 +19,6 @@ import de.taimos.gpsd4java.api.ObjectListener;
 import de.taimos.gpsd4java.backend.GPSdEndpoint;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
-import de.taimos.gpsd4java.types.PollObject;
 import de.taimos.gpsd4java.types.TPVObject;
 
 /**
@@ -36,7 +35,29 @@ public class Tester {
 	 */
 	public static void main(String[] args) {
 		try {
-			GPSdEndpoint ep = new GPSdEndpoint("192.168.1.115", 2947);
+			String host = "localhost";
+			int port = 2947;
+			
+			switch (args.length) {
+			case 0:
+				// Nothing to do, use default
+				break;
+			case 1:
+				// only server specified
+				host = args[0];
+				break;
+			case 2:
+				// Server and port specified
+				host = args[0];
+				if (args[1].matches("\\d+")) {
+					port = Integer.parseInt(args[1]);
+				}
+				break;
+			default:
+				break;
+			}
+			
+			GPSdEndpoint ep = new GPSdEndpoint(host, port);
 			
 			ep.addListener(new ObjectListener() {
 				
@@ -59,16 +80,8 @@ public class Tester {
 			
 			System.out.println(ep.watch(true, true));
 			
-			System.out.println("Polling...");
-			PollObject poll = ep.poll();
-			System.out.println(poll);
-			for (TPVObject tpv : poll.getFixes()) {
-				System.out.println(tpv);
-			}
-			System.out.println("...polling done");
-			
 			while (true) {
-				//
+				// loop to receive fixes
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

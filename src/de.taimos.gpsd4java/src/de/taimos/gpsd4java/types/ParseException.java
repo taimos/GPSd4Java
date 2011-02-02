@@ -16,9 +16,9 @@
 package de.taimos.gpsd4java.types;
 
 /**
+ * {@link Exception} indication an error while parsing the GPSd line
  * 
- * created: 17.01.2011
- * 
+ * @author thoeger
  */
 public class ParseException extends Exception {
 	

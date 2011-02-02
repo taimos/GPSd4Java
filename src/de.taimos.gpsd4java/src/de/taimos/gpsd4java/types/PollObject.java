@@ -19,8 +19,7 @@ import java.util.List;
 
 /**
  * 
- * created: 18.01.2011
- * 
+ * @author thoeger
  */
 public class PollObject implements IGPSObject {
 	

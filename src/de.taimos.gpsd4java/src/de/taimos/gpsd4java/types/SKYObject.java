@@ -17,8 +17,7 @@ package de.taimos.gpsd4java.types;
 
 /**
  * 
- * created: 18.01.2011
- * 
+ * @author thoeger
  */
 public class SKYObject implements IGPSObject {
 	// TODO implement

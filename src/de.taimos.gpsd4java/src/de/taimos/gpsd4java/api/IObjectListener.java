@@ -23,7 +23,7 @@ import de.taimos.gpsd4java.types.TPVObject;
 /**
  * Listener to receive response objects
  * 
- * created: 18.01.2011
+ * @author thoeger
  */
 public interface IObjectListener {
 	

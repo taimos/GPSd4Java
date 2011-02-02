@@ -19,9 +19,10 @@ import de.taimos.gpsd4java.backend.GISTool;
 import de.taimos.gpsd4java.types.TPVObject;
 
 /**
+ * Derive this class to implement a listener for location updates which reacts
+ * to changes greater a given threshold
  * 
- * created: 19.01.2011
- * 
+ * @author thoeger
  */
 public abstract class DistanceListener extends ObjectListener {
 	
