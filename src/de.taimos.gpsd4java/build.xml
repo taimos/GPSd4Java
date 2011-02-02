@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="buildAPI" basedir=".">
+
+	<property name="version.num" value="0.1" />
+	<property name="version.spec" value="1.0" />
+
+	<property name="jar.name" value="gpsd4java" />
+	<property name="jar.vendor" value="Taimos GmbH" />
+	<property name="jar.title" value="GPSd4Java - Client library" />
+
+	<target name="prepare">
+		<delete dir="./~package" />
+		<mkdir dir="./~bin" />
+		<mkdir dir="./~package" />
+	</target>
+
+	<target name="compile">
+		<javac srcdir="./src" destdir="./~bin" debug="true" debuglevel="lines,vars,source">
+			<classpath>
+				<fileset dir="./lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar">
+		<tstamp>
+			<format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+		</tstamp>
+		<tstamp>
+			<format property="TODAYSUFFIX" pattern="yyyyMMddHHmmss" />
+		</tstamp>
+
+		<jar destfile="~package/${jar.name}_${version.num}.jar" basedir="./~bin" includes="**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="${jar.vendor}" />
+				<attribute name="Built-Jdk" value="1.6.0" />
+				<attribute name="Built-Date" value="${TODAY}" />
+
+				<attribute name="Specification-Title" value="${jar.title}" />
+				<attribute name="Specification-Version" value="${version.spec}" />
+				<attribute name="Specification-Vendor" value="${jar.vendor}" />
+				<attribute name="Implementation-Title" value="${jar.title}" />
+				<attribute name="Implementation-Version" value="${version.num}#${TODAYSUFFIX}" />
+				<attribute name="Implementation-Vendor" value="${jar.vendor}" />
+			</manifest>
+		</jar>
+
+		<jar destfile="~package/${jar.name}_${version.num}_src.jar" basedir="./~bin" includes="**/*.class">
+			<fileset dir="./src">
+				<include name="**/*" />
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${jar.vendor}" />
+				<attribute name="Built-Jdk" value="1.6.0" />
+				<attribute name="Built-Date" value="${TODAY}" />
+
+				<attribute name="Specification-Title" value="${jar.title}" />
+				<attribute name="Specification-Version" value="${version.spec}" />
+				<attribute name="Specification-Vendor" value="${jar.vendor}" />
+				<attribute name="Implementation-Title" value="${jar.title}" />
+				<attribute name="Implementation-Version" value="${version.num}#${TODAYSUFFIX}" />
+				<attribute name="Implementation-Vendor" value="${jar.vendor}" />
+			</manifest>
+		</jar>
+
+	</target>
+
+	<target name="package">
+		<copy todir="~package/src">
+			<fileset dir="src">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+        <copy todir="~package">
+            <fileset dir="doc">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+	</target>
+
+	<target name="cleanup">
+		<delete>
+			<fileset dir="./~bin" includes="**/*.class" />
+		</delete>
+		<delete dir="~bin" />
+	</target>
+
+	<target name="buildAPI" depends="prepare,compile,jar,package,cleanup" />
+</project>
