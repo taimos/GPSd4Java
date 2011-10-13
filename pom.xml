@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.taimos</groupId>
+	<artifactId>gpsd4java</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>GPSd4Java</name>
+	<description>Java Client library for GPSd deamon</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<developers>
+		<developer>
+			<id>thoeger</id>
+			<email>thorsten.hoeger@taimos.de</email>
+			<name>Thorsten Höger</name>
+			<organization>Taimos GmbH</organization>
+			<organizationUrl>http://www.taimos.de</organizationUrl>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<dependencies>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.0</version>
+		</dependency>
+	</dependencies>
+	<url>http://gpsd4java.forge.hoegergroup.de/</url>
+	<inceptionYear>2011</inceptionYear>
+	<organization>
+		<name>Taimos GmbH</name>
+		<url>http://www.taimos.de</url>
+	</organization>
+	<scm>
+		<url>scm:svn:https://forge.hoegergroup.de/svn/json-rpc/gpsd4java/trunk/</url>
+		<connection>scm:svn:https://forge.hoegergroup.de/svn/json-rpc/gpsd4java/trunk/</connection>
+	</scm>
+    <distributionManagement>
+        <repository>
+            <id>hoegergroup-repo</id>
+            <name>Repository on forge.hoegergroup.de</name>
+            <url>scpexe://maven.forge.hoegergroup.de/srv/http/maven/html</url>
+        </repository>
+    </distributionManagement>
+    <build>
+        <extensions>
+            <!-- Enabling the use of FTP -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
+    </build>	
+</project>
