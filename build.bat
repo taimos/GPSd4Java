@@ -1,0 +1,1 @@
+mvn clean package source:jar javadoc:jar changelog:changelog dependency:copy-dependencies checkstyle:checkstyle deploy

@@ -38,8 +38,8 @@
 		<url>http://www.taimos.de</url>
 	</organization>
 	<scm>
-		<url>scm:svn:https://forge.hoegergroup.de/svn/json-rpc/gpsd4java/trunk/</url>
-		<connection>scm:svn:https://forge.hoegergroup.de/svn/json-rpc/gpsd4java/trunk/</connection>
+		<url>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</url>
+		<connection>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</connection>
 	</scm>
     <distributionManagement>
         <repository>
