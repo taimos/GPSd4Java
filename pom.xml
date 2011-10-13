@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.taimos</groupId>
 	<artifactId>gpsd4java</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>GPSd4Java</name>
 	<description>Java Client library for GPSd deamon</description>
 	<properties>
@@ -37,8 +37,8 @@
 		<url>http://www.taimos.de</url>
 	</organization>
 	<scm>
-		<url>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/tags/gpsd4java-1.0.0</url>
-		<connection>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/tags/gpsd4java-1.0.0</connection>
+		<url>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</url>
+		<connection>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</connection>
 	</scm>
     <distributionManagement>
         <repository>
