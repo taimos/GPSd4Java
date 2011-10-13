@@ -1,3 +1,0 @@
-This package contains the reference implementation of JSON from www.json.org
-
-It is separated from the GPSd4Java project to avoid having multiple versions of the classes in your classpath in larger projects.
