@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.taimos</groupId>
 	<artifactId>gpsd4java</artifactId>
@@ -41,21 +42,33 @@
 		<url>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</url>
 		<connection>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</connection>
 	</scm>
-    <distributionManagement>
-        <repository>
-            <id>hoegergroup-repo</id>
-            <name>Repository on forge.hoegergroup.de</name>
-            <url>scpexe://maven.forge.hoegergroup.de/srv/http/maven/html</url>
-        </repository>
-    </distributionManagement>
-    <build>
-        <extensions>
-            <!-- Enabling the use of FTP -->
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>1.0-beta-6</version>
-            </extension>
-        </extensions>
-    </build>	
+	<distributionManagement>
+		<repository>
+			<id>hoegergroup-repo</id>
+			<name>Repository on forge.hoegergroup.de</name>
+			<url>scpexe://maven.forge.hoegergroup.de/srv/http/maven/html</url>
+		</repository>
+	</distributionManagement>
+	<build>
+		<extensions>
+			<!-- Enabling the use of FTP -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>1.0-beta-6</version>
+			</extension>
+		</extensions>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
