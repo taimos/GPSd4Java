@@ -20,11 +20,10 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public class WatchObject implements IGPSObject {
-	
+
 	private boolean enable = true;
-	
+
 	private boolean dump = false;
-	
 
 	/**
 	 * Enable (true) or disable (false) watcher mode. Default is true.
@@ -34,47 +33,47 @@ public class WatchObject implements IGPSObject {
 	public boolean isEnable() {
 		return this.enable;
 	}
-	
+
 	/**
 	 * Enable (true) or disable (false) watcher mode. Default is true.
 	 * 
-	 * @param enable the enable to set
+	 * @param enable
+	 *            the enable to set
 	 */
-	public void setEnable(boolean enable) {
+	public void setEnable(final boolean enable) {
 		this.enable = enable;
 	}
-	
+
 	/**
-	 * Enable (true) or disable (false) dumping of JSON reports. Default is
-	 * false.
+	 * Enable (true) or disable (false) dumping of JSON reports. Default is false.
 	 * 
 	 * @return the json
 	 */
 	public boolean isDump() {
 		return this.dump;
 	}
-	
+
 	/**
-	 * Enable (true) or disable (false) dumping of JSON reports. Default is
-	 * false.
+	 * Enable (true) or disable (false) dumping of JSON reports. Default is false.
 	 * 
-	 * @param dump the dump to set
+	 * @param dump
+	 *            the dump to set
 	 */
-	public void setDump(boolean dump) {
+	public void setDump(final boolean dump) {
 		this.dump = dump;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (this.dump ? 1231 : 1237);
-		result = prime * result + (this.enable ? 1231 : 1237);
+		result = (prime * result) + (this.dump ? 1231 : 1237);
+		result = (prime * result) + (this.enable ? 1231 : 1237);
 		return result;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -84,7 +83,7 @@ public class WatchObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		WatchObject other = (WatchObject) obj;
+		final WatchObject other = (WatchObject) obj;
 		if (this.dump != other.dump) {
 			return false;
 		}
@@ -93,10 +92,10 @@ public class WatchObject implements IGPSObject {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "WatchObject [enable=" + this.enable + ", dump=" + this.dump + "]";
 	}
-	
+
 }

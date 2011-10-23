@@ -20,7 +20,7 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public enum EParity {
-	
+
 	/**
 	 * 
 	 */
@@ -33,12 +33,13 @@ public enum EParity {
 	 * 
 	 */
 	EVEN;
-	
+
 	/**
-	 * @param parity the parity string
+	 * @param parity
+	 *            the parity string
 	 * @return {@link EParity}
 	 */
-	public static EParity fromString(String parity) {
+	public static EParity fromString(final String parity) {
 		if (parity == null) {
 			return NO;
 		}

@@ -29,15 +29,16 @@ import de.taimos.gpsd4java.types.TPVObject;
  * 
  */
 public class Tester {
-	
+
 	/**
-	 * @param args the args
+	 * @param args
+	 *            the args
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		try {
 			String host = "localhost";
 			int port = 2947;
-			
+
 			switch (args.length) {
 			case 0:
 				// Nothing to do, use default
@@ -56,34 +57,34 @@ public class Tester {
 			default:
 				break;
 			}
-			
-			GPSdEndpoint ep = new GPSdEndpoint(host, port);
-			
+
+			final GPSdEndpoint ep = new GPSdEndpoint(host, port);
+
 			ep.addListener(new ObjectListener() {
-				
+
 				@Override
-				public void handleTPV(TPVObject tpv) {
+				public void handleTPV(final TPVObject tpv) {
 					System.out.println("Listener: " + tpv);
 				}
-				
+
 				@Override
-				public void handleDevices(DevicesObject devices) {
-					for (DeviceObject d : devices.getDevices()) {
+				public void handleDevices(final DevicesObject devices) {
+					for (final DeviceObject d : devices.getDevices()) {
 						System.out.println(d);
 					}
 				}
 			});
-			
+
 			ep.start();
-			
+
 			System.out.println(ep.version());
-			
+
 			System.out.println(ep.watch(true, true));
-			
+
 			while (true) {
 				// loop to receive fixes
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}

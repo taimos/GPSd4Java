@@ -21,7 +21,7 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public interface IGPSObject {
-	
+
 	// this is only a marker interface
-	
+
 }

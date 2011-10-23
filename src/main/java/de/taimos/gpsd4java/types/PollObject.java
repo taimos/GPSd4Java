@@ -22,36 +22,34 @@ import java.util.List;
  * @author thoeger
  */
 public class PollObject implements IGPSObject {
-	
+
 	private double timestamp;
-	
+
 	private int active;
-	
+
 	private List<TPVObject> fixes;
-	
+
 	private List<SKYObject> skyviews;
-	
 
 	/**
-	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to
-	 * .001sec precision.
+	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
 	 * 
 	 * @return the timestamp
 	 */
 	public double getTimestamp() {
 		return this.timestamp;
 	}
-	
+
 	/**
-	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to
-	 * .001sec precision.
+	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
 	 * 
-	 * @param timestamp the timestamp to set
+	 * @param timestamp
+	 *            the timestamp to set
 	 */
-	public void setTimestamp(double timestamp) {
+	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
 	}
-	
+
 	/**
 	 * Count of active devices.
 	 * 
@@ -60,16 +58,17 @@ public class PollObject implements IGPSObject {
 	public int getActive() {
 		return this.active;
 	}
-	
+
 	/**
 	 * Count of active devices.
 	 * 
-	 * @param active the active to set
+	 * @param active
+	 *            the active to set
 	 */
-	public void setActive(int active) {
+	public void setActive(final int active) {
 		this.active = active;
 	}
-	
+
 	/**
 	 * list of TPV objects
 	 * 
@@ -78,16 +77,17 @@ public class PollObject implements IGPSObject {
 	public List<TPVObject> getFixes() {
 		return this.fixes;
 	}
-	
+
 	/**
 	 * list of TPV objects
 	 * 
-	 * @param fixes the fixes to set
+	 * @param fixes
+	 *            the fixes to set
 	 */
-	public void setFixes(List<TPVObject> fixes) {
+	public void setFixes(final List<TPVObject> fixes) {
 		this.fixes = fixes;
 	}
-	
+
 	/**
 	 * list of SKY objects
 	 * 
@@ -96,31 +96,32 @@ public class PollObject implements IGPSObject {
 	public List<SKYObject> getSkyviews() {
 		return this.skyviews;
 	}
-	
+
 	/**
 	 * list of SKY objects
 	 * 
-	 * @param skyviews the skyviews to set
+	 * @param skyviews
+	 *            the skyviews to set
 	 */
-	public void setSkyviews(List<SKYObject> skyviews) {
+	public void setSkyviews(final List<SKYObject> skyviews) {
 		this.skyviews = skyviews;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + this.active;
-		result = prime * result + ((this.fixes == null) ? 0 : this.fixes.hashCode());
-		result = prime * result + ((this.skyviews == null) ? 0 : this.skyviews.hashCode());
+		result = (prime * result) + this.active;
+		result = (prime * result) + ((this.fixes == null) ? 0 : this.fixes.hashCode());
+		result = (prime * result) + ((this.skyviews == null) ? 0 : this.skyviews.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(this.timestamp);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -130,7 +131,7 @@ public class PollObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		PollObject other = (PollObject) obj;
+		final PollObject other = (PollObject) obj;
 		if (this.active != other.active) {
 			return false;
 		}
@@ -153,7 +154,7 @@ public class PollObject implements IGPSObject {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PollObject [timestamp=" + this.timestamp + ", active=" + this.active + ", fixes=" + this.fixes.size() + ", skyviews=" + this.skyviews.size() + "]";

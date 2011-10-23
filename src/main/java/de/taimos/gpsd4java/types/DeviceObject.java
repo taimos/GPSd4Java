@@ -20,25 +20,24 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public class DeviceObject implements IGPSObject {
-	
+
 	private String path;
-	
+
 	private double activated;
-	
+
 	private String driver;
-	
+
 	private int bps;
-	
+
 	private EParity parity;
-	
+
 	private int stopbit;
-	
+
 	private boolean nativeMode;
-	
+
 	private double cycle;
-	
+
 	private double mincycle;
-	
 
 	/**
 	 * Name the device for which the control bits are being reported
@@ -48,16 +47,17 @@ public class DeviceObject implements IGPSObject {
 	public String getPath() {
 		return this.path;
 	}
-	
+
 	/**
 	 * Name the device for which the control bits are being reported
 	 * 
-	 * @param path the path to set
+	 * @param path
+	 *            the path to set
 	 */
-	public void setPath(String path) {
+	public void setPath(final String path) {
 		this.path = path;
 	}
-	
+
 	/**
 	 * Time the device was activated, or 0 if it is being closed.
 	 * 
@@ -66,36 +66,36 @@ public class DeviceObject implements IGPSObject {
 	public double getActivated() {
 		return this.activated;
 	}
-	
+
 	/**
 	 * Time the device was activated, or 0 if it is being closed.
 	 * 
-	 * @param activated the activated to set
+	 * @param activated
+	 *            the activated to set
 	 */
-	public void setActivated(double activated) {
+	public void setActivated(final double activated) {
 		this.activated = activated;
 	}
-	
+
 	/**
-	 * GPSD's name for the device driver type. Won't be reported before gpsd has
-	 * seen identifiable packets from the device.
+	 * GPSD's name for the device driver type. Won't be reported before gpsd has seen identifiable packets from the device.
 	 * 
 	 * @return the driver
 	 */
 	public String getDriver() {
 		return this.driver;
 	}
-	
+
 	/**
-	 * GPSD's name for the device driver type. Won't be reported before gpsd has
-	 * seen identifiable packets from the device.
+	 * GPSD's name for the device driver type. Won't be reported before gpsd has seen identifiable packets from the device.
 	 * 
-	 * @param driver the driver to set
+	 * @param driver
+	 *            the driver to set
 	 */
-	public void setDriver(String driver) {
+	public void setDriver(final String driver) {
 		this.driver = driver;
 	}
-	
+
 	/**
 	 * Device speed in bits per second.
 	 * 
@@ -104,16 +104,17 @@ public class DeviceObject implements IGPSObject {
 	public int getBps() {
 		return this.bps;
 	}
-	
+
 	/**
 	 * Device speed in bits per second.
 	 * 
-	 * @param bps the bps to set
+	 * @param bps
+	 *            the bps to set
 	 */
-	public void setBps(int bps) {
+	public void setBps(final int bps) {
 		this.bps = bps;
 	}
-	
+
 	/**
 	 * Device parity
 	 * 
@@ -122,16 +123,17 @@ public class DeviceObject implements IGPSObject {
 	public EParity getParity() {
 		return this.parity;
 	}
-	
+
 	/**
 	 * Device parity
 	 * 
-	 * @param parity the parity to set
+	 * @param parity
+	 *            the parity to set
 	 */
-	public void setParity(EParity parity) {
+	public void setParity(final EParity parity) {
 		this.parity = parity;
 	}
-	
+
 	/**
 	 * Device Stopbits
 	 * 
@@ -140,36 +142,36 @@ public class DeviceObject implements IGPSObject {
 	public int getStopbit() {
 		return this.stopbit;
 	}
-	
+
 	/**
 	 * Device Stopbits
 	 * 
-	 * @param stopbit the stopbit to set
+	 * @param stopbit
+	 *            the stopbit to set
 	 */
-	public void setStopbit(int stopbit) {
+	public void setStopbit(final int stopbit) {
 		this.stopbit = stopbit;
 	}
-	
+
 	/**
-	 * false means NMEA mode and true means alternate mode (binary if it has
-	 * one, for SiRF and Evermore chipsets in particular).
+	 * false means NMEA mode and true means alternate mode (binary if it has one, for SiRF and Evermore chipsets in particular).
 	 * 
 	 * @return the nativeMode
 	 */
 	public boolean isNativeMode() {
 		return this.nativeMode;
 	}
-	
+
 	/**
-	 * false means NMEA mode and true means alternate mode (binary if it has
-	 * one, for SiRF and Evermore chipsets in particular).
+	 * false means NMEA mode and true means alternate mode (binary if it has one, for SiRF and Evermore chipsets in particular).
 	 * 
-	 * @param nativeMode the nativeMode to set
+	 * @param nativeMode
+	 *            the nativeMode to set
 	 */
-	public void setNativeMode(boolean nativeMode) {
+	public void setNativeMode(final boolean nativeMode) {
 		this.nativeMode = nativeMode;
 	}
-	
+
 	/**
 	 * Device cycle time in seconds.
 	 * 
@@ -178,16 +180,17 @@ public class DeviceObject implements IGPSObject {
 	public double getCycle() {
 		return this.cycle;
 	}
-	
+
 	/**
 	 * Device cycle time in seconds.
 	 * 
-	 * @param cycle the cycle to set
+	 * @param cycle
+	 *            the cycle to set
 	 */
-	public void setCycle(double cycle) {
+	public void setCycle(final double cycle) {
 		this.cycle = cycle;
 	}
-	
+
 	/**
 	 * Device minimum cycle time in seconds.
 	 * 
@@ -196,38 +199,39 @@ public class DeviceObject implements IGPSObject {
 	public double getMincycle() {
 		return this.mincycle;
 	}
-	
+
 	/**
 	 * Device minimum cycle time in seconds.
 	 * 
-	 * @param mincycle the mincycle to set
+	 * @param mincycle
+	 *            the mincycle to set
 	 */
-	public void setMincycle(double mincycle) {
+	public void setMincycle(final double mincycle) {
 		this.mincycle = mincycle;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.activated);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + this.bps;
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + this.bps;
 		temp = Double.doubleToLongBits(this.cycle);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((this.driver == null) ? 0 : this.driver.hashCode());
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + ((this.driver == null) ? 0 : this.driver.hashCode());
 		temp = Double.doubleToLongBits(this.mincycle);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (this.nativeMode ? 1231 : 1237);
-		result = prime * result + ((this.parity == null) ? 0 : this.parity.hashCode());
-		result = prime * result + ((this.path == null) ? 0 : this.path.hashCode());
-		result = prime * result + this.stopbit;
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (this.nativeMode ? 1231 : 1237);
+		result = (prime * result) + ((this.parity == null) ? 0 : this.parity.hashCode());
+		result = (prime * result) + ((this.path == null) ? 0 : this.path.hashCode());
+		result = (prime * result) + this.stopbit;
 		return result;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -237,7 +241,7 @@ public class DeviceObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		DeviceObject other = (DeviceObject) obj;
+		final DeviceObject other = (DeviceObject) obj;
 		if (Double.doubleToLongBits(this.activated) != Double.doubleToLongBits(other.activated)) {
 			return false;
 		}
@@ -275,10 +279,10 @@ public class DeviceObject implements IGPSObject {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "DeviceObject [path=" + this.path + ", driver=" + this.driver + ", bps=" + this.bps + ", nativeMode=" + this.nativeMode + "]";
 	}
-	
+
 }

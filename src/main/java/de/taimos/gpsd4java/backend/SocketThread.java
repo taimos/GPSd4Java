@@ -24,28 +24,29 @@ import java.net.SocketException;
  * @author thoeger
  */
 public class SocketThread extends Thread {
-	
-	private BufferedReader reader;
-	
-	private GPSdEndpoint endpoint;
-	
+
+	private final BufferedReader reader;
+
+	private final GPSdEndpoint endpoint;
 
 	/**
-	 * @param reader the socket input
-	 * @param endpoint the endpoint
+	 * @param reader
+	 *            the socket input
+	 * @param endpoint
+	 *            the endpoint
 	 */
-	public SocketThread(BufferedReader reader, GPSdEndpoint endpoint) {
+	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint) {
 		this.reader = reader;
 		this.endpoint = endpoint;
 		this.setDaemon(true);
 	}
-	
+
 	@Override
 	public void run() {
 		while (true) {
 			try {
 				// read line from socket
-				String s = this.reader.readLine();
+				final String s = this.reader.readLine();
 				if (s == null) {
 					break;
 				}
@@ -53,14 +54,14 @@ public class SocketThread extends Thread {
 					// parse line and handle it accordingly
 					this.endpoint.handle(ResultParser.parse(s));
 				}
-			} catch (SocketException e) {
+			} catch (final SocketException e) {
 				// stop if socket fails
 				break;
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				// TODO handle this better
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 }

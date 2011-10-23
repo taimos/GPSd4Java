@@ -26,30 +26,30 @@ import de.taimos.gpsd4java.types.TPVObject;
  * @author thoeger
  */
 public class ObjectListener implements IObjectListener {
-	
+
 	@Override
-	public void handleTPV(TPVObject tpv) {
+	public void handleTPV(final TPVObject tpv) {
 		// implement in subclass if needed
 	}
-	
+
 	@Override
-	public void handleSKY(SKYObject sky) {
+	public void handleSKY(final SKYObject sky) {
 		// implement in subclass if needed
 	}
-	
+
 	@Override
-	public void handleATT(TPVObject att) {
+	public void handleATT(final TPVObject att) {
 		// implement in subclass if needed
 	}
-	
+
 	@Override
-	public void handleDevices(DevicesObject devices) {
+	public void handleDevices(final DevicesObject devices) {
 		// implement in subclass if needed
 	}
-	
+
 	@Override
-	public void handleDevice(DeviceObject device) {
+	public void handleDevice(final DeviceObject device) {
 		// implement in subclass if needed
 	}
-	
+
 }

@@ -21,7 +21,7 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public enum ENMEAMode {
-	
+
 	/**
 	 * no mode value yet seen
 	 */
@@ -38,12 +38,13 @@ public enum ENMEAMode {
 	 * three dimensional fix
 	 */
 	ThreeDimensional;
-	
+
 	/**
-	 * @param mode - mode integer
+	 * @param mode
+	 *            - mode integer
 	 * @return {@link ENMEAMode}
 	 */
-	public static ENMEAMode fromInt(int mode) {
+	public static ENMEAMode fromInt(final int mode) {
 		switch (mode) {
 		case 0:
 			return NotSeen;

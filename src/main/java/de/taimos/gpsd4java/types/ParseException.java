@@ -21,34 +21,40 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public class ParseException extends Exception {
-	
+
+	private static final long serialVersionUID = 7747422116792199432L;
+
 	/**
 	 * 
 	 */
 	public ParseException() {
 		super();
 	}
-	
+
 	/**
-	 * @param message the message
+	 * @param message
+	 *            the message
 	 */
-	public ParseException(String message) {
+	public ParseException(final String message) {
 		super(message);
 	}
-	
+
 	/**
-	 * @param message the message
-	 * @param cause the cause
+	 * @param message
+	 *            the message
+	 * @param cause
+	 *            the cause
 	 */
-	public ParseException(String message, Throwable cause) {
+	public ParseException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
-	
+
 	/**
-	 * @param cause the cause
+	 * @param cause
+	 *            the cause
 	 */
-	public ParseException(Throwable cause) {
+	public ParseException(final Throwable cause) {
 		super(cause);
 	}
-	
+
 }

@@ -40,36 +40,40 @@ import de.taimos.gpsd4java.types.WatchObject;
  * @author thoeger
  */
 public class ResultParser {
-	
+
 	/**
 	 * Parse a received line into a {@link IGPSObject}
 	 * 
-	 * @param line the line read from GPSd
+	 * @param line
+	 *            the line read from GPSd
 	 * @return the parsed object
-	 * @throws ParseException if parsing fails
+	 * @throws ParseException
+	 *             if parsing fails
 	 */
-	public static IGPSObject parse(String line) throws ParseException {
+	public static IGPSObject parse(final String line) throws ParseException {
 		try {
-			JSONObject json = new JSONObject(line);
+			final JSONObject json = new JSONObject(line);
 			return ResultParser.parse(json);
-		} catch (JSONException e) {
+		} catch (final JSONException e) {
 			throw new ParseException("Parsing failed", e);
 		}
 	}
-	
+
 	/**
 	 * parse {@link JSONObject} into {@link IGPSObject}
 	 * 
-	 * @param json the {@link JSONObject} to parse
+	 * @param json
+	 *            the {@link JSONObject} to parse
 	 * @return the parsed object
-	 * @throws ParseException if parsing fails
+	 * @throws ParseException
+	 *             if parsing fails
 	 */
-	public static IGPSObject parse(JSONObject json) throws ParseException {
+	public static IGPSObject parse(final JSONObject json) throws ParseException {
 		IGPSObject gps = null;
-		String clazz = json.optString("class");
-		
+		final String clazz = json.optString("class");
+
 		if (clazz.equals("TPV")) {
-			TPVObject tpv = new TPVObject();
+			final TPVObject tpv = new TPVObject();
 			tpv.setTag(json.optString("tag", null));
 			tpv.setDevice(json.optString("device", null));
 			tpv.setTimestamp(json.optDouble("time", Double.NaN));
@@ -89,25 +93,25 @@ public class ResultParser {
 			tpv.setMode(ENMEAMode.fromInt(json.optInt("mode", 0)));
 			gps = tpv;
 		} else if (clazz.equals("SKY")) {
-			SKYObject sky = new SKYObject();
+			final SKYObject sky = new SKYObject();
 			// TODO implement SKY object
 			gps = sky;
 		} else if (clazz.equals("ATT")) {
 			// TODO implement ATT object
 			throw new ParseException("object class not yet implemented: ATT");
 		} else if (clazz.equals("VERSION")) {
-			VersionObject ver = new VersionObject();
+			final VersionObject ver = new VersionObject();
 			ver.setRelease(json.optString("release", null));
 			ver.setRev(json.optString("rev", null));
 			ver.setProtocolMajor(json.optDouble("proto_major", 0));
 			ver.setProtocolMinor(json.optDouble("proto_minor", 0));
 			gps = ver;
 		} else if (clazz.equals("DEVICES")) {
-			DevicesObject devs = new DevicesObject();
+			final DevicesObject devs = new DevicesObject();
 			devs.setDevices(ResultParser.parseObjectArray(json.optJSONArray("devices"), DeviceObject.class));
 			gps = devs;
 		} else if (clazz.equals("DEVICE")) {
-			DeviceObject dev = new DeviceObject();
+			final DeviceObject dev = new DeviceObject();
 			dev.setPath(json.optString("path", null));
 			dev.setActivated(json.optDouble("activated", Double.NaN));
 			dev.setDriver(json.optString("driver", null));
@@ -119,18 +123,18 @@ public class ResultParser {
 			dev.setMincycle(json.optInt("mincycle"));
 			gps = dev;
 		} else if (clazz.equals("WATCH")) {
-			WatchObject watch = new WatchObject();
+			final WatchObject watch = new WatchObject();
 			watch.setEnable(json.optBoolean("enable", true));
 			watch.setDump(json.optBoolean("json", false));
 			gps = watch;
 		} else if (clazz.equals("POLL")) {
-			PollObject poll = new PollObject();
+			final PollObject poll = new PollObject();
 			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
 			poll.setActive(json.optInt("active", 0));
 			try {
 				poll.setFixes(ResultParser.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
 				poll.setSkyviews(ResultParser.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace();
 			}
 			gps = poll;
@@ -139,22 +143,22 @@ public class ResultParser {
 		}
 		return gps;
 	}
-	
+
 	/*
 	 * parse a whole JSONArray into a list of IGPSObjects
 	 */
 	@SuppressWarnings("unchecked")
-	private static <T extends IGPSObject> List<T> parseObjectArray(JSONArray array, Class<T> componentType) throws ParseException {
+	private static <T extends IGPSObject> List<T> parseObjectArray(final JSONArray array, final Class<T> componentType) throws ParseException {
 		try {
 			if (array == null) {
 				return new ArrayList<T>();
 			}
-			List<T> objects = new ArrayList<T>();
+			final List<T> objects = new ArrayList<T>();
 			for (int i = 0; i < array.length(); i++) {
 				objects.add((T) ResultParser.parse(array.getJSONObject(i)));
 			}
 			return objects;
-		} catch (JSONException e) {
+		} catch (final JSONException e) {
 			throw new ParseException("Parsing failed", e);
 		}
 	}

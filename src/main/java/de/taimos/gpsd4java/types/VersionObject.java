@@ -20,15 +20,14 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public class VersionObject implements IGPSObject {
-	
+
 	private String release;
-	
+
 	private String rev;
-	
+
 	private double protocolMajor;
-	
+
 	private double protocolMinor;
-	
 
 	/**
 	 * @return the release
@@ -36,72 +35,76 @@ public class VersionObject implements IGPSObject {
 	public String getRelease() {
 		return this.release;
 	}
-	
+
 	/**
-	 * @param release the release to set
+	 * @param release
+	 *            the release to set
 	 */
-	public void setRelease(String release) {
+	public void setRelease(final String release) {
 		this.release = release;
 	}
-	
+
 	/**
 	 * @return the rev
 	 */
 	public String getRev() {
 		return this.rev;
 	}
-	
+
 	/**
-	 * @param rev the rev to set
+	 * @param rev
+	 *            the rev to set
 	 */
-	public void setRev(String rev) {
+	public void setRev(final String rev) {
 		this.rev = rev;
 	}
-	
+
 	/**
 	 * @return the protocolMajor
 	 */
 	public double getProtocolMajor() {
 		return this.protocolMajor;
 	}
-	
+
 	/**
-	 * @param protocolMajor the protocolMajor to set
+	 * @param protocolMajor
+	 *            the protocolMajor to set
 	 */
-	public void setProtocolMajor(double protocolMajor) {
+	public void setProtocolMajor(final double protocolMajor) {
 		this.protocolMajor = protocolMajor;
 	}
-	
+
 	/**
 	 * @return the protocolMinor
 	 */
 	public double getProtocolMinor() {
 		return this.protocolMinor;
 	}
-	
+
 	/**
-	 * @param protocolMinor the protocolMinor to set
+	 * @param protocolMinor
+	 *            the protocolMinor to set
 	 */
-	public void setProtocolMinor(double protocolMinor) {
+	public void setProtocolMinor(final double protocolMinor) {
 		this.protocolMinor = protocolMinor;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.protocolMajor);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.protocolMinor);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((this.release == null) ? 0 : this.release.hashCode());
-		result = prime * result + ((this.rev == null) ? 0 : this.rev.hashCode());
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + ((this.release == null) ? 0 : this.release.hashCode());
+		result = (prime * result) + ((this.rev == null) ? 0 : this.rev.hashCode());
 		return result;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -111,7 +114,7 @@ public class VersionObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		VersionObject other = (VersionObject) obj;
+		final VersionObject other = (VersionObject) obj;
 		if (Double.doubleToLongBits(this.protocolMajor) != Double.doubleToLongBits(other.protocolMajor)) {
 			return false;
 		}
@@ -134,10 +137,10 @@ public class VersionObject implements IGPSObject {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "VersionObject [release=" + this.release + ", rev=" + this.rev + ", protocolMajor=" + this.protocolMajor + ", protocolMinor=" + this.protocolMinor + "]";
 	}
-	
+
 }

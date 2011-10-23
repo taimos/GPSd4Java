@@ -18,69 +18,66 @@ package de.taimos.gpsd4java.types;
 /**
  * Time-Position-Velocity Report Object<br>
  * <br>
- * all getters for double values may return <code>Double.NaN</code> if value is
- * not present<br>
+ * all getters for double values may return <code>Double.NaN</code> if value is not present<br>
  * other getters may return <code>null</code>
  * 
  * @author thoeger
  */
 public class TPVObject implements IGPSObject {
-	
+
 	private String tag = null;
-	
+
 	private String device = null;
-	
+
 	private double timestamp = Double.NaN;
-	
+
 	private double timestampError = Double.NaN;
-	
+
 	private double latitude = Double.NaN;
-	
+
 	private double longitude = Double.NaN;
-	
+
 	private double altitude = Double.NaN;
-	
+
 	private double latitudeError = Double.NaN;
-	
+
 	private double longitudeError = Double.NaN;
-	
+
 	private double altitudeError = Double.NaN;
-	
+
 	private double course = Double.NaN;
-	
+
 	private double speed = Double.NaN;
-	
+
 	private double climbRate = Double.NaN;
-	
+
 	private double courseError = Double.NaN;
-	
+
 	private double speedError = Double.NaN;
-	
+
 	private double climbRateError = Double.NaN;
-	
+
 	private ENMEAMode mode;
-	
 
 	/**
-	 * Type tag associated with this GPS sentence; from an NMEA device this is
-	 * just the NMEA sentence type.
+	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
 	 * 
 	 * @return the tag
 	 */
 	public String getTag() {
 		return this.tag;
 	}
-	
+
 	/**
-	 * Type tag associated with this GPS sentence; from an NMEA device this is
-	 * just the NMEA sentence type.
+	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
 	 * 
-	 * @param tag the tag to set
+	 * @param tag
+	 *            the tag to set
 	 */
-	public void setTag(String tag) {
+	public void setTag(final String tag) {
 		this.tag = tag;
 	}
-	
+
 	/**
 	 * Name of originating device
 	 * 
@@ -89,36 +86,36 @@ public class TPVObject implements IGPSObject {
 	public String getDevice() {
 		return this.device;
 	}
-	
+
 	/**
 	 * Name of originating device
 	 * 
-	 * @param device the device to set
+	 * @param device
+	 *            the device to set
 	 */
-	public void setDevice(String device) {
+	public void setDevice(final String device) {
 		this.device = device;
 	}
-	
+
 	/**
-	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to
-	 * .01sec precision.
+	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .01sec precision.
 	 * 
 	 * @return the timestamp
 	 */
 	public double getTimestamp() {
 		return this.timestamp;
 	}
-	
+
 	/**
-	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to
-	 * .01sec precision.
+	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .01sec precision.
 	 * 
-	 * @param timestamp the timestamp to set
+	 * @param timestamp
+	 *            the timestamp to set
 	 */
-	public void setTimestamp(double timestamp) {
+	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
 	}
-	
+
 	/**
 	 * Estimated timestamp error (%f, seconds, 95% confidence).
 	 * 
@@ -127,16 +124,17 @@ public class TPVObject implements IGPSObject {
 	public double getTimestampError() {
 		return this.timestampError;
 	}
-	
+
 	/**
 	 * Estimated timestamp error (%f, seconds, 95% confidence).
 	 * 
-	 * @param timestampError the timestampError to set
+	 * @param timestampError
+	 *            the timestampError to set
 	 */
-	public void setTimestampError(double timestampError) {
+	public void setTimestampError(final double timestampError) {
 		this.timestampError = timestampError;
 	}
-	
+
 	/**
 	 * Latitude in degrees: +/- signifies North/South
 	 * 
@@ -145,16 +143,17 @@ public class TPVObject implements IGPSObject {
 	public double getLatitude() {
 		return this.latitude;
 	}
-	
+
 	/**
 	 * Latitude in degrees: +/- signifies North/South
 	 * 
-	 * @param latitude the latitude to set
+	 * @param latitude
+	 *            the latitude to set
 	 */
-	public void setLatitude(double latitude) {
+	public void setLatitude(final double latitude) {
 		this.latitude = latitude;
 	}
-	
+
 	/**
 	 * Longitude in degrees: +/- signifies East/West
 	 * 
@@ -163,16 +162,17 @@ public class TPVObject implements IGPSObject {
 	public double getLongitude() {
 		return this.longitude;
 	}
-	
+
 	/**
 	 * Longitude in degrees: +/- signifies East/West
 	 * 
-	 * @param longitude the longitude to set
+	 * @param longitude
+	 *            the longitude to set
 	 */
-	public void setLongitude(double longitude) {
+	public void setLongitude(final double longitude) {
 		this.longitude = longitude;
 	}
-	
+
 	/**
 	 * Altitude in meters.
 	 * 
@@ -181,16 +181,17 @@ public class TPVObject implements IGPSObject {
 	public double getAltitude() {
 		return this.altitude;
 	}
-	
+
 	/**
 	 * Altitude in meters.
 	 * 
-	 * @param altitude the altitude to set
+	 * @param altitude
+	 *            the altitude to set
 	 */
-	public void setAltitude(double altitude) {
+	public void setAltitude(final double altitude) {
 		this.altitude = altitude;
 	}
-	
+
 	/**
 	 * Latitude error estimate in meters, 95% confidence.
 	 * 
@@ -199,16 +200,17 @@ public class TPVObject implements IGPSObject {
 	public double getLatitudeError() {
 		return this.latitudeError;
 	}
-	
+
 	/**
 	 * Latitude error estimate in meters, 95% confidence.
 	 * 
-	 * @param latitudeError the latitudeError to set
+	 * @param latitudeError
+	 *            the latitudeError to set
 	 */
-	public void setLatitudeError(double latitudeError) {
+	public void setLatitudeError(final double latitudeError) {
 		this.latitudeError = latitudeError;
 	}
-	
+
 	/**
 	 * Longitude error estimate in meters, 95% confidence.
 	 * 
@@ -217,16 +219,17 @@ public class TPVObject implements IGPSObject {
 	public double getLongitudeError() {
 		return this.longitudeError;
 	}
-	
+
 	/**
 	 * Longitude error estimate in meters, 95% confidence.
 	 * 
-	 * @param longitudeError the longitudeError to set
+	 * @param longitudeError
+	 *            the longitudeError to set
 	 */
-	public void setLongitudeError(double longitudeError) {
+	public void setLongitudeError(final double longitudeError) {
 		this.longitudeError = longitudeError;
 	}
-	
+
 	/**
 	 * Estimated vertical error in meters, 95% confidence.
 	 * 
@@ -235,16 +238,17 @@ public class TPVObject implements IGPSObject {
 	public double getAltitudeError() {
 		return this.altitudeError;
 	}
-	
+
 	/**
 	 * Estimated vertical error in meters, 95% confidence.
 	 * 
-	 * @param altitudeError the altitudeError to set
+	 * @param altitudeError
+	 *            the altitudeError to set
 	 */
-	public void setAltitudeError(double altitudeError) {
+	public void setAltitudeError(final double altitudeError) {
 		this.altitudeError = altitudeError;
 	}
-	
+
 	/**
 	 * Course over ground, degrees from true north.
 	 * 
@@ -253,16 +257,17 @@ public class TPVObject implements IGPSObject {
 	public double getCourse() {
 		return this.course;
 	}
-	
+
 	/**
 	 * Course over ground, degrees from true north.
 	 * 
-	 * @param course the course to set
+	 * @param course
+	 *            the course to set
 	 */
-	public void setCourse(double course) {
+	public void setCourse(final double course) {
 		this.course = course;
 	}
-	
+
 	/**
 	 * Speed over ground, meters per second.
 	 * 
@@ -271,16 +276,17 @@ public class TPVObject implements IGPSObject {
 	public double getSpeed() {
 		return this.speed;
 	}
-	
+
 	/**
 	 * Speed over ground, meters per second.
 	 * 
-	 * @param speed the speed to set
+	 * @param speed
+	 *            the speed to set
 	 */
-	public void setSpeed(double speed) {
+	public void setSpeed(final double speed) {
 		this.speed = speed;
 	}
-	
+
 	/**
 	 * Climb (positive) or sink (negative) rate, meters per second.
 	 * 
@@ -289,16 +295,17 @@ public class TPVObject implements IGPSObject {
 	public double getClimbRate() {
 		return this.climbRate;
 	}
-	
+
 	/**
 	 * Climb (positive) or sink (negative) rate, meters per second.
 	 * 
-	 * @param climbRate the climbRate to set
+	 * @param climbRate
+	 *            the climbRate to set
 	 */
-	public void setClimbRate(double climbRate) {
+	public void setClimbRate(final double climbRate) {
 		this.climbRate = climbRate;
 	}
-	
+
 	/**
 	 * Direction error estimate in degrees, 95% confidence.
 	 * 
@@ -307,16 +314,17 @@ public class TPVObject implements IGPSObject {
 	public double getCourseError() {
 		return this.courseError;
 	}
-	
+
 	/**
 	 * Direction error estimate in degrees, 95% confidence.
 	 * 
-	 * @param courseError the courseError to set
+	 * @param courseError
+	 *            the courseError to set
 	 */
-	public void setCourseError(double courseError) {
+	public void setCourseError(final double courseError) {
 		this.courseError = courseError;
 	}
-	
+
 	/**
 	 * Speed error estimate in meters/sec, 95% confidence.
 	 * 
@@ -325,16 +333,17 @@ public class TPVObject implements IGPSObject {
 	public double getSpeedError() {
 		return this.speedError;
 	}
-	
+
 	/**
 	 * Speed error estimate in meters/sec, 95% confidence.
 	 * 
-	 * @param speedError the speedError to set
+	 * @param speedError
+	 *            the speedError to set
 	 */
-	public void setSpeedError(double speedError) {
+	public void setSpeedError(final double speedError) {
 		this.speedError = speedError;
 	}
-	
+
 	/**
 	 * Climb/sink error estimate in meters/sec, 95% confidence.
 	 * 
@@ -343,16 +352,17 @@ public class TPVObject implements IGPSObject {
 	public double getClimbRateError() {
 		return this.climbRateError;
 	}
-	
+
 	/**
 	 * Climb/sink error estimate in meters/sec, 95% confidence.
 	 * 
-	 * @param climbRateError the climbRateError to set
+	 * @param climbRateError
+	 *            the climbRateError to set
 	 */
-	public void setClimbRateError(double climbRateError) {
+	public void setClimbRateError(final double climbRateError) {
 		this.climbRateError = climbRateError;
 	}
-	
+
 	/**
 	 * NMEA mode
 	 * 
@@ -361,57 +371,58 @@ public class TPVObject implements IGPSObject {
 	public ENMEAMode getMode() {
 		return this.mode;
 	}
-	
+
 	/**
 	 * NMEA mode
 	 * 
-	 * @param mode the mode to set
+	 * @param mode
+	 *            the mode to set
 	 */
-	public void setMode(ENMEAMode mode) {
+	public void setMode(final ENMEAMode mode) {
 		this.mode = mode;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.altitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.altitudeError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.climbRate);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.climbRateError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.course);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.courseError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((this.device == null) ? 0 : this.device.hashCode());
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + ((this.device == null) ? 0 : this.device.hashCode());
 		temp = Double.doubleToLongBits(this.latitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.latitudeError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.longitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.longitudeError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((this.mode == null) ? 0 : this.mode.hashCode());
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + ((this.mode == null) ? 0 : this.mode.hashCode());
 		temp = Double.doubleToLongBits(this.speed);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.speedError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((this.tag == null) ? 0 : this.tag.hashCode());
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + ((this.tag == null) ? 0 : this.tag.hashCode());
 		temp = Double.doubleToLongBits(this.timestamp);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.timestampError);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -421,7 +432,7 @@ public class TPVObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		TPVObject other = (TPVObject) obj;
+		final TPVObject other = (TPVObject) obj;
 		if (Double.doubleToLongBits(this.altitude) != Double.doubleToLongBits(other.altitude)) {
 			return false;
 		}
@@ -483,10 +494,10 @@ public class TPVObject implements IGPSObject {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "TPVObject [latitude=" + this.latitude + ", longitude=" + this.longitude + ", altitude=" + this.altitude + "]";
 	}
-	
+
 }

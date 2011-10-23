@@ -26,30 +26,35 @@ import de.taimos.gpsd4java.types.TPVObject;
  * @author thoeger
  */
 public interface IObjectListener {
-	
+
 	/**
-	 * @param tpv the TPV object
+	 * @param tpv
+	 *            the TPV object
 	 */
 	void handleTPV(TPVObject tpv);
-	
+
 	/**
-	 * @param sky the SKY object
+	 * @param sky
+	 *            the SKY object
 	 */
 	void handleSKY(SKYObject sky);
-	
+
 	/**
-	 * @param att the ATT object
+	 * @param att
+	 *            the ATT object
 	 */
 	void handleATT(TPVObject att);
-	
+
 	/**
-	 * @param devices the devices object
+	 * @param devices
+	 *            the devices object
 	 */
 	void handleDevices(DevicesObject devices);
-	
+
 	/**
-	 * @param device the device object
+	 * @param device
+	 *            the device object
 	 */
 	void handleDevice(DeviceObject device);
-	
+
 }
