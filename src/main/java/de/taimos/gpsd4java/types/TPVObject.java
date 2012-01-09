@@ -26,37 +26,21 @@ package de.taimos.gpsd4java.types;
 public class TPVObject implements IGPSObject {
 
 	private String tag = null;
-
 	private String device = null;
-
 	private double timestamp = Double.NaN;
-
 	private double timestampError = Double.NaN;
-
 	private double latitude = Double.NaN;
-
 	private double longitude = Double.NaN;
-
 	private double altitude = Double.NaN;
-
 	private double latitudeError = Double.NaN;
-
 	private double longitudeError = Double.NaN;
-
 	private double altitudeError = Double.NaN;
-
 	private double course = Double.NaN;
-
 	private double speed = Double.NaN;
-
 	private double climbRate = Double.NaN;
-
 	private double courseError = Double.NaN;
-
 	private double speedError = Double.NaN;
-
 	private double climbRateError = Double.NaN;
-
 	private ENMEAMode mode;
 
 	/**
@@ -497,7 +481,42 @@ public class TPVObject implements IGPSObject {
 
 	@Override
 	public String toString() {
-		return "TPVObject [latitude=" + this.latitude + ", longitude=" + this.longitude + ", altitude=" + this.altitude + "]";
+		final StringBuilder sb = new StringBuilder();
+		sb.append("TPVObject{tag=");
+		sb.append(this.tag);
+		sb.append(", device=");
+		sb.append(this.device);
+		sb.append(", timestamp=");
+		sb.append(this.timestamp);
+		sb.append(", timestampError=");
+		sb.append(this.timestampError);
+		sb.append(", latitude=");
+		sb.append(this.latitude);
+		sb.append(", longitude=");
+		sb.append(this.longitude);
+		sb.append(", altitude=");
+		sb.append(this.altitude);
+		sb.append(", latitudeError=");
+		sb.append(this.latitudeError);
+		sb.append(", longitudeError=");
+		sb.append(this.longitudeError);
+		sb.append(", altitudeError=");
+		sb.append(this.altitudeError);
+		sb.append(", course=");
+		sb.append(this.course);
+		sb.append(", speed=");
+		sb.append(this.speed);
+		sb.append(", climbRate=");
+		sb.append(this.climbRate);
+		sb.append(", courseError=");
+		sb.append(this.courseError);
+		sb.append(", speedError=");
+		sb.append(this.speedError);
+		sb.append(", climbRateError=");
+		sb.append(this.climbRateError);
+		sb.append(", mode=");
+		sb.append(this.mode.name());
+		sb.append("}");
+		return sb.toString();
 	}
-
 }

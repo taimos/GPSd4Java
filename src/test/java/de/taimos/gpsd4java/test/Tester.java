@@ -15,8 +15,12 @@
  */
 package de.taimos.gpsd4java.test;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import de.taimos.gpsd4java.api.ObjectListener;
 import de.taimos.gpsd4java.backend.GPSdEndpoint;
+import de.taimos.gpsd4java.backend.ResultParser;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.TPVObject;
@@ -30,13 +34,18 @@ import de.taimos.gpsd4java.types.TPVObject;
  */
 public class Tester {
 
+	static final Logger log = Logger.getLogger(Tester.class.getName());
+
+	private Tester() {
+	}
+
 	/**
 	 * @param args
 	 *            the args
 	 */
 	public static void main(final String[] args) {
 		try {
-			String host = "localhost";
+			String host = "192.168.4.29";
 			int port = 2947;
 
 			switch (args.length) {
@@ -58,34 +67,32 @@ public class Tester {
 				break;
 			}
 
-			final GPSdEndpoint ep = new GPSdEndpoint(host, port);
+			final GPSdEndpoint ep = new GPSdEndpoint(host, port, new ResultParser());
 
 			ep.addListener(new ObjectListener() {
 
 				@Override
 				public void handleTPV(final TPVObject tpv) {
-					System.out.println("Listener: " + tpv);
+					log.log(Level.INFO, "Listener: {0}", tpv);
 				}
 
 				@Override
 				public void handleDevices(final DevicesObject devices) {
 					for (final DeviceObject d : devices.getDevices()) {
-						System.out.println(d);
+						log.log(Level.INFO, "{0}", d);
 					}
 				}
 			});
 
 			ep.start();
 
-			System.out.println(ep.version());
+			log.log(Level.INFO, "Version: {0}", ep.version());
 
-			System.out.println(ep.watch(true, true));
+			log.log(Level.INFO, "Watch: {0}", ep.watch(true, true));
 
-			while (true) {
-				// loop to receive fixes
-			}
+			Thread.sleep(60000);
 		} catch (final Exception e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, null, e);
 		}
 	}
 }

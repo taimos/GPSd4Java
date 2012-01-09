@@ -15,11 +15,13 @@
  */
 package de.taimos.gpsd4java.backend;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.taimos.gpsd4java.types.DeviceObject;
@@ -39,24 +41,16 @@ import de.taimos.gpsd4java.types.WatchObject;
  * 
  * @author thoeger
  */
-public class ResultParser {
+public class ResultParser extends AbstractResultParser {
+
+	private static final Logger log = Logger.getLogger(ResultParser.class.getName());
+	private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); // Don't make this static!
 
 	/**
-	 * Parse a received line into a {@link IGPSObject}
-	 * 
-	 * @param line
-	 *            the line read from GPSd
-	 * @return the parsed object
-	 * @throws ParseException
-	 *             if parsing fails
+	 * Create new ResultParser
 	 */
-	public static IGPSObject parse(final String line) throws ParseException {
-		try {
-			final JSONObject json = new JSONObject(line);
-			return ResultParser.parse(json);
-		} catch (final JSONException e) {
-			throw new ParseException("Parsing failed", e);
-		}
+	public ResultParser() {
+		this.dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
 
 	/**
@@ -68,15 +62,16 @@ public class ResultParser {
 	 * @throws ParseException
 	 *             if parsing fails
 	 */
-	public static IGPSObject parse(final JSONObject json) throws ParseException {
+	@Override
+	public IGPSObject parse(final JSONObject json) throws ParseException {
 		IGPSObject gps = null;
 		final String clazz = json.optString("class");
 
-		if (clazz.equals("TPV")) {
+		if ("TPV".equals(clazz)) {
 			final TPVObject tpv = new TPVObject();
 			tpv.setTag(json.optString("tag", null));
 			tpv.setDevice(json.optString("device", null));
-			tpv.setTimestamp(json.optDouble("time", Double.NaN));
+			tpv.setTimestamp(this.parseTimestamp(json));
 			tpv.setTimestampError(json.optDouble("ept", Double.NaN));
 			tpv.setLatitude(json.optDouble("lat", Double.NaN));
 			tpv.setLongitude(json.optDouble("lon", Double.NaN));
@@ -92,25 +87,25 @@ public class ResultParser {
 			tpv.setClimbRateError(json.optDouble("epc", Double.NaN));
 			tpv.setMode(ENMEAMode.fromInt(json.optInt("mode", 0)));
 			gps = tpv;
-		} else if (clazz.equals("SKY")) {
+		} else if ("SKY".equals(clazz)) {
 			final SKYObject sky = new SKYObject();
 			// TODO implement SKY object
 			gps = sky;
-		} else if (clazz.equals("ATT")) {
+		} else if ("ATT".equals(clazz)) {
 			// TODO implement ATT object
 			throw new ParseException("object class not yet implemented: ATT");
-		} else if (clazz.equals("VERSION")) {
+		} else if ("VERSION".equals(clazz)) {
 			final VersionObject ver = new VersionObject();
 			ver.setRelease(json.optString("release", null));
 			ver.setRev(json.optString("rev", null));
 			ver.setProtocolMajor(json.optDouble("proto_major", 0));
 			ver.setProtocolMinor(json.optDouble("proto_minor", 0));
 			gps = ver;
-		} else if (clazz.equals("DEVICES")) {
+		} else if ("DEVICES".equals(clazz)) {
 			final DevicesObject devs = new DevicesObject();
-			devs.setDevices(ResultParser.parseObjectArray(json.optJSONArray("devices"), DeviceObject.class));
+			devs.setDevices(this.parseObjectArray(json.optJSONArray("devices"), DeviceObject.class));
 			gps = devs;
-		} else if (clazz.equals("DEVICE")) {
+		} else if ("DEVICE".equals(clazz)) {
 			final DeviceObject dev = new DeviceObject();
 			dev.setPath(json.optString("path", null));
 			dev.setActivated(json.optDouble("activated", Double.NaN));
@@ -122,44 +117,40 @@ public class ResultParser {
 			dev.setCycle(json.optInt("cycle"));
 			dev.setMincycle(json.optInt("mincycle"));
 			gps = dev;
-		} else if (clazz.equals("WATCH")) {
+		} else if ("WATCH".equals(clazz)) {
 			final WatchObject watch = new WatchObject();
 			watch.setEnable(json.optBoolean("enable", true));
 			watch.setDump(json.optBoolean("json", false));
 			gps = watch;
-		} else if (clazz.equals("POLL")) {
+		} else if ("POLL".equals(clazz)) {
 			final PollObject poll = new PollObject();
 			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
 			poll.setActive(json.optInt("active", 0));
-			try {
-				poll.setFixes(ResultParser.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
-				poll.setSkyviews(ResultParser.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
+			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
+			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
 			gps = poll;
 		} else {
 			throw new ParseException("Invalid object class: " + clazz);
 		}
+
 		return gps;
 	}
 
-	/*
-	 * parse a whole JSONArray into a list of IGPSObjects
-	 */
-	@SuppressWarnings("unchecked")
-	private static <T extends IGPSObject> List<T> parseObjectArray(final JSONArray array, final Class<T> componentType) throws ParseException {
+	private double parseTimestamp(final JSONObject json) {
 		try {
-			if (array == null) {
-				return new ArrayList<T>();
+			final String text = json.optString("time", null);
+			log.log(Level.FINE, "time: {0}", text);
+
+			if (text != null) {
+				final Date date = this.dateFormat.parse(text);
+				if (log.isLoggable(Level.FINE)) {
+					log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date));
+				}
+				return (date.getTime() / 1000.0);
 			}
-			final List<T> objects = new ArrayList<T>();
-			for (int i = 0; i < array.length(); i++) {
-				objects.add((T) ResultParser.parse(array.getJSONObject(i)));
-			}
-			return objects;
-		} catch (final JSONException e) {
-			throw new ParseException("Parsing failed", e);
+		} catch (final Exception ex) {
+			log.log(Level.INFO, "Failed to parse time", ex);
 		}
+		return Double.NaN;
 	}
 }

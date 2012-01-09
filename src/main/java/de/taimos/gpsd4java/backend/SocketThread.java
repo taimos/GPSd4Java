@@ -17,6 +17,8 @@ package de.taimos.gpsd4java.backend;
 
 import java.io.BufferedReader;
 import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * thread reading input from GPSd server
@@ -25,20 +27,35 @@ import java.net.SocketException;
  */
 public class SocketThread extends Thread {
 
+	private static final Logger log = Logger.getLogger(SocketThread.class.getName());
 	private final BufferedReader reader;
-
 	private final GPSdEndpoint endpoint;
+	private final AbstractResultParser resultParser;
 
 	/**
 	 * @param reader
 	 *            the socket input
 	 * @param endpoint
 	 *            the endpoint
+	 * @param resultParser
 	 */
-	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint) {
+	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
+		if (reader == null) {
+			throw new IllegalArgumentException("reader can not be null!");
+		}
+		if (endpoint == null) {
+			throw new IllegalArgumentException("endpoint can not be null!");
+		}
+		if (resultParser == null) {
+			throw new IllegalArgumentException("resultParser can not be null!");
+		}
+
 		this.reader = reader;
 		this.endpoint = endpoint;
+		this.resultParser = resultParser;
+
 		this.setDaemon(true);
+		this.setName("GPS Socket Thread");
 	}
 
 	@Override
@@ -52,16 +69,15 @@ public class SocketThread extends Thread {
 				}
 				if (!s.isEmpty()) {
 					// parse line and handle it accordingly
-					this.endpoint.handle(ResultParser.parse(s));
+					this.endpoint.handle(this.resultParser.parse(s));
 				}
 			} catch (final SocketException e) {
 				// stop if socket fails
 				break;
 			} catch (final Exception e) {
 				// TODO handle this better
-				e.printStackTrace();
+				log.log(Level.WARNING, null, e);
 			}
 		}
 	}
-
 }

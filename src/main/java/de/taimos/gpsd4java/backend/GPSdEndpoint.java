@@ -24,6 +24,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,18 +48,16 @@ import de.taimos.gpsd4java.types.WatchObject;
  */
 public class GPSdEndpoint {
 
-	private Socket socket;
-
-	private BufferedReader in;
-	private BufferedWriter out;
-
+	private static final Logger log = Logger.getLogger(GPSdEndpoint.class.getName());
+	private final Socket socket;
+	private final BufferedReader in;
+	private final BufferedWriter out;
 	private Thread listenThread;
-
-	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>();
-
+	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>(1);
 	private IGPSObject asnycResult = null;
 	private final Object asyncMutex = new Object();
 	private final Object asyncWaitMutex = new Object();
+	private final AbstractResultParser resultParser;
 
 	/**
 	 * Instantiate this class to connect to a GPSd server
@@ -66,30 +66,38 @@ public class GPSdEndpoint {
 	 *            the server name or IP
 	 * @param port
 	 *            the server port
+	 * @param resultParser
+	 * @throws UnknownHostException
+	 * @throws IOException
 	 */
-	public GPSdEndpoint(final String server, final int port) {
-		try {
-			this.socket = new Socket(server, port);
-			this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-			this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
-		} catch (final UnknownHostException e) {
-			e.printStackTrace();
-		} catch (final IOException e) {
-			e.printStackTrace();
+	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException, IOException {
+		if (server == null) {
+			throw new IllegalArgumentException("serrver can not be null!");
 		}
+		if ((port < 0) || (port > 65535)) {
+			throw new IllegalArgumentException("Illegal port number: " + port);
+		}
+		if (resultParser == null) {
+			throw new IllegalArgumentException("resultParser can not be null!");
+		}
+
+		this.socket = new Socket(server, port);
+		this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+		this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+		this.resultParser = resultParser;
 	}
 
 	/**
 	 * start the endpoint
 	 */
 	public void start() {
-		this.listenThread = new SocketThread(this.in, this);
+		this.listenThread = new SocketThread(this.in, this, this.resultParser);
 		this.listenThread.start();
 
 		try {
 			Thread.sleep(500);
 		} catch (final InterruptedException e) {
-			e.printStackTrace();
+			log.log(Level.FINE, null, e);
 		}
 	}
 
@@ -103,8 +111,9 @@ public class GPSdEndpoint {
 	 * @return {@link WatchObject}
 	 * @throws IOException
 	 *             on IO error in socket
+	 * @throws JSONException
 	 */
-	public WatchObject watch(final boolean enable, final boolean dumpData) throws IOException {
+	public WatchObject watch(final boolean enable, final boolean dumpData) throws IOException, JSONException {
 		return this.watch(enable, dumpData, null);
 	}
 
@@ -120,21 +129,17 @@ public class GPSdEndpoint {
 	 * @return {@link WatchObject}
 	 * @throws IOException
 	 *             on IO error in socket
+	 * @throws JSONException
 	 */
-	public WatchObject watch(final boolean enable, final boolean dumpData, final String device) throws IOException {
-		try {
-			final JSONObject watch = new JSONObject();
-			watch.put("class", "WATCH");
-			watch.put("enable", enable);
-			watch.put("json", dumpData);
-			if (device != null) {
-				watch.put("device", device);
-			}
-			return this.syncCommand("?WATCH=" + watch.toString(), WatchObject.class);
-		} catch (final JSONException e) {
-			e.printStackTrace();
+	public WatchObject watch(final boolean enable, final boolean dumpData, final String device) throws IOException, JSONException {
+		final JSONObject watch = new JSONObject();
+		watch.put("class", "WATCH");
+		watch.put("enable", enable);
+		watch.put("json", dumpData);
+		if (device != null) {
+			watch.put("device", device);
 		}
-		return null;
+		return this.syncCommand("?WATCH=" + watch.toString(), WatchObject.class);
 	}
 
 	/**
@@ -164,9 +169,7 @@ public class GPSdEndpoint {
 	}
 
 	// TODO implement rest of commands
-
 	// ########################################################
-
 	/**
 	 * @param listener
 	 *            the listener to add
@@ -223,7 +226,7 @@ public class GPSdEndpoint {
 			try {
 				this.asyncWaitMutex.wait(1000);
 			} catch (final InterruptedException e) {
-				e.printStackTrace();
+				log.log(Level.INFO, null, e);
 			}
 			if (this.asnycResult != null) {
 				return this.asnycResult;

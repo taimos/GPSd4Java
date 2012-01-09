@@ -1,14 +1,26 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.taimos</groupId>
 	<artifactId>gpsd4java</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>GPSd4Java</name>
+	<packaging>jar</packaging>
 	<description>Java Client library for GPSd deamon</description>
+
+	<url>http://gpsd4java.forge.hoegergroup.de/</url>
+	<inceptionYear>2011</inceptionYear>
+	<organization>
+		<name>Taimos GmbH</name>
+		<url>http://www.taimos.de</url>
+	</organization>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
 	</properties>
+
 	<developers>
 		<developer>
 			<id>thoeger</id>
@@ -19,6 +31,7 @@
 			<timezone>+1</timezone>
 		</developer>
 	</developers>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.json</groupId>
@@ -32,16 +45,12 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<url>http://gpsd4java.forge.hoegergroup.de/</url>
-	<inceptionYear>2011</inceptionYear>
-	<organization>
-		<name>Taimos GmbH</name>
-		<url>http://www.taimos.de</url>
-	</organization>
+
 	<scm>
 		<url>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</url>
 		<connection>scm:svn:https://forge.hoegergroup.de/svn/gpsd4java/trunk/</connection>
 	</scm>
+
 	<distributionManagement>
 		<repository>
 			<id>hoegergroup-repo</id>
@@ -49,6 +58,7 @@
 			<url>scpexe://maven.forge.hoegergroup.de/srv/http/maven/html</url>
 		</repository>
 	</distributionManagement>
+
 	<build>
 		<extensions>
 			<!-- Enabling the use of FTP -->
@@ -58,17 +68,86 @@
 				<version>2.2</version>
 			</extension>
 		</extensions>
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>2.3.2</version>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor />
+						<compress>true</compress>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<inherited>false</inherited>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>project</descriptorRef>
+						<!--descriptorRef>test-release</descriptorRef -->
+					</descriptorRefs>
+				</configuration>
+				<!-- <executions> <execution> <id>make-project-assembly</id> <phase>package</phase> <goals> <goal>single</goal> </goals> 
+					</execution> <execution> <id>test-release</id> <phase>package</phase> <goals> <goal>assembly</goal> </goals> </execution> 
+					</executions> -->
+			</plugin>
+		</plugins>
 	</build>
 </project>
