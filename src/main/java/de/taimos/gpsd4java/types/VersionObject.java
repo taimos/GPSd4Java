@@ -140,7 +140,18 @@ public class VersionObject implements IGPSObject {
 
 	@Override
 	public String toString() {
-		return "VersionObject [release=" + this.release + ", rev=" + this.rev + ", protocolMajor=" + this.protocolMajor + ", protocolMinor=" + this.protocolMinor + "]";
+		final StringBuilder sb = new StringBuilder();
+
+		sb.append("VersionObject{release=");
+		sb.append(this.release);
+		sb.append(", rev=");
+		sb.append(this.rev);
+		sb.append(", protocolMajor=");
+		sb.append(this.protocolMajor);
+		sb.append(", protocolMinor=");
+		sb.append(this.protocolMinor);
+		sb.append("}");
+		return sb.toString();
 	}
 
 }

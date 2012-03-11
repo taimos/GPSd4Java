@@ -157,6 +157,18 @@ public class PollObject implements IGPSObject {
 
 	@Override
 	public String toString() {
-		return "PollObject [timestamp=" + this.timestamp + ", active=" + this.active + ", fixes=" + this.fixes.size() + ", skyviews=" + this.skyviews.size() + "]";
+		final StringBuilder sb = new StringBuilder();
+
+		sb.append("PollObject{timestamp=");
+		sb.append(this.timestamp);
+		sb.append(", active=");
+		sb.append(this.active);
+		sb.append(", fixes=");
+		sb.append(this.fixes.size());
+		sb.append(", skyviews=");
+		sb.append(this.skyviews.size());
+		sb.append("}");
+
+		return sb.toString();
 	}
 }

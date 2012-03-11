@@ -31,6 +31,7 @@ import de.taimos.gpsd4java.types.EParity;
 import de.taimos.gpsd4java.types.IGPSObject;
 import de.taimos.gpsd4java.types.ParseException;
 import de.taimos.gpsd4java.types.PollObject;
+import de.taimos.gpsd4java.types.SATObject;
 import de.taimos.gpsd4java.types.SKYObject;
 import de.taimos.gpsd4java.types.TPVObject;
 import de.taimos.gpsd4java.types.VersionObject;
@@ -44,12 +45,13 @@ import de.taimos.gpsd4java.types.WatchObject;
 public class ResultParser extends AbstractResultParser {
 
 	private static final Logger log = Logger.getLogger(ResultParser.class.getName());
-	private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); // Don't make this static!
+	private final DateFormat dateFormat; // Don't make this static!
 
 	/**
 	 * Create new ResultParser
 	 */
 	public ResultParser() {
+		this.dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 		this.dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
 
@@ -89,7 +91,17 @@ public class ResultParser extends AbstractResultParser {
 			gps = tpv;
 		} else if ("SKY".equals(clazz)) {
 			final SKYObject sky = new SKYObject();
-			// TODO implement SKY object
+			sky.setTag(json.optString("tag", null));
+			sky.setDevice(json.optString("device", null));
+			sky.setTimestamp(json.optDouble("time", Double.NaN));
+			sky.setLongitudeDOP(json.optDouble("xdop", Double.NaN));
+			sky.setLatitudeDOP(json.optDouble("ydop", Double.NaN));
+			sky.setAltitudeDOP(json.optDouble("vdop", Double.NaN));
+			sky.setTimestampDOP(json.optDouble("tdop", Double.NaN));
+			sky.setHorizontalDOP(json.optDouble("hdop", Double.NaN));
+			sky.setSphericalDOP(json.optDouble("pdop", Double.NaN));
+			sky.setHypersphericalDOP(json.optDouble("gdop", Double.NaN));
+			sky.setSatellites(this.parseObjectArray(json.optJSONArray("satellites"), SATObject.class));
 			gps = sky;
 		} else if ("ATT".equals(clazz)) {
 			// TODO implement ATT object
@@ -129,6 +141,14 @@ public class ResultParser extends AbstractResultParser {
 			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
 			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
 			gps = poll;
+		} else if (json.has("PRN")) {
+			final SATObject sat = new SATObject();
+			sat.setPRN(json.optInt("PRN", -1));
+			sat.setAzimuth(json.optInt("az", -1));
+			sat.setElevation(json.optInt("el", -1));
+			sat.setSignalStrength(json.optInt("ss", -1));
+			sat.setUsed(json.optBoolean("used", false));
+			gps = sat;
 		} else {
 			throw new ParseException("Invalid object class: " + clazz);
 		}

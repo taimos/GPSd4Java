@@ -95,7 +95,7 @@ public class WatchObject implements IGPSObject {
 
 	@Override
 	public String toString() {
-		return "WatchObject [enable=" + this.enable + ", dump=" + this.dump + "]";
+		return "WatchObject{enable=" + this.enable + ", dump=" + this.dump + "}";
 	}
 
 }
