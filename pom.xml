@@ -8,6 +8,11 @@
 	<name>GPSd4Java</name>
 	<packaging>jar</packaging>
 	<description>Java Client library for GPSd deamon</description>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 
 	<url>http://gpsd4java.forge.hoegergroup.de/</url>
 	<inceptionYear>2011</inceptionYear>
@@ -15,7 +20,13 @@
 		<name>Taimos GmbH</name>
 		<url>http://www.taimos.de</url>
 	</organization>
-
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
@@ -55,28 +66,12 @@
 	</dependencies>
 
 	<scm>
-		<url>scm:git://github.com/taimos/GPSd4Java.git</url>
-		<connection>scm:git://github.com/taimos/GPSd4Java.git</connection>
+		<connection>scm:git:git@github.com:taimos/GPSd4Java.git</connection>
+		<developerConnection>scm:git:git@github.com:taimos/GPSd4Java.git</developerConnection>
+		<url>git@github.com:taimos/GPSd4Java.git</url>
 	</scm>
 
-	<distributionManagement>
-		<repository>
-			<id>hoegergroup-repo</id>
-			<name>Repository on forge.hoegergroup.de</name>
-			<url>scpexe://maven.forge.hoegergroup.de/srv/http/maven/html</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
-		<extensions>
-			<!-- Enabling the use of FTP -->
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh-external</artifactId>
-				<version>2.2</version>
-			</extension>
-		</extensions>
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
