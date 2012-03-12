@@ -23,6 +23,8 @@ import de.taimos.gpsd4java.backend.GPSdEndpoint;
 import de.taimos.gpsd4java.backend.ResultParser;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
+import de.taimos.gpsd4java.types.SATObject;
+import de.taimos.gpsd4java.types.SKYObject;
 import de.taimos.gpsd4java.types.TPVObject;
 
 /**
@@ -77,9 +79,17 @@ public class Tester {
 				}
 
 				@Override
+				public void handleSKY(SKYObject sky) {
+					log.log(Level.INFO, "SKY: {0}", sky);
+					for (final SATObject sat : sky.getSatellites()) {
+						log.log(Level.INFO, "  SAT: {0}", sat);
+					}
+				}
+
+				@Override
 				public void handleDevices(final DevicesObject devices) {
 					for (final DeviceObject d : devices.getDevices()) {
-						log.log(Level.INFO, "{0}", d);
+						log.log(Level.INFO, "Device: {0}", d);
 					}
 				}
 			});
