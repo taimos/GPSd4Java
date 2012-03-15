@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.taimos.gpsd4java.api.IObjectListener;
+import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.IGPSObject;
@@ -247,11 +248,10 @@ public class GPSdEndpoint {
 			for (final IObjectListener l : this.listeners) {
 				l.handleSKY((SKYObject) object);
 			}
-			// TODO activate after ATT is implemented
-			// } else if (object instanceof ATTObject) {
-			// for (IObjectListener l : this.listeners) {
-			// l.handleATT((ATTObject) object);
-			// }
+		} else if (object instanceof ATTObject) {
+			for (final IObjectListener l : this.listeners) {
+				l.handleATT((ATTObject) object);
+			}
 		} else if (object instanceof DevicesObject) {
 			for (final IObjectListener l : this.listeners) {
 				l.handleDevices((DevicesObject) object);

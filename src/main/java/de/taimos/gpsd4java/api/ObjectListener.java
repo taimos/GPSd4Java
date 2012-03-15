@@ -15,6 +15,7 @@
  */
 package de.taimos.gpsd4java.api;
 
+import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.SKYObject;
@@ -38,7 +39,7 @@ public class ObjectListener implements IObjectListener {
 	}
 
 	@Override
-	public void handleATT(final TPVObject att) {
+	public void handleATT(final ATTObject att) {
 		// implement in subclass if needed
 	}
 

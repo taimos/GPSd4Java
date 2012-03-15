@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import de.taimos.gpsd4java.api.ObjectListener;
 import de.taimos.gpsd4java.backend.GPSdEndpoint;
 import de.taimos.gpsd4java.backend.ResultParser;
+import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.SATObject;
@@ -84,6 +85,11 @@ public class Tester {
 					for (final SATObject sat : sky.getSatellites()) {
 						log.log(Level.INFO, "  SAT: {0}", sat);
 					}
+				}
+
+				@Override
+				public void handleATT(ATTObject att) {
+					log.log(Level.INFO, "ATT: {0}", att);
 				}
 
 				@Override
