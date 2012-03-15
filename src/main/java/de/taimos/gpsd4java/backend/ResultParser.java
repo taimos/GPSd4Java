@@ -24,10 +24,12 @@ import java.util.logging.Logger;
 
 import org.json.JSONObject;
 
+import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.ENMEAMode;
 import de.taimos.gpsd4java.types.EParity;
+import de.taimos.gpsd4java.types.GSTObject;
 import de.taimos.gpsd4java.types.IGPSObject;
 import de.taimos.gpsd4java.types.ParseException;
 import de.taimos.gpsd4java.types.PollObject;
@@ -93,7 +95,7 @@ public class ResultParser extends AbstractResultParser {
 			final SKYObject sky = new SKYObject();
 			sky.setTag(json.optString("tag", null));
 			sky.setDevice(json.optString("device", null));
-			sky.setTimestamp(json.optDouble("time", Double.NaN));
+			sky.setTimestamp(this.parseTimestamp(json));
 			sky.setLongitudeDOP(json.optDouble("xdop", Double.NaN));
 			sky.setLatitudeDOP(json.optDouble("ydop", Double.NaN));
 			sky.setAltitudeDOP(json.optDouble("vdop", Double.NaN));
@@ -103,9 +105,46 @@ public class ResultParser extends AbstractResultParser {
 			sky.setHypersphericalDOP(json.optDouble("gdop", Double.NaN));
 			sky.setSatellites(this.parseObjectArray(json.optJSONArray("satellites"), SATObject.class));
 			gps = sky;
+		} else if ("GST".equals(clazz)) {
+			final GSTObject gst = new GSTObject();
+			gst.setTag(json.optString("tag", null));
+			gst.setDevice(json.optString("device", null));
+			gst.setTimestamp(this.parseTimestamp(json));
+			gst.setRms(json.optDouble("rms", Double.NaN));
+			gst.setMajor(json.optDouble("major", Double.NaN));
+			gst.setMinor(json.optDouble("minor", Double.NaN));
+			gst.setOrient(json.optDouble("orient", Double.NaN));
+			gst.setLat(json.optDouble("lat", Double.NaN));
+			gst.setLon(json.optDouble("lon", Double.NaN));
+			gst.setAlt(json.optDouble("alt", Double.NaN));
+			gps = gst;
 		} else if ("ATT".equals(clazz)) {
-			// TODO implement ATT object
-			throw new ParseException("object class not yet implemented: ATT");
+			final ATTObject att = new ATTObject();
+			att.setTag(json.optString("tag", null));
+			att.setDevice(json.optString("device", null));
+			att.setTimestamp(this.parseTimestamp(json));
+			att.setHeading(json.optDouble("heading", Double.NaN));
+			att.setPitch(json.optDouble("pitch", Double.NaN));
+			att.setYaw(json.optDouble("yaw", Double.NaN));
+			att.setRoll(json.optDouble("roll", Double.NaN));
+			att.setDip(json.optDouble("dip", Double.NaN));
+			att.setMag_len(json.optDouble("mag_len", Double.NaN));
+			att.setMag_x(json.optDouble("mag_x", Double.NaN));
+			att.setMag_y(json.optDouble("mag_y", Double.NaN));
+			att.setMag_z(json.optDouble("mag_z", Double.NaN));
+			att.setAcc_len(json.optDouble("acc_len", Double.NaN));
+			att.setAcc_x(json.optDouble("acc_x", Double.NaN));
+			att.setAcc_y(json.optDouble("acc_y", Double.NaN));
+			att.setAcc_z(json.optDouble("acc_z", Double.NaN));
+			att.setGyro_x(json.optDouble("gyro_x", Double.NaN));
+			att.setGyro_y(json.optDouble("gyro_y", Double.NaN));
+			att.setDepth(json.optDouble("depth", Double.NaN));
+			att.setTemperature(json.optDouble("temperature", Double.NaN));
+			att.setMagState(json.optString("mag_st", null));
+			att.setRollState(json.optString("roll_st", null));
+			att.setPitchState(json.optString("pitch_st", null));
+			att.setYawState(json.optString("yaw_st", null));
+			gps = att;
 		} else if ("VERSION".equals(clazz)) {
 			final VersionObject ver = new VersionObject();
 			ver.setRelease(json.optString("release", null));
@@ -136,7 +175,7 @@ public class ResultParser extends AbstractResultParser {
 			gps = watch;
 		} else if ("POLL".equals(clazz)) {
 			final PollObject poll = new PollObject();
-			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+			poll.setTimestamp(this.parseTimestamp(json));
 			poll.setActive(json.optInt("active", 0));
 			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
 			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
