@@ -10,19 +10,11 @@ Use GPSd4Java
 
 You can use GPSd4Java with a Maven project. Just add the following lines to your pom.xml.
 
-	<repositories>
-		<repository>
-			<id>hoegergroup-repo</id>
-			<name>Repository on forge.hoegergroup.de</name>
-			<url>http://maven.forge.hoegergroup.de/</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>gpsd4java</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -41,6 +33,6 @@ To get the latest development snapshot add the following lines to your pom.xml.
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>gpsd4java</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
+			<version>1.2.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
