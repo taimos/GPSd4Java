@@ -41,6 +41,7 @@ import de.taimos.gpsd4java.types.SKYObject;
 import de.taimos.gpsd4java.types.TPVObject;
 import de.taimos.gpsd4java.types.VersionObject;
 import de.taimos.gpsd4java.types.WatchObject;
+import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * GPSd client endpoint
@@ -73,7 +74,7 @@ public class GPSdEndpoint {
 	 */
 	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException, IOException {
 		if (server == null) {
-			throw new IllegalArgumentException("serrver can not be null!");
+			throw new IllegalArgumentException("server can not be null!");
 		}
 		if ((port < 0) || (port > 65535)) {
 			throw new IllegalArgumentException("Illegal port number: " + port);
@@ -251,6 +252,10 @@ public class GPSdEndpoint {
 		} else if (object instanceof ATTObject) {
 			for (final IObjectListener l : this.listeners) {
 				l.handleATT((ATTObject) object);
+			}
+		} else if (object instanceof SUBFRAMEObject) {
+			for (final IObjectListener l : this.listeners) {
+				l.handleSUBFRAME((SUBFRAMEObject) object);
 			}
 		} else if (object instanceof DevicesObject) {
 			for (final IObjectListener l : this.listeners) {

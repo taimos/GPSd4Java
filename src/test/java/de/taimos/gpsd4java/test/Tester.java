@@ -27,6 +27,7 @@ import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.SATObject;
 import de.taimos.gpsd4java.types.SKYObject;
 import de.taimos.gpsd4java.types.TPVObject;
+import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * This class provides tests during the startup phase of GPSd4Java<br>
@@ -76,7 +77,7 @@ public class Tester {
 
 				@Override
 				public void handleTPV(final TPVObject tpv) {
-					log.log(Level.INFO, "Listener: {0}", tpv);
+					log.log(Level.INFO, "TPV: {0}", tpv);
 				}
 
 				@Override
@@ -88,8 +89,18 @@ public class Tester {
 				}
 
 				@Override
+				public void handleSUBFRAME(SUBFRAMEObject subframe) {
+					log.log(Level.INFO, "SUBFRAME: {0}", subframe);
+				}
+
+				@Override
 				public void handleATT(ATTObject att) {
 					log.log(Level.INFO, "ATT: {0}", att);
+				}
+
+				@Override
+				public void handleDevice(DeviceObject device) {
+					log.log(Level.INFO, "Device: {0}", device);
 				}
 
 				@Override

@@ -283,17 +283,25 @@ public class DeviceObject implements IGPSObject {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-
 		sb.append("DeviceObject{path=");
 		sb.append(this.path);
 		sb.append(", driver=");
 		sb.append(this.driver);
+		sb.append(", activated=");
+		sb.append((long) this.activated);
 		sb.append(", bps=");
 		sb.append(this.bps);
+		sb.append(", parity=");
+		sb.append(this.parity);
+		sb.append(", stopbit=");
+		sb.append(this.stopbit);
 		sb.append(", nativeMode=");
 		sb.append(this.nativeMode);
+		sb.append(", cycle=");
+		sb.append(this.cycle);
+		sb.append(", minCycle=");
+		sb.append(this.mincycle);
 		sb.append("}");
-
 		return sb.toString();
 	}
 

@@ -15,11 +15,8 @@
  */
 package de.taimos.gpsd4java.api;
 
-import de.taimos.gpsd4java.types.ATTObject;
-import de.taimos.gpsd4java.types.DeviceObject;
-import de.taimos.gpsd4java.types.DevicesObject;
-import de.taimos.gpsd4java.types.SKYObject;
-import de.taimos.gpsd4java.types.TPVObject;
+import de.taimos.gpsd4java.types.*;
+import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * Listener to receive response objects
@@ -45,6 +42,12 @@ public interface IObjectListener {
 	 *            the ATT object
 	 */
 	void handleATT(ATTObject att);
+
+	/**
+	 * @param subframe
+	 *            the SUBFRAME object
+	 */
+	void handleSUBFRAME(SUBFRAMEObject subframe);
 
 	/**
 	 * @param devices

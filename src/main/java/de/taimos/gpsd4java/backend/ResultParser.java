@@ -38,6 +38,15 @@ import de.taimos.gpsd4java.types.SKYObject;
 import de.taimos.gpsd4java.types.TPVObject;
 import de.taimos.gpsd4java.types.VersionObject;
 import de.taimos.gpsd4java.types.WatchObject;
+import de.taimos.gpsd4java.types.subframes.ALMANACObject;
+import de.taimos.gpsd4java.types.subframes.EPHEM1Object;
+import de.taimos.gpsd4java.types.subframes.EPHEM2Object;
+import de.taimos.gpsd4java.types.subframes.EPHEM3Object;
+import de.taimos.gpsd4java.types.subframes.ERDObject;
+import de.taimos.gpsd4java.types.subframes.HEALTH2Object;
+import de.taimos.gpsd4java.types.subframes.HEALTHObject;
+import de.taimos.gpsd4java.types.subframes.IONOObject;
+import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * This class is used to parse responses from GPSd<br>
@@ -75,7 +84,7 @@ public class ResultParser extends AbstractResultParser {
 			final TPVObject tpv = new TPVObject();
 			tpv.setTag(json.optString("tag", null));
 			tpv.setDevice(json.optString("device", null));
-			tpv.setTimestamp(this.parseTimestamp(json));
+			tpv.setTimestamp(this.parseTimestamp(json, "time"));
 			tpv.setTimestampError(json.optDouble("ept", Double.NaN));
 			tpv.setLatitude(json.optDouble("lat", Double.NaN));
 			tpv.setLongitude(json.optDouble("lon", Double.NaN));
@@ -95,7 +104,7 @@ public class ResultParser extends AbstractResultParser {
 			final SKYObject sky = new SKYObject();
 			sky.setTag(json.optString("tag", null));
 			sky.setDevice(json.optString("device", null));
-			sky.setTimestamp(this.parseTimestamp(json));
+			sky.setTimestamp(this.parseTimestamp(json, "time"));
 			sky.setLongitudeDOP(json.optDouble("xdop", Double.NaN));
 			sky.setLatitudeDOP(json.optDouble("ydop", Double.NaN));
 			sky.setAltitudeDOP(json.optDouble("vdop", Double.NaN));
@@ -109,7 +118,7 @@ public class ResultParser extends AbstractResultParser {
 			final GSTObject gst = new GSTObject();
 			gst.setTag(json.optString("tag", null));
 			gst.setDevice(json.optString("device", null));
-			gst.setTimestamp(this.parseTimestamp(json));
+			gst.setTimestamp(this.parseTimestamp(json, "time"));
 			gst.setRms(json.optDouble("rms", Double.NaN));
 			gst.setMajor(json.optDouble("major", Double.NaN));
 			gst.setMinor(json.optDouble("minor", Double.NaN));
@@ -122,7 +131,7 @@ public class ResultParser extends AbstractResultParser {
 			final ATTObject att = new ATTObject();
 			att.setTag(json.optString("tag", null));
 			att.setDevice(json.optString("device", null));
-			att.setTimestamp(this.parseTimestamp(json));
+			att.setTimestamp(this.parseTimestamp(json, "time"));
 			att.setHeading(json.optDouble("heading", Double.NaN));
 			att.setPitch(json.optDouble("pitch", Double.NaN));
 			att.setYaw(json.optDouble("yaw", Double.NaN));
@@ -145,6 +154,36 @@ public class ResultParser extends AbstractResultParser {
 			att.setPitchState(json.optString("pitch_st", null));
 			att.setYawState(json.optString("yaw_st", null));
 			gps = att;
+		} else if ("SUBFRAME".equals(clazz)) {
+			final SUBFRAMEObject subframe = new SUBFRAMEObject();
+			subframe.setDevice(json.optString("device", null));
+			subframe.setMSBs(json.optInt("TOW17"));
+			subframe.setSatelliteNumber(json.optInt("tSV"));
+			subframe.setSubframeNumber(json.optInt("frame"));
+			subframe.setScaled(json.optBoolean("scaled", false));
+			subframe.setPageid(json.optInt("pageid"));
+			if (json.has("system_message")) {
+				subframe.setSystemMessage(json.optString("system_message"));
+			} else if (json.has("ALMANAC")) {
+				subframe.setAlmanac((ALMANACObject) this.parse(json.optJSONObject("ALMANAC")));
+			} else if (json.has("EPHEM1")) {
+				subframe.setEphem1((EPHEM1Object) this.parse(json.optJSONObject("EPHEM1")));
+			} else if (json.has("EPHEM2")) {
+				subframe.setEphem2((EPHEM2Object) this.parse(json.optJSONObject("EPHEM2")));
+			} else if (json.has("EPHEM3")) {
+				subframe.setEphem3((EPHEM3Object) this.parse(json.optJSONObject("EPHEM3")));
+			} else if (json.has("ERD")) {
+				subframe.setErd((ERDObject) this.parse(json.optJSONObject("ERD")));
+			} else if (json.has("HEALTH")) {
+				subframe.setHealth((HEALTHObject) this.parse(json.optJSONObject("HEALTH")));
+			} else if (json.has("HEALTH2")) {
+				subframe.setHealth2((HEALTH2Object) this.parse(json.optJSONObject("HEALTH2")));
+			} else if (json.has("IONO")) {
+				subframe.setIono((IONOObject) this.parse(json.optJSONObject("IONO")));
+			} else {
+				System.err.println("Unknown subframe: " + json.toString());
+			}
+			gps = subframe;
 		} else if ("VERSION".equals(clazz)) {
 			final VersionObject ver = new VersionObject();
 			ver.setRelease(json.optString("release", null));
@@ -159,7 +198,7 @@ public class ResultParser extends AbstractResultParser {
 		} else if ("DEVICE".equals(clazz)) {
 			final DeviceObject dev = new DeviceObject();
 			dev.setPath(json.optString("path", null));
-			dev.setActivated(json.optDouble("activated", Double.NaN));
+			dev.setActivated(this.parseTimestamp(json, "activated"));
 			dev.setDriver(json.optString("driver", null));
 			dev.setBps(json.optInt("bps", 0));
 			dev.setParity(EParity.fromString(json.optString("parity")));
@@ -175,12 +214,20 @@ public class ResultParser extends AbstractResultParser {
 			gps = watch;
 		} else if ("POLL".equals(clazz)) {
 			final PollObject poll = new PollObject();
-			poll.setTimestamp(this.parseTimestamp(json));
+			poll.setTimestamp(this.parseTimestamp(json, "time"));
 			poll.setActive(json.optInt("active", 0));
 			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
 			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
 			gps = poll;
-		} else if (json.has("PRN")) {
+
+			// TODO check this for gpsd version > 3.5
+			// final PollObject poll = new PollObject();
+			// poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+			// poll.setActive(json.optInt("active", 0));
+			// poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
+			// poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
+			// gps = poll;
+		} else if (json.has("PRN")) { // SATObject
 			final SATObject sat = new SATObject();
 			sat.setPRN(json.optInt("PRN", -1));
 			sat.setAzimuth(json.optInt("az", -1));
@@ -188,17 +235,115 @@ public class ResultParser extends AbstractResultParser {
 			sat.setSignalStrength(json.optInt("ss", -1));
 			sat.setUsed(json.optBoolean("used", false));
 			gps = sat;
+		} else if (json.has("deltai")) { // ALMANACObject
+			final ALMANACObject almanac = new ALMANACObject();
+			almanac.setID(json.optInt("ID"));
+			almanac.setHealth(json.optInt("Health"));
+			almanac.setE(json.optDouble("e", Double.NaN));
+			almanac.setToa(json.optInt("toa"));
+			almanac.setDeltai(json.optDouble("deltai", Double.NaN));
+			almanac.setOmegad(json.optDouble("Omegad", Double.NaN));
+			almanac.setSqrtA(json.optDouble("sqrtA", Double.NaN));
+			almanac.setOmega0(json.optDouble("Omega0", Double.NaN));
+			almanac.setOmega(json.optDouble("omega", Double.NaN));
+			almanac.setM0(json.optDouble("M0", Double.NaN));
+			almanac.setAf0(json.optDouble("af0", Double.NaN));
+			almanac.setAf1(json.optDouble("af1", Double.NaN));
+			gps = almanac;
+		} else if (json.has("IODC")) { // EPHEM1Object
+			final EPHEM1Object emphem1 = new EPHEM1Object();
+			emphem1.setWN(json.optInt("WN"));
+			emphem1.setIODC(json.optInt("IODC"));
+			emphem1.setL2(json.optInt("L2"));
+			emphem1.setUra(json.optDouble("ura", Double.NaN));
+			emphem1.setHlth(json.optDouble("hlth", Double.NaN));
+			emphem1.setL2P(json.optInt("L2P"));
+			emphem1.setTgd(json.optDouble("Tgd", Double.NaN));
+			emphem1.setToc(json.optInt("toc"));
+			emphem1.setAf2(json.optDouble("af2", Double.NaN));
+			emphem1.setAf1(json.optDouble("af1", Double.NaN));
+			emphem1.setAf0(json.optDouble("af0", Double.NaN));
+			gps = emphem1;
+		} else if (json.has("Crs")) { // EPHEM2Object
+			final EPHEM2Object emphem2 = new EPHEM2Object();
+			emphem2.setIODE(json.optInt("IODE"));
+			emphem2.setCrs(json.optDouble("Crs", Double.NaN));
+			emphem2.setDeltan(json.optDouble("deltan", Double.NaN));
+			emphem2.setM0(json.optDouble("M0", Double.NaN));
+			emphem2.setCuc(json.optDouble("Cuc", Double.NaN));
+			emphem2.setE(json.optDouble("e", Double.NaN));
+			emphem2.setCus(json.optDouble("Cus", Double.NaN));
+			emphem2.setSqrtA(json.optInt("sqrtA"));
+			emphem2.setToe(json.optInt("toe"));
+			emphem2.setFIT(json.optInt("FIT"));
+			emphem2.setAODO(json.optInt("AODO"));
+			gps = emphem2;
+		} else if (json.has("IDOT")) { // EPHEM3Object
+			final EPHEM3Object emphem3 = new EPHEM3Object();
+			emphem3.setIODE(json.optInt("IODE"));
+			emphem3.setIDOT(json.optDouble("IDOT", Double.NaN));
+			emphem3.setCic(json.optDouble("Cic", Double.NaN));
+			emphem3.setOmega0(json.optDouble("Omega0", Double.NaN));
+			emphem3.setCis(json.optDouble("Cis", Double.NaN));
+			emphem3.setI0(json.optDouble("i0", Double.NaN));
+			emphem3.setCrc(json.optDouble("Crc", Double.NaN));
+			emphem3.setOmega(json.optDouble("omega", Double.NaN));
+			emphem3.setOmegad(json.optDouble("Omegad", Double.NaN));
+			gps = emphem3;
+		} else if (json.has("ERD30")) { // ERDObject
+			final ERDObject erd = new ERDObject();
+			erd.setAi(json.optInt("ai"));
+			for (int index = 1; index <= 30; index++) {
+				erd.setERDbyIndex(index - 1, json.optInt("ERD" + index));
+			}
+			gps = erd;
+		} else if (json.has("SVH32")) { // HEALTHObject
+			final HEALTHObject health = new HEALTHObject();
+			health.setData_id(json.optInt("data_id"));
+			for (int index = 1; index <= 32; index++) {
+				health.setSVbyIndex(index - 1, json.optInt("SV" + index));
+			}
+			for (int index = 0; index <= 7; index++) {
+				health.setSVHbyIndex(index, json.optInt("SVH" + (index + 25)));
+			}
+			gps = health;
+		} else if (json.has("WNa")) { // HEALTH2Object
+			final HEALTH2Object health2 = new HEALTH2Object();
+			health2.setToa(json.optInt("toa"));
+			health2.setWNa(json.optInt("WNa"));
+			for (int index = 1; index <= 24; index++) {
+				health2.setSVbyIndex(index - 1, json.optInt("SV" + index));
+			}
+			gps = health2;
+		} else if (json.has("WNlsf")) { // IONOObject
+			final IONOObject iono = new IONOObject();
+			iono.setAlpha0(json.optDouble("a0", Double.NaN));
+			iono.setAlpha1(json.optDouble("a1", Double.NaN));
+			iono.setAlpha2(json.optDouble("a2", Double.NaN));
+			iono.setAlpha3(json.optDouble("a3", Double.NaN));
+			iono.setBeta0(json.optDouble("b0", Double.NaN));
+			iono.setBeta1(json.optDouble("b1", Double.NaN));
+			iono.setBeta2(json.optDouble("b2", Double.NaN));
+			iono.setBeta3(json.optDouble("b3", Double.NaN));
+			iono.setA0(json.optDouble("A0", Double.NaN));
+			iono.setA1(json.optDouble("A1", Double.NaN));
+			iono.setTot(json.optDouble("tot", Double.NaN));
+			iono.setWNt(json.optInt("WNt"));
+			iono.setLeap(json.optInt("ls"));
+			iono.setWNlsf(json.optInt("WNlsf"));
+			iono.setDN(json.optInt("DN"));
+			iono.setLsf(json.optInt("lsf"));
+			gps = iono;
 		} else {
 			throw new ParseException("Invalid object class: " + clazz);
 		}
-
 		return gps;
 	}
 
-	private double parseTimestamp(final JSONObject json) {
+	private double parseTimestamp(final JSONObject json, final String fieldName) {
 		try {
-			final String text = json.optString("time", null);
-			log.log(Level.FINE, "time: {0}", text);
+			final String text = json.optString(fieldName, null);
+			log.log(Level.FINE, fieldName + ": {0}", text);
 
 			if (text != null) {
 				final Date date = this.dateFormat.parse(text);
