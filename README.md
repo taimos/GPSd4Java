@@ -1,7 +1,7 @@
 About GPSd4Java
 ===============
 
-GPSd4Java is a library to use data from the GPSd deamon in your java applications. It provides a library to connect to GPSd and retrieve data.
+GPSd4Java is a library to use data from the GPSd daemon in your java applications. It provides a library to connect to GPSd and retrieve data.
 
 This project started in January 2011 so there is not many information available yet. You may help and contribute if you want.
 
