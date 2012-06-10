@@ -46,7 +46,7 @@ public class Tester {
 	 */
 	public static void main(final String[] args) {
 		try {
-			String host = "localhost";
+			String host = "192.168.4.29";
 			int port = 2947;
 
 			switch (args.length) {
@@ -112,7 +112,7 @@ public class Tester {
 
 			Tester.log.log(Level.INFO, "Version: {0}", ep.version());
 
-			Tester.log.log(Level.INFO, "Watch: {0}", ep.watch(true, true));
+			Tester.log.log(Level.INFO, "Watch: {0}", ep.watch(true, false));
 
 			Tester.log.log(Level.INFO, "Poll: {0}", ep.poll());
 

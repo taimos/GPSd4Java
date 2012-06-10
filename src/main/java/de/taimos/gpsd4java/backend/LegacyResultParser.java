@@ -50,16 +50,16 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  * 
  * @author thoeger
  */
-public class ResultParser extends AbstractResultParser {
+public class LegacyResultParser extends AbstractResultParser {
 
-	private static final Logger log = Logger.getLogger(ResultParser.class.getName());
+	private static final Logger log = Logger.getLogger(LegacyResultParser.class.getName());
 
 	private final DateFormat dateFormat; // Don't make this static!
 
 	/**
 	 * Create new ResultParser
 	 */
-	public ResultParser() {
+	public LegacyResultParser() {
 		this.dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 		this.dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
@@ -211,22 +211,12 @@ public class ResultParser extends AbstractResultParser {
 			watch.setDump(json.optBoolean("json", false));
 			gps = watch;
 		} else if ("POLL".equals(clazz)) {
-			System.out.println("POLL: " + json.toString());
 			// check this for gpsd version <= 3.5
-			// final PollObject poll = new PollObject();
-			// poll.setTimestamp(this.parseTimestamp(json, "time"));
-			// poll.setActive(json.optInt("active", 0));
-			// poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
-			// poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
-			// gps = poll;
-
-			// check this for gpsd version > 3.5
 			final PollObject poll = new PollObject();
 			poll.setTimestamp(this.parseTimestamp(json, "time"));
 			poll.setActive(json.optInt("active", 0));
-			poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
-			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
-			poll.setGst(this.parseObjectArray(json.optJSONArray("gst"), GSTObject.class));
+			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
+			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
 			gps = poll;
 		} else if (json.has("PRN")) { // SATObject
 			final SATObject sat = new SATObject();
@@ -344,17 +334,17 @@ public class ResultParser extends AbstractResultParser {
 	private double parseTimestamp(final JSONObject json, final String fieldName) {
 		try {
 			final String text = json.optString(fieldName, null);
-			ResultParser.log.log(Level.FINE, fieldName + ": {0}", text);
+			LegacyResultParser.log.log(Level.FINE, fieldName + ": {0}", text);
 
 			if (text != null) {
 				final Date date = this.dateFormat.parse(text);
-				if (ResultParser.log.isLoggable(Level.FINE)) {
-					ResultParser.log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date));
+				if (LegacyResultParser.log.isLoggable(Level.FINE)) {
+					LegacyResultParser.log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date));
 				}
 				return (date.getTime() / 1000.0);
 			}
 		} catch (final Exception ex) {
-			ResultParser.log.log(Level.INFO, "Failed to parse time", ex);
+			LegacyResultParser.log.log(Level.INFO, "Failed to parse time", ex);
 		}
 		return Double.NaN;
 	}
