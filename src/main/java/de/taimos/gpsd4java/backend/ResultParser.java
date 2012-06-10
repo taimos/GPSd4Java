@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.backend;
 
@@ -56,6 +53,7 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 public class ResultParser extends AbstractResultParser {
 
 	private static final Logger log = Logger.getLogger(ResultParser.class.getName());
+
 	private final DateFormat dateFormat; // Don't make this static!
 
 	/**
@@ -165,21 +163,21 @@ public class ResultParser extends AbstractResultParser {
 			if (json.has("system_message")) {
 				subframe.setSystemMessage(json.optString("system_message"));
 			} else if (json.has("ALMANAC")) {
-				subframe.setAlmanac((ALMANACObject) this.parse(json.optJSONObject("ALMANAC")));
+				subframe.setAlmanac((ALMANACObject)this.parse(json.optJSONObject("ALMANAC")));
 			} else if (json.has("EPHEM1")) {
-				subframe.setEphem1((EPHEM1Object) this.parse(json.optJSONObject("EPHEM1")));
+				subframe.setEphem1((EPHEM1Object)this.parse(json.optJSONObject("EPHEM1")));
 			} else if (json.has("EPHEM2")) {
-				subframe.setEphem2((EPHEM2Object) this.parse(json.optJSONObject("EPHEM2")));
+				subframe.setEphem2((EPHEM2Object)this.parse(json.optJSONObject("EPHEM2")));
 			} else if (json.has("EPHEM3")) {
-				subframe.setEphem3((EPHEM3Object) this.parse(json.optJSONObject("EPHEM3")));
+				subframe.setEphem3((EPHEM3Object)this.parse(json.optJSONObject("EPHEM3")));
 			} else if (json.has("ERD")) {
-				subframe.setErd((ERDObject) this.parse(json.optJSONObject("ERD")));
+				subframe.setErd((ERDObject)this.parse(json.optJSONObject("ERD")));
 			} else if (json.has("HEALTH")) {
-				subframe.setHealth((HEALTHObject) this.parse(json.optJSONObject("HEALTH")));
+				subframe.setHealth((HEALTHObject)this.parse(json.optJSONObject("HEALTH")));
 			} else if (json.has("HEALTH2")) {
-				subframe.setHealth2((HEALTH2Object) this.parse(json.optJSONObject("HEALTH2")));
+				subframe.setHealth2((HEALTH2Object)this.parse(json.optJSONObject("HEALTH2")));
 			} else if (json.has("IONO")) {
-				subframe.setIono((IONOObject) this.parse(json.optJSONObject("IONO")));
+				subframe.setIono((IONOObject)this.parse(json.optJSONObject("IONO")));
 			} else {
 				System.err.println("Unknown subframe: " + json.toString());
 			}
@@ -213,20 +211,23 @@ public class ResultParser extends AbstractResultParser {
 			watch.setDump(json.optBoolean("json", false));
 			gps = watch;
 		} else if ("POLL".equals(clazz)) {
-			final PollObject poll = new PollObject();
-			poll.setTimestamp(this.parseTimestamp(json, "time"));
-			poll.setActive(json.optInt("active", 0));
-			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
-			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
-			gps = poll;
-
-			// TODO check this for gpsd version > 3.5
+			System.out.println("POLL RAW: " + json.toString());
+			// check this for gpsd version <= 3.5
 			// final PollObject poll = new PollObject();
-			// poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+			// poll.setTimestamp(this.parseTimestamp(json, "time"));
 			// poll.setActive(json.optInt("active", 0));
-			// poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
-			// poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
+			// poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
+			// poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
 			// gps = poll;
+
+			// check this for gpsd version > 3.5
+			final PollObject poll = new PollObject();
+			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+			poll.setActive(json.optInt("active", 0));
+			poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
+			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
+			poll.setGst(this.parseObjectArray(json.optJSONArray("gst"), GSTObject.class));
+			gps = poll;
 		} else if (json.has("PRN")) { // SATObject
 			final SATObject sat = new SATObject();
 			sat.setPRN(json.optInt("PRN", -1));
@@ -343,17 +344,17 @@ public class ResultParser extends AbstractResultParser {
 	private double parseTimestamp(final JSONObject json, final String fieldName) {
 		try {
 			final String text = json.optString(fieldName, null);
-			log.log(Level.FINE, fieldName + ": {0}", text);
+			ResultParser.log.log(Level.FINE, fieldName + ": {0}", text);
 
 			if (text != null) {
 				final Date date = this.dateFormat.parse(text);
-				if (log.isLoggable(Level.FINE)) {
-					log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date));
+				if (ResultParser.log.isLoggable(Level.FINE)) {
+					ResultParser.log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date));
 				}
 				return (date.getTime() / 1000.0);
 			}
 		} catch (final Exception ex) {
-			log.log(Level.INFO, "Failed to parse time", ex);
+			ResultParser.log.log(Level.INFO, "Failed to parse time", ex);
 		}
 		return Double.NaN;
 	}

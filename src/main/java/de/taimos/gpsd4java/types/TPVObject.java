@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.types;
 
@@ -26,21 +23,37 @@ package de.taimos.gpsd4java.types;
 public class TPVObject implements IGPSObject {
 
 	private String tag = null;
+
 	private String device = null;
+
 	private double timestamp = Double.NaN;
+
 	private double timestampError = Double.NaN;
+
 	private double latitude = Double.NaN;
+
 	private double longitude = Double.NaN;
+
 	private double altitude = Double.NaN;
+
 	private double latitudeError = Double.NaN;
+
 	private double longitudeError = Double.NaN;
+
 	private double altitudeError = Double.NaN;
+
 	private double course = Double.NaN;
+
 	private double speed = Double.NaN;
+
 	private double climbRate = Double.NaN;
+
 	private double courseError = Double.NaN;
+
 	private double speedError = Double.NaN;
+
 	private double climbRateError = Double.NaN;
+
 	private ENMEAMode mode;
 
 	/**
@@ -372,36 +385,36 @@ public class TPVObject implements IGPSObject {
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.altitude);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.altitudeError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.climbRate);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.climbRateError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.course);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.courseError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.device == null) ? 0 : this.device.hashCode());
 		temp = Double.doubleToLongBits(this.latitude);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.latitudeError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.longitude);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.longitudeError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.mode == null) ? 0 : this.mode.hashCode());
 		temp = Double.doubleToLongBits(this.speed);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.speedError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.tag == null) ? 0 : this.tag.hashCode());
 		temp = Double.doubleToLongBits(this.timestamp);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.timestampError);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -416,7 +429,7 @@ public class TPVObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		final TPVObject other = (TPVObject) obj;
+		final TPVObject other = (TPVObject)obj;
 		if (Double.doubleToLongBits(this.altitude) != Double.doubleToLongBits(other.altitude)) {
 			return false;
 		}

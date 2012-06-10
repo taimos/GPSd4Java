@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.types.subframes;
 
@@ -304,7 +301,7 @@ public class IONOObject implements IGPSObject {
 			return false;
 		}
 
-		final IONOObject that = (IONOObject) o;
+		final IONOObject that = (IONOObject)o;
 
 		if (Double.compare(that.A0, this.A0) != 0) {
 			return false;
@@ -363,27 +360,27 @@ public class IONOObject implements IGPSObject {
 		int result;
 		long temp;
 		temp = this.alpha0 != +0.0d ? Double.doubleToLongBits(this.alpha0) : 0L;
-		result = (int) (temp ^ (temp >>> 32));
+		result = (int)(temp ^ (temp >>> 32));
 		temp = this.alpha1 != +0.0d ? Double.doubleToLongBits(this.alpha1) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.alpha2 != +0.0d ? Double.doubleToLongBits(this.alpha2) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.alpha3 != +0.0d ? Double.doubleToLongBits(this.alpha3) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.beta0 != +0.0d ? Double.doubleToLongBits(this.beta0) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.beta1 != +0.0d ? Double.doubleToLongBits(this.beta1) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.beta2 != +0.0d ? Double.doubleToLongBits(this.beta2) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.beta3 != +0.0d ? Double.doubleToLongBits(this.beta3) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.A0 != +0.0d ? Double.doubleToLongBits(this.A0) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.A1 != +0.0d ? Double.doubleToLongBits(this.A1) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.tot != +0.0d ? Double.doubleToLongBits(this.tot) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		result = (31 * result) + this.WNt;
 		result = (31 * result) + this.leap;
 		result = (31 * result) + this.WNlsf;

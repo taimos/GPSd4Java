@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.types.subframes;
 
@@ -185,7 +182,7 @@ public class EPHEM3Object implements IGPSObject {
 			return false;
 		}
 
-		final EPHEM3Object that = (EPHEM3Object) o;
+		final EPHEM3Object that = (EPHEM3Object)o;
 
 		if (Double.compare(that.Cic, this.Cic) != 0) {
 			return false;
@@ -224,21 +221,21 @@ public class EPHEM3Object implements IGPSObject {
 		long temp;
 		result = this.IODE;
 		temp = this.IDOT != +0.0d ? Double.doubleToLongBits(this.IDOT) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.Cic != +0.0d ? Double.doubleToLongBits(this.Cic) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.Omega0 != +0.0d ? Double.doubleToLongBits(this.Omega0) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.Cis != +0.0d ? Double.doubleToLongBits(this.Cis) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.i0 != +0.0d ? Double.doubleToLongBits(this.i0) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.Crc != +0.0d ? Double.doubleToLongBits(this.Crc) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.omega != +0.0d ? Double.doubleToLongBits(this.omega) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		temp = this.Omegad != +0.0d ? Double.doubleToLongBits(this.Omegad) : 0L;
-		result = (31 * result) + (int) (temp ^ (temp >>> 32));
+		result = (31 * result) + (int)(temp ^ (temp >>> 32));
 		return result;
 	}
 

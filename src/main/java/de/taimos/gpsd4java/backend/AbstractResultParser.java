@@ -52,7 +52,7 @@ public abstract class AbstractResultParser {
 			}
 			final List<T> objects = new ArrayList<T>(10);
 			for (int i = 0; i < array.length(); i++) {
-				objects.add((T) this.parse(array.getJSONObject(i)));
+				objects.add((T)this.parse(array.getJSONObject(i)));
 			}
 			return objects;
 		} catch (final JSONException e) {

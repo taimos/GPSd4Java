@@ -1,23 +1,21 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.types;
 
 /**
- * An ATT object is a vehicle-attitude report. It is returned by digital-compass and gyroscope sensors; depending on device, it may include: heading, pitch, roll, yaw, gyroscope,
- * and magnetic-field readings. Because such sensors are often bundled as part of marine-navigation systems, the ATT response may also include water depth.<br>
+ * An ATT object is a vehicle-attitude report. It is returned by digital-compass and gyroscope sensors; depending on device, it may include:
+ * heading, pitch, roll, yaw, gyroscope, and magnetic-field readings. Because such sensors are often bundled as part of marine-navigation
+ * systems, the ATT response may also include water depth.<br>
  * <br>
  * 
  * all getters for double values may return <code>Double.NaN</code> if value is not present<br>
@@ -34,26 +32,45 @@ public class ATTObject implements IGPSObject {
 	private double timestamp = Double.NaN;
 
 	private double heading = Double.NaN;
+
 	private double pitch = Double.NaN;
+
 	private double yaw = Double.NaN;
+
 	private double roll = Double.NaN;
+
 	private double dip = Double.NaN;
+
 	private double mag_len = Double.NaN;
+
 	private double mag_x = Double.NaN;
+
 	private double mag_y = Double.NaN;
+
 	private double mag_z = Double.NaN;
+
 	private double acc_len = Double.NaN;
+
 	private double acc_x = Double.NaN;
+
 	private double acc_y = Double.NaN;
+
 	private double acc_z = Double.NaN;
+
 	private double gyro_x = Double.NaN;
+
 	private double gyro_y = Double.NaN;
+
 	private double depth = Double.NaN;
+
 	private double temperature = Double.NaN;
 
 	private String magState = null;
+
 	private String pitchState = null;
+
 	private String yawState = null;
+
 	private String rollState = null;
 
 	/**

@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.types;
 
@@ -30,6 +27,8 @@ public class PollObject implements IGPSObject {
 	private List<TPVObject> fixes;
 
 	private List<SKYObject> skyviews;
+
+	private List<GSTObject> gst;
 
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
@@ -107,6 +106,21 @@ public class PollObject implements IGPSObject {
 		this.skyviews = skyviews;
 	}
 
+	/**
+	 * @return the gst
+	 */
+	public List<GSTObject> getGst() {
+		return this.gst;
+	}
+
+	/**
+	 * @param gst
+	 *            the gst to set
+	 */
+	public void setGst(List<GSTObject> gst) {
+		this.gst = gst;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -114,9 +128,10 @@ public class PollObject implements IGPSObject {
 		result = (prime * result) + this.active;
 		result = (prime * result) + ((this.fixes == null) ? 0 : this.fixes.hashCode());
 		result = (prime * result) + ((this.skyviews == null) ? 0 : this.skyviews.hashCode());
+		result = (prime * result) + ((this.gst == null) ? 0 : this.gst.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(this.timestamp);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -131,7 +146,7 @@ public class PollObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		final PollObject other = (PollObject) obj;
+		final PollObject other = (PollObject)obj;
 		if (this.active != other.active) {
 			return false;
 		}
@@ -147,6 +162,13 @@ public class PollObject implements IGPSObject {
 				return false;
 			}
 		} else if (!this.skyviews.equals(other.skyviews)) {
+			return false;
+		}
+		if (this.gst == null) {
+			if (other.gst != null) {
+				return false;
+			}
+		} else if (!this.gst.equals(other.gst)) {
 			return false;
 		}
 		if (Double.doubleToLongBits(this.timestamp) != Double.doubleToLongBits(other.timestamp)) {
@@ -167,6 +189,8 @@ public class PollObject implements IGPSObject {
 		sb.append(this.fixes.size());
 		sb.append(", skyviews=");
 		sb.append(this.skyviews.size());
+		sb.append(", gst=");
+		sb.append(this.gst.size());
 		sb.append("}");
 
 		return sb.toString();

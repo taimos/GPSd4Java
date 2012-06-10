@@ -3,7 +3,18 @@ About GPSd4Java
 
 GPSd4Java is a library to use data from the GPSd daemon in your java applications. It provides a library to connect to GPSd and retrieve data.
 
-This project started in January 2011 so there is not many information available yet. You may help and contribute if you want.
+Use GPSd4Java with gpsd 3.6
+===========================
+
+Version 1.2 is ONLY compatible with gpsd version 3.6. GPSd4Java 1.3 will be a compatibility release to support all active gpsd versions.
+
+	<dependencies>
+		<dependency>
+			<groupId>de.taimos</groupId>
+			<artifactId>gpsd4java</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+	</dependencies>
 
 Use GPSd4Java
 =============

@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.types;
 
@@ -102,7 +99,8 @@ public class GSTObject implements IGPSObject {
 	}
 
 	/**
-	 * Value of the standard deviation of the range inputs to the navigation process (range inputs include pseudoranges and DGPS corrections).
+	 * Value of the standard deviation of the range inputs to the navigation process (range inputs include pseudoranges and DGPS
+	 * corrections).
 	 * 
 	 * @return the rms
 	 */
@@ -111,7 +109,8 @@ public class GSTObject implements IGPSObject {
 	}
 
 	/**
-	 * Value of the standard deviation of the range inputs to the navigation process (range inputs include pseudoranges and DGPS corrections).
+	 * Value of the standard deviation of the range inputs to the navigation process (range inputs include pseudoranges and DGPS
+	 * corrections).
 	 * 
 	 * @param rms
 	 *            the rms to set
@@ -240,23 +239,23 @@ public class GSTObject implements IGPSObject {
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.alt);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.device == null) ? 0 : this.device.hashCode());
 		temp = Double.doubleToLongBits(this.lat);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.lon);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.major);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.minor);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.orient);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.rms);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.tag == null) ? 0 : this.tag.hashCode());
 		temp = Double.doubleToLongBits(this.timestamp);
-		result = (prime * result) + (int) (temp ^ (temp >>> 32));
+		result = (prime * result) + (int)(temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -271,7 +270,7 @@ public class GSTObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		final GSTObject other = (GSTObject) obj;
+		final GSTObject other = (GSTObject)obj;
 		if (Double.doubleToLongBits(this.alt) != Double.doubleToLongBits(other.alt)) {
 			return false;
 		}

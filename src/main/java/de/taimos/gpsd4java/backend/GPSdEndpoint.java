@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Thorsten Höger, Taimos GmbH
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package de.taimos.gpsd4java.backend;
 
@@ -51,14 +48,23 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 public class GPSdEndpoint {
 
 	private static final Logger log = Logger.getLogger(GPSdEndpoint.class.getName());
+
 	private final Socket socket;
+
 	private final BufferedReader in;
+
 	private final BufferedWriter out;
+
 	private Thread listenThread;
+
 	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>(1);
+
 	private IGPSObject asnycResult = null;
+
 	private final Object asyncMutex = new Object();
+
 	private final Object asyncWaitMutex = new Object();
+
 	private final AbstractResultParser resultParser;
 
 	/**
@@ -243,27 +249,27 @@ public class GPSdEndpoint {
 	void handle(final IGPSObject object) {
 		if (object instanceof TPVObject) {
 			for (final IObjectListener l : this.listeners) {
-				l.handleTPV((TPVObject) object);
+				l.handleTPV((TPVObject)object);
 			}
 		} else if (object instanceof SKYObject) {
 			for (final IObjectListener l : this.listeners) {
-				l.handleSKY((SKYObject) object);
+				l.handleSKY((SKYObject)object);
 			}
 		} else if (object instanceof ATTObject) {
 			for (final IObjectListener l : this.listeners) {
-				l.handleATT((ATTObject) object);
+				l.handleATT((ATTObject)object);
 			}
 		} else if (object instanceof SUBFRAMEObject) {
 			for (final IObjectListener l : this.listeners) {
-				l.handleSUBFRAME((SUBFRAMEObject) object);
+				l.handleSUBFRAME((SUBFRAMEObject)object);
 			}
 		} else if (object instanceof DevicesObject) {
 			for (final IObjectListener l : this.listeners) {
-				l.handleDevices((DevicesObject) object);
+				l.handleDevices((DevicesObject)object);
 			}
 		} else if (object instanceof DeviceObject) {
 			for (final IObjectListener l : this.listeners) {
-				l.handleDevice((DeviceObject) object);
+				l.handleDevice((DeviceObject)object);
 			}
 		} else {
 			// object was requested, so put it in the response object
