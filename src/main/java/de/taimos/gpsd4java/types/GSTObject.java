@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 /**
  * A GST object is a pseudorange noise report. <br>
@@ -56,7 +64,7 @@ public class GSTObject implements IGPSObject {
 	 * @param tag
 	 *            the tag to set
 	 */
-	public void setTag(String tag) {
+	public void setTag(final String tag) {
 		this.tag = tag;
 	}
 
@@ -75,7 +83,7 @@ public class GSTObject implements IGPSObject {
 	 * @param device
 	 *            the device to set
 	 */
-	public void setDevice(String device) {
+	public void setDevice(final String device) {
 		this.device = device;
 	}
 
@@ -94,7 +102,7 @@ public class GSTObject implements IGPSObject {
 	 * @param timestamp
 	 *            the timestamp to set
 	 */
-	public void setTimestamp(double timestamp) {
+	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -115,7 +123,7 @@ public class GSTObject implements IGPSObject {
 	 * @param rms
 	 *            the rms to set
 	 */
-	public void setRms(double rms) {
+	public void setRms(final double rms) {
 		this.rms = rms;
 	}
 
@@ -134,7 +142,7 @@ public class GSTObject implements IGPSObject {
 	 * @param major
 	 *            the major to set
 	 */
-	public void setMajor(double major) {
+	public void setMajor(final double major) {
 		this.major = major;
 	}
 
@@ -153,7 +161,7 @@ public class GSTObject implements IGPSObject {
 	 * @param minor
 	 *            the minor to set
 	 */
-	public void setMinor(double minor) {
+	public void setMinor(final double minor) {
 		this.minor = minor;
 	}
 
@@ -172,7 +180,7 @@ public class GSTObject implements IGPSObject {
 	 * @param orient
 	 *            the orient to set
 	 */
-	public void setOrient(double orient) {
+	public void setOrient(final double orient) {
 		this.orient = orient;
 	}
 
@@ -191,7 +199,7 @@ public class GSTObject implements IGPSObject {
 	 * @param lat
 	 *            the lat to set
 	 */
-	public void setLat(double lat) {
+	public void setLat(final double lat) {
 		this.lat = lat;
 	}
 
@@ -210,7 +218,7 @@ public class GSTObject implements IGPSObject {
 	 * @param lon
 	 *            the lon to set
 	 */
-	public void setLon(double lon) {
+	public void setLon(final double lon) {
 		this.lon = lon;
 	}
 
@@ -229,7 +237,7 @@ public class GSTObject implements IGPSObject {
 	 * @param alt
 	 *            the alt to set
 	 */
-	public void setAlt(double alt) {
+	public void setAlt(final double alt) {
 		this.alt = alt;
 	}
 
@@ -239,28 +247,28 @@ public class GSTObject implements IGPSObject {
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.alt);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.device == null) ? 0 : this.device.hashCode());
 		temp = Double.doubleToLongBits(this.lat);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.lon);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.major);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.minor);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.orient);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(this.rms);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.tag == null) ? 0 : this.tag.hashCode());
 		temp = Double.doubleToLongBits(this.timestamp);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -270,7 +278,7 @@ public class GSTObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		final GSTObject other = (GSTObject)obj;
+		final GSTObject other = (GSTObject) obj;
 		if (Double.doubleToLongBits(this.alt) != Double.doubleToLongBits(other.alt)) {
 			return false;
 		}

@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types.subframes;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import de.taimos.gpsd4java.types.IGPSObject;
 
@@ -53,7 +61,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param iODE
 	 *            the iODE to set
 	 */
-	public void setIODE(int iODE) {
+	public void setIODE(final int iODE) {
 		this.IODE = iODE;
 	}
 
@@ -68,7 +76,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param crs
 	 *            the crs to set
 	 */
-	public void setCrs(double crs) {
+	public void setCrs(final double crs) {
 		this.Crs = crs;
 	}
 
@@ -83,7 +91,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param deltan
 	 *            the deltan to set
 	 */
-	public void setDeltan(double deltan) {
+	public void setDeltan(final double deltan) {
 		this.deltan = deltan;
 	}
 
@@ -98,7 +106,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param m0
 	 *            the m0 to set
 	 */
-	public void setM0(double m0) {
+	public void setM0(final double m0) {
 		this.M0 = m0;
 	}
 
@@ -113,7 +121,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param cuc
 	 *            the cuc to set
 	 */
-	public void setCuc(double cuc) {
+	public void setCuc(final double cuc) {
 		this.Cuc = cuc;
 	}
 
@@ -128,7 +136,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param e
 	 *            the e to set
 	 */
-	public void setE(double e) {
+	public void setE(final double e) {
 		this.e = e;
 	}
 
@@ -143,7 +151,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param cus
 	 *            the cus to set
 	 */
-	public void setCus(double cus) {
+	public void setCus(final double cus) {
 		this.Cus = cus;
 	}
 
@@ -158,7 +166,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param sqrtA
 	 *            the sqrtA to set
 	 */
-	public void setSqrtA(double sqrtA) {
+	public void setSqrtA(final double sqrtA) {
 		this.sqrtA = sqrtA;
 	}
 
@@ -173,7 +181,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param toe
 	 *            the toe to set
 	 */
-	public void setToe(int toe) {
+	public void setToe(final int toe) {
 		this.toe = toe;
 	}
 
@@ -188,7 +196,7 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param fIT
 	 *            the fIT to set
 	 */
-	public void setFIT(int fIT) {
+	public void setFIT(final int fIT) {
 		this.FIT = fIT;
 	}
 
@@ -203,12 +211,12 @@ public class EPHEM2Object implements IGPSObject {
 	 * @param aODO
 	 *            the aODO to set
 	 */
-	public void setAODO(int aODO) {
+	public void setAODO(final int aODO) {
 		this.AODO = aODO;
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -216,7 +224,7 @@ public class EPHEM2Object implements IGPSObject {
 			return false;
 		}
 
-		final EPHEM2Object that = (EPHEM2Object)o;
+		final EPHEM2Object that = (EPHEM2Object) o;
 
 		if (this.AODO != that.AODO) {
 			return false;
@@ -261,19 +269,19 @@ public class EPHEM2Object implements IGPSObject {
 		long temp;
 		result = this.IODE;
 		temp = this.Crs != +0.0d ? Double.doubleToLongBits(this.Crs) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.deltan != +0.0d ? Double.doubleToLongBits(this.deltan) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.M0 != +0.0d ? Double.doubleToLongBits(this.M0) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.Cuc != +0.0d ? Double.doubleToLongBits(this.Cuc) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.e != +0.0d ? Double.doubleToLongBits(this.e) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.Cus != +0.0d ? Double.doubleToLongBits(this.Cus) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.sqrtA != +0.0d ? Double.doubleToLongBits(this.sqrtA) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		result = (31 * result) + this.toe;
 		result = (31 * result) + this.FIT;
 		result = (31 * result) + this.AODO;

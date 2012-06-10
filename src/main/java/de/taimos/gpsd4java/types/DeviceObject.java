@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 /**
  * 
@@ -213,13 +221,13 @@ public class DeviceObject implements IGPSObject {
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(this.activated);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		result = (prime * result) + this.bps;
 		temp = Double.doubleToLongBits(this.cycle);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		result = (prime * result) + ((this.driver == null) ? 0 : this.driver.hashCode());
 		temp = Double.doubleToLongBits(this.mincycle);
-		result = (prime * result) + (int)(temp ^ (temp >>> 32));
+		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		result = (prime * result) + (this.nativeMode ? 1231 : 1237);
 		result = (prime * result) + ((this.parity == null) ? 0 : this.parity.hashCode());
 		result = (prime * result) + ((this.path == null) ? 0 : this.path.hashCode());
@@ -238,7 +246,7 @@ public class DeviceObject implements IGPSObject {
 		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
-		final DeviceObject other = (DeviceObject)obj;
+		final DeviceObject other = (DeviceObject) obj;
 		if (Double.doubleToLongBits(this.activated) != Double.doubleToLongBits(other.activated)) {
 			return false;
 		}
@@ -285,7 +293,7 @@ public class DeviceObject implements IGPSObject {
 		sb.append(", driver=");
 		sb.append(this.driver);
 		sb.append(", activated=");
-		sb.append((long)this.activated);
+		sb.append((long) this.activated);
 		sb.append(", bps=");
 		sb.append(this.bps);
 		sb.append(", parity=");

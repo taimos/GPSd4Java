@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types.subframes;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import de.taimos.gpsd4java.types.IGPSObject;
 
@@ -63,7 +71,7 @@ public class IONOObject implements IGPSObject {
 	 * @param alpha0
 	 *            the alpha0 to set
 	 */
-	public void setAlpha0(double alpha0) {
+	public void setAlpha0(final double alpha0) {
 		this.alpha0 = alpha0;
 	}
 
@@ -78,7 +86,7 @@ public class IONOObject implements IGPSObject {
 	 * @param alpha1
 	 *            the alpha1 to set
 	 */
-	public void setAlpha1(double alpha1) {
+	public void setAlpha1(final double alpha1) {
 		this.alpha1 = alpha1;
 	}
 
@@ -93,7 +101,7 @@ public class IONOObject implements IGPSObject {
 	 * @param alpha2
 	 *            the alpha2 to set
 	 */
-	public void setAlpha2(double alpha2) {
+	public void setAlpha2(final double alpha2) {
 		this.alpha2 = alpha2;
 	}
 
@@ -108,7 +116,7 @@ public class IONOObject implements IGPSObject {
 	 * @param alpha3
 	 *            the alpha3 to set
 	 */
-	public void setAlpha3(double alpha3) {
+	public void setAlpha3(final double alpha3) {
 		this.alpha3 = alpha3;
 	}
 
@@ -123,7 +131,7 @@ public class IONOObject implements IGPSObject {
 	 * @param beta0
 	 *            the beta0 to set
 	 */
-	public void setBeta0(double beta0) {
+	public void setBeta0(final double beta0) {
 		this.beta0 = beta0;
 	}
 
@@ -138,7 +146,7 @@ public class IONOObject implements IGPSObject {
 	 * @param beta1
 	 *            the beta1 to set
 	 */
-	public void setBeta1(double beta1) {
+	public void setBeta1(final double beta1) {
 		this.beta1 = beta1;
 	}
 
@@ -153,7 +161,7 @@ public class IONOObject implements IGPSObject {
 	 * @param beta2
 	 *            the beta2 to set
 	 */
-	public void setBeta2(double beta2) {
+	public void setBeta2(final double beta2) {
 		this.beta2 = beta2;
 	}
 
@@ -168,7 +176,7 @@ public class IONOObject implements IGPSObject {
 	 * @param beta3
 	 *            the beta3 to set
 	 */
-	public void setBeta3(double beta3) {
+	public void setBeta3(final double beta3) {
 		this.beta3 = beta3;
 	}
 
@@ -183,7 +191,7 @@ public class IONOObject implements IGPSObject {
 	 * @param a0
 	 *            the a0 to set
 	 */
-	public void setA0(double a0) {
+	public void setA0(final double a0) {
 		this.A0 = a0;
 	}
 
@@ -198,7 +206,7 @@ public class IONOObject implements IGPSObject {
 	 * @param a1
 	 *            the a1 to set
 	 */
-	public void setA1(double a1) {
+	public void setA1(final double a1) {
 		this.A1 = a1;
 	}
 
@@ -213,7 +221,7 @@ public class IONOObject implements IGPSObject {
 	 * @param tot
 	 *            the tot to set
 	 */
-	public void setTot(double tot) {
+	public void setTot(final double tot) {
 		this.tot = tot;
 	}
 
@@ -228,7 +236,7 @@ public class IONOObject implements IGPSObject {
 	 * @param wNt
 	 *            the wNt to set
 	 */
-	public void setWNt(int wNt) {
+	public void setWNt(final int wNt) {
 		this.WNt = wNt;
 	}
 
@@ -243,7 +251,7 @@ public class IONOObject implements IGPSObject {
 	 * @param leap
 	 *            the leap to set
 	 */
-	public void setLeap(int leap) {
+	public void setLeap(final int leap) {
 		this.leap = leap;
 	}
 
@@ -258,7 +266,7 @@ public class IONOObject implements IGPSObject {
 	 * @param wNlsf
 	 *            the wNlsf to set
 	 */
-	public void setWNlsf(int wNlsf) {
+	public void setWNlsf(final int wNlsf) {
 		this.WNlsf = wNlsf;
 	}
 
@@ -273,7 +281,7 @@ public class IONOObject implements IGPSObject {
 	 * @param dN
 	 *            the dN to set
 	 */
-	public void setDN(int dN) {
+	public void setDN(final int dN) {
 		this.DN = dN;
 	}
 
@@ -288,12 +296,12 @@ public class IONOObject implements IGPSObject {
 	 * @param lsf
 	 *            the lsf to set
 	 */
-	public void setLsf(int lsf) {
+	public void setLsf(final int lsf) {
 		this.lsf = lsf;
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -301,7 +309,7 @@ public class IONOObject implements IGPSObject {
 			return false;
 		}
 
-		final IONOObject that = (IONOObject)o;
+		final IONOObject that = (IONOObject) o;
 
 		if (Double.compare(that.A0, this.A0) != 0) {
 			return false;
@@ -360,27 +368,27 @@ public class IONOObject implements IGPSObject {
 		int result;
 		long temp;
 		temp = this.alpha0 != +0.0d ? Double.doubleToLongBits(this.alpha0) : 0L;
-		result = (int)(temp ^ (temp >>> 32));
+		result = (int) (temp ^ (temp >>> 32));
 		temp = this.alpha1 != +0.0d ? Double.doubleToLongBits(this.alpha1) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.alpha2 != +0.0d ? Double.doubleToLongBits(this.alpha2) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.alpha3 != +0.0d ? Double.doubleToLongBits(this.alpha3) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.beta0 != +0.0d ? Double.doubleToLongBits(this.beta0) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.beta1 != +0.0d ? Double.doubleToLongBits(this.beta1) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.beta2 != +0.0d ? Double.doubleToLongBits(this.beta2) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.beta3 != +0.0d ? Double.doubleToLongBits(this.beta3) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.A0 != +0.0d ? Double.doubleToLongBits(this.A0) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.A1 != +0.0d ? Double.doubleToLongBits(this.A1) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.tot != +0.0d ? Double.doubleToLongBits(this.tot) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		result = (31 * result) + this.WNt;
 		result = (31 * result) + this.leap;
 		result = (31 * result) + this.WNlsf;

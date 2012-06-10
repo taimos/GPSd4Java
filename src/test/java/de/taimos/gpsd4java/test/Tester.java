@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.test;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,7 +86,7 @@ public class Tester {
 				}
 
 				@Override
-				public void handleSKY(SKYObject sky) {
+				public void handleSKY(final SKYObject sky) {
 					Tester.log.log(Level.INFO, "SKY: {0}", sky);
 					for (final SATObject sat : sky.getSatellites()) {
 						Tester.log.log(Level.INFO, "  SAT: {0}", sat);
@@ -86,17 +94,17 @@ public class Tester {
 				}
 
 				@Override
-				public void handleSUBFRAME(SUBFRAMEObject subframe) {
+				public void handleSUBFRAME(final SUBFRAMEObject subframe) {
 					Tester.log.log(Level.INFO, "SUBFRAME: {0}", subframe);
 				}
 
 				@Override
-				public void handleATT(ATTObject att) {
+				public void handleATT(final ATTObject att) {
 					Tester.log.log(Level.INFO, "ATT: {0}", att);
 				}
 
 				@Override
-				public void handleDevice(DeviceObject device) {
+				public void handleDevice(final DeviceObject device) {
 					Tester.log.log(Level.INFO, "Device: {0}", device);
 				}
 

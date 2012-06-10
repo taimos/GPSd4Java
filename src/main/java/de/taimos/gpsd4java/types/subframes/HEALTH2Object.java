@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types.subframes;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import java.util.Arrays;
 
@@ -39,7 +47,7 @@ public class HEALTH2Object implements IGPSObject {
 	 * @param toa
 	 *            the toa to set
 	 */
-	public void setToa(int toa) {
+	public void setToa(final int toa) {
 		this.toa = toa;
 	}
 
@@ -54,7 +62,7 @@ public class HEALTH2Object implements IGPSObject {
 	 * @param wNa
 	 *            the wNa to set
 	 */
-	public void setWNa(int wNa) {
+	public void setWNa(final int wNa) {
 		this.WNa = wNa;
 	}
 
@@ -63,7 +71,7 @@ public class HEALTH2Object implements IGPSObject {
 	 *            the index
 	 * @return the SV
 	 */
-	public int getSVbyIndex(int index) {
+	public int getSVbyIndex(final int index) {
 		return this.SV[index];
 	}
 
@@ -73,12 +81,12 @@ public class HEALTH2Object implements IGPSObject {
 	 * @param SVvalue
 	 *            the SV
 	 */
-	public void setSVbyIndex(int index, int SVvalue) {
+	public void setSVbyIndex(final int index, final int SVvalue) {
 		this.SV[index] = SVvalue;
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -86,7 +94,7 @@ public class HEALTH2Object implements IGPSObject {
 			return false;
 		}
 
-		final HEALTH2Object that = (HEALTH2Object)o;
+		final HEALTH2Object that = (HEALTH2Object) o;
 
 		if (this.WNa != that.WNa) {
 			return false;

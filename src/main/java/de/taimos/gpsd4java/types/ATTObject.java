@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 /**
  * An ATT object is a vehicle-attitude report. It is returned by digital-compass and gyroscope sensors; depending on device, it may include:
@@ -88,7 +96,7 @@ public class ATTObject implements IGPSObject {
 	 * @param tag
 	 *            the tag to set
 	 */
-	public void setTag(String tag) {
+	public void setTag(final String tag) {
 		this.tag = tag;
 	}
 
@@ -107,7 +115,7 @@ public class ATTObject implements IGPSObject {
 	 * @param device
 	 *            the device to set
 	 */
-	public void setDevice(String device) {
+	public void setDevice(final String device) {
 		this.device = device;
 	}
 
@@ -126,7 +134,7 @@ public class ATTObject implements IGPSObject {
 	 * @param timestamp
 	 *            the timestamp to set
 	 */
-	public void setTimestamp(double timestamp) {
+	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -145,7 +153,7 @@ public class ATTObject implements IGPSObject {
 	 * @param heading
 	 *            the heading to set
 	 */
-	public void setHeading(double heading) {
+	public void setHeading(final double heading) {
 		this.heading = heading;
 	}
 
@@ -164,7 +172,7 @@ public class ATTObject implements IGPSObject {
 	 * @param pitch
 	 *            the pitch to set
 	 */
-	public void setPitch(double pitch) {
+	public void setPitch(final double pitch) {
 		this.pitch = pitch;
 	}
 
@@ -183,7 +191,7 @@ public class ATTObject implements IGPSObject {
 	 * @param yaw
 	 *            the yaw to set
 	 */
-	public void setYaw(double yaw) {
+	public void setYaw(final double yaw) {
 		this.yaw = yaw;
 	}
 
@@ -202,7 +210,7 @@ public class ATTObject implements IGPSObject {
 	 * @param roll
 	 *            the roll to set
 	 */
-	public void setRoll(double roll) {
+	public void setRoll(final double roll) {
 		this.roll = roll;
 	}
 
@@ -221,7 +229,7 @@ public class ATTObject implements IGPSObject {
 	 * @param dip
 	 *            the dip to set
 	 */
-	public void setDip(double dip) {
+	public void setDip(final double dip) {
 		this.dip = dip;
 	}
 
@@ -240,7 +248,7 @@ public class ATTObject implements IGPSObject {
 	 * @param mag_len
 	 *            the mag_len to set
 	 */
-	public void setMag_len(double mag_len) {
+	public void setMag_len(final double mag_len) {
 		this.mag_len = mag_len;
 	}
 
@@ -259,7 +267,7 @@ public class ATTObject implements IGPSObject {
 	 * @param mag_x
 	 *            the mag_x to set
 	 */
-	public void setMag_x(double mag_x) {
+	public void setMag_x(final double mag_x) {
 		this.mag_x = mag_x;
 	}
 
@@ -278,7 +286,7 @@ public class ATTObject implements IGPSObject {
 	 * @param mag_y
 	 *            the mag_y to set
 	 */
-	public void setMag_y(double mag_y) {
+	public void setMag_y(final double mag_y) {
 		this.mag_y = mag_y;
 	}
 
@@ -297,7 +305,7 @@ public class ATTObject implements IGPSObject {
 	 * @param mag_z
 	 *            the mag_z to set
 	 */
-	public void setMag_z(double mag_z) {
+	public void setMag_z(final double mag_z) {
 		this.mag_z = mag_z;
 	}
 
@@ -316,7 +324,7 @@ public class ATTObject implements IGPSObject {
 	 * @param acc_len
 	 *            the acc_len to set
 	 */
-	public void setAcc_len(double acc_len) {
+	public void setAcc_len(final double acc_len) {
 		this.acc_len = acc_len;
 	}
 
@@ -335,7 +343,7 @@ public class ATTObject implements IGPSObject {
 	 * @param acc_x
 	 *            the acc_x to set
 	 */
-	public void setAcc_x(double acc_x) {
+	public void setAcc_x(final double acc_x) {
 		this.acc_x = acc_x;
 	}
 
@@ -354,7 +362,7 @@ public class ATTObject implements IGPSObject {
 	 * @param acc_y
 	 *            the acc_y to set
 	 */
-	public void setAcc_y(double acc_y) {
+	public void setAcc_y(final double acc_y) {
 		this.acc_y = acc_y;
 	}
 
@@ -373,7 +381,7 @@ public class ATTObject implements IGPSObject {
 	 * @param acc_z
 	 *            the acc_z to set
 	 */
-	public void setAcc_z(double acc_z) {
+	public void setAcc_z(final double acc_z) {
 		this.acc_z = acc_z;
 	}
 
@@ -392,7 +400,7 @@ public class ATTObject implements IGPSObject {
 	 * @param gyro_x
 	 *            the gyro_x to set
 	 */
-	public void setGyro_x(double gyro_x) {
+	public void setGyro_x(final double gyro_x) {
 		this.gyro_x = gyro_x;
 	}
 
@@ -411,7 +419,7 @@ public class ATTObject implements IGPSObject {
 	 * @param gyro_y
 	 *            the gyro_y to set
 	 */
-	public void setGyro_y(double gyro_y) {
+	public void setGyro_y(final double gyro_y) {
 		this.gyro_y = gyro_y;
 	}
 
@@ -430,7 +438,7 @@ public class ATTObject implements IGPSObject {
 	 * @param depth
 	 *            the depth to set
 	 */
-	public void setDepth(double depth) {
+	public void setDepth(final double depth) {
 		this.depth = depth;
 	}
 
@@ -449,7 +457,7 @@ public class ATTObject implements IGPSObject {
 	 * @param temperature
 	 *            the temperature to set
 	 */
-	public void setTemperature(double temperature) {
+	public void setTemperature(final double temperature) {
 		this.temperature = temperature;
 	}
 
@@ -468,7 +476,7 @@ public class ATTObject implements IGPSObject {
 	 * @param magState
 	 *            the magState to set
 	 */
-	public void setMagState(String magState) {
+	public void setMagState(final String magState) {
 		this.magState = magState;
 	}
 
@@ -487,7 +495,7 @@ public class ATTObject implements IGPSObject {
 	 * @param pitchState
 	 *            the pitchState to set
 	 */
-	public void setPitchState(String pitchState) {
+	public void setPitchState(final String pitchState) {
 		this.pitchState = pitchState;
 	}
 
@@ -506,7 +514,7 @@ public class ATTObject implements IGPSObject {
 	 * @param yawState
 	 *            the yawState to set
 	 */
-	public void setYawState(String yawState) {
+	public void setYawState(final String yawState) {
 		this.yawState = yawState;
 	}
 
@@ -525,7 +533,7 @@ public class ATTObject implements IGPSObject {
 	 * @param rollState
 	 *            the rollState to set
 	 */
-	public void setRollState(String rollState) {
+	public void setRollState(final String rollState) {
 		this.rollState = rollState;
 	}
 

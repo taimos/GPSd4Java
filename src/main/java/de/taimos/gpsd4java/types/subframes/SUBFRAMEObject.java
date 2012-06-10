@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types.subframes;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import de.taimos.gpsd4java.types.IGPSObject;
 
@@ -65,7 +73,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param device
 	 *            the device to set
 	 */
-	public void setDevice(String device) {
+	public void setDevice(final String device) {
 		this.device = device;
 	}
 
@@ -84,7 +92,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param subframeNumber
 	 *            to set
 	 */
-	public void setSubframeNumber(int subframeNumber) {
+	public void setSubframeNumber(final int subframeNumber) {
 		this.subframeNumber = subframeNumber;
 	}
 
@@ -103,7 +111,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param satelliteNumber
 	 *            satellite number to set
 	 */
-	public void setSatelliteNumber(int satelliteNumber) {
+	public void setSatelliteNumber(final int satelliteNumber) {
 		this.satelliteNumber = satelliteNumber;
 	}
 
@@ -122,7 +130,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param MSBs
 	 *            TOW17 to set
 	 */
-	public void setMSBs(int MSBs) {
+	public void setMSBs(final int MSBs) {
 		this.MSBs = MSBs;
 	}
 
@@ -141,7 +149,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param scaled
 	 *            scaled to set
 	 */
-	public void setScaled(boolean scaled) {
+	public void setScaled(final boolean scaled) {
 		this.scaled = scaled;
 	}
 
@@ -160,7 +168,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param pageid
 	 *            page id to set
 	 */
-	public void setPageid(int pageid) {
+	public void setPageid(final int pageid) {
 		this.pageid = pageid;
 	}
 
@@ -179,7 +187,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param systemMessage
 	 *            system message to set
 	 */
-	public void setSystemMessage(String systemMessage) {
+	public void setSystemMessage(final String systemMessage) {
 		this.systemMessage = systemMessage;
 	}
 
@@ -198,7 +206,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param almanac
 	 *            ALMANAC to set
 	 */
-	public void setAlmanac(ALMANACObject almanac) {
+	public void setAlmanac(final ALMANACObject almanac) {
 		this.almanac = almanac;
 	}
 
@@ -217,7 +225,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param ephem1
 	 *            EPHEM1 to set
 	 */
-	public void setEphem1(EPHEM1Object ephem1) {
+	public void setEphem1(final EPHEM1Object ephem1) {
 		this.ephem1 = ephem1;
 	}
 
@@ -236,7 +244,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param ephem2
 	 *            EPHEM2 to set
 	 */
-	public void setEphem2(EPHEM2Object ephem2) {
+	public void setEphem2(final EPHEM2Object ephem2) {
 		this.ephem2 = ephem2;
 	}
 
@@ -255,7 +263,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param ephem3
 	 *            EPHEM3 to set
 	 */
-	public void setEphem3(EPHEM3Object ephem3) {
+	public void setEphem3(final EPHEM3Object ephem3) {
 		this.ephem3 = ephem3;
 	}
 
@@ -274,7 +282,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param erd
 	 *            ERD to set
 	 */
-	public void setErd(ERDObject erd) {
+	public void setErd(final ERDObject erd) {
 		this.erd = erd;
 	}
 
@@ -293,7 +301,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param health
 	 *            HEALTH to set
 	 */
-	public void setHealth(HEALTHObject health) {
+	public void setHealth(final HEALTHObject health) {
 		this.health = health;
 	}
 
@@ -312,7 +320,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param health2
 	 *            HEALTH2 to set
 	 */
-	public void setHealth2(HEALTH2Object health2) {
+	public void setHealth2(final HEALTH2Object health2) {
 		this.health2 = health2;
 	}
 
@@ -331,12 +339,12 @@ public class SUBFRAMEObject implements IGPSObject {
 	 * @param iono
 	 *            IONO to set
 	 */
-	public void setIono(IONOObject iono) {
+	public void setIono(final IONOObject iono) {
 		this.iono = iono;
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -344,7 +352,7 @@ public class SUBFRAMEObject implements IGPSObject {
 			return false;
 		}
 
-		final SUBFRAMEObject that = (SUBFRAMEObject)o;
+		final SUBFRAMEObject that = (SUBFRAMEObject) o;
 
 		if (this.MSBs != that.MSBs) {
 			return false;

@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.types.subframes;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import de.taimos.gpsd4java.types.IGPSObject;
 
@@ -55,7 +63,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param iD
 	 *            the iD to set
 	 */
-	public void setID(int iD) {
+	public void setID(final int iD) {
 		this.ID = iD;
 	}
 
@@ -70,7 +78,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param health
 	 *            the health to set
 	 */
-	public void setHealth(int health) {
+	public void setHealth(final int health) {
 		this.Health = health;
 	}
 
@@ -85,7 +93,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param e
 	 *            the e to set
 	 */
-	public void setE(double e) {
+	public void setE(final double e) {
 		this.e = e;
 	}
 
@@ -100,7 +108,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param toa
 	 *            the toa to set
 	 */
-	public void setToa(int toa) {
+	public void setToa(final int toa) {
 		this.toa = toa;
 	}
 
@@ -115,7 +123,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param deltai
 	 *            the deltai to set
 	 */
-	public void setDeltai(double deltai) {
+	public void setDeltai(final double deltai) {
 		this.deltai = deltai;
 	}
 
@@ -130,7 +138,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param omegad
 	 *            the omegad to set
 	 */
-	public void setOmegad(double omegad) {
+	public void setOmegad(final double omegad) {
 		this.Omegad = omegad;
 	}
 
@@ -145,7 +153,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param sqrtA
 	 *            the sqrtA to set
 	 */
-	public void setSqrtA(double sqrtA) {
+	public void setSqrtA(final double sqrtA) {
 		this.sqrtA = sqrtA;
 	}
 
@@ -160,7 +168,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param omega0
 	 *            the omega0 to set
 	 */
-	public void setOmega0(double omega0) {
+	public void setOmega0(final double omega0) {
 		this.Omega0 = omega0;
 	}
 
@@ -175,7 +183,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param omega
 	 *            the omega to set
 	 */
-	public void setOmega(double omega) {
+	public void setOmega(final double omega) {
 		this.omega = omega;
 	}
 
@@ -190,7 +198,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param m0
 	 *            the m0 to set
 	 */
-	public void setM0(double m0) {
+	public void setM0(final double m0) {
 		this.M0 = m0;
 	}
 
@@ -205,7 +213,7 @@ public class ALMANACObject implements IGPSObject {
 	 * @param af0
 	 *            the af0 to set
 	 */
-	public void setAf0(double af0) {
+	public void setAf0(final double af0) {
 		this.af0 = af0;
 	}
 
@@ -220,12 +228,12 @@ public class ALMANACObject implements IGPSObject {
 	 * @param af1
 	 *            the af1 to set
 	 */
-	public void setAf1(double af1) {
+	public void setAf1(final double af1) {
 		this.af1 = af1;
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -233,7 +241,7 @@ public class ALMANACObject implements IGPSObject {
 			return false;
 		}
 
-		final ALMANACObject that = (ALMANACObject)o;
+		final ALMANACObject that = (ALMANACObject) o;
 
 		if (this.Health != that.Health) {
 			return false;
@@ -282,24 +290,24 @@ public class ALMANACObject implements IGPSObject {
 		result = this.ID;
 		result = (31 * result) + this.Health;
 		temp = this.e != +0.0d ? Double.doubleToLongBits(this.e) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		result = (31 * result) + this.toa;
 		temp = this.deltai != +0.0d ? Double.doubleToLongBits(this.deltai) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.Omegad != +0.0d ? Double.doubleToLongBits(this.Omegad) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.sqrtA != +0.0d ? Double.doubleToLongBits(this.sqrtA) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.Omega0 != +0.0d ? Double.doubleToLongBits(this.Omega0) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.omega != +0.0d ? Double.doubleToLongBits(this.omega) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.M0 != +0.0d ? Double.doubleToLongBits(this.M0) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.af0 != +0.0d ? Double.doubleToLongBits(this.af0) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		temp = this.af1 != +0.0d ? Double.doubleToLongBits(this.af1) : 0L;
-		result = (31 * result) + (int)(temp ^ (temp >>> 32));
+		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 

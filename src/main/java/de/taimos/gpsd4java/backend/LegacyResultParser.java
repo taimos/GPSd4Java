@@ -1,16 +1,24 @@
-/**
- * Copyright 2011 Thorsten Höger, Taimos GmbH
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
- * obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
- * and limitations under the License.
- */
 package de.taimos.gpsd4java.backend;
+
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -163,21 +171,21 @@ public class LegacyResultParser extends AbstractResultParser {
 			if (json.has("system_message")) {
 				subframe.setSystemMessage(json.optString("system_message"));
 			} else if (json.has("ALMANAC")) {
-				subframe.setAlmanac((ALMANACObject)this.parse(json.optJSONObject("ALMANAC")));
+				subframe.setAlmanac((ALMANACObject) this.parse(json.optJSONObject("ALMANAC")));
 			} else if (json.has("EPHEM1")) {
-				subframe.setEphem1((EPHEM1Object)this.parse(json.optJSONObject("EPHEM1")));
+				subframe.setEphem1((EPHEM1Object) this.parse(json.optJSONObject("EPHEM1")));
 			} else if (json.has("EPHEM2")) {
-				subframe.setEphem2((EPHEM2Object)this.parse(json.optJSONObject("EPHEM2")));
+				subframe.setEphem2((EPHEM2Object) this.parse(json.optJSONObject("EPHEM2")));
 			} else if (json.has("EPHEM3")) {
-				subframe.setEphem3((EPHEM3Object)this.parse(json.optJSONObject("EPHEM3")));
+				subframe.setEphem3((EPHEM3Object) this.parse(json.optJSONObject("EPHEM3")));
 			} else if (json.has("ERD")) {
-				subframe.setErd((ERDObject)this.parse(json.optJSONObject("ERD")));
+				subframe.setErd((ERDObject) this.parse(json.optJSONObject("ERD")));
 			} else if (json.has("HEALTH")) {
-				subframe.setHealth((HEALTHObject)this.parse(json.optJSONObject("HEALTH")));
+				subframe.setHealth((HEALTHObject) this.parse(json.optJSONObject("HEALTH")));
 			} else if (json.has("HEALTH2")) {
-				subframe.setHealth2((HEALTH2Object)this.parse(json.optJSONObject("HEALTH2")));
+				subframe.setHealth2((HEALTH2Object) this.parse(json.optJSONObject("HEALTH2")));
 			} else if (json.has("IONO")) {
-				subframe.setIono((IONOObject)this.parse(json.optJSONObject("IONO")));
+				subframe.setIono((IONOObject) this.parse(json.optJSONObject("IONO")));
 			} else {
 				System.err.println("Unknown subframe: " + json.toString());
 			}
@@ -339,7 +347,8 @@ public class LegacyResultParser extends AbstractResultParser {
 			if (text != null) {
 				final Date date = this.dateFormat.parse(text);
 				if (LegacyResultParser.log.isLoggable(Level.FINE)) {
-					LegacyResultParser.log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date));
+					LegacyResultParser.log.log(Level.FINE, "Date: {0}", DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL)
+							.format(date));
 				}
 				return (date.getTime() / 1000.0);
 			}

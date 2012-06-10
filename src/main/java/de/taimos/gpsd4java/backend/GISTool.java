@@ -1,5 +1,25 @@
 package de.taimos.gpsd4java.backend;
 
+/*
+ * #%L
+ * GPSd4Java
+ * %%
+ * Copyright (C) 2011 - 2012 Taimos GmbH
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
 import de.taimos.gpsd4java.types.TPVObject;
 
 /**
@@ -8,6 +28,8 @@ import de.taimos.gpsd4java.types.TPVObject;
  * @author thoeger
  */
 public class GISTool {
+
+	private static final int EARTH_RADIUS_KILOMETERS = 6371;
 
 	/**
 	 * calculates the distance between two {@link TPVObject} in kilometers<br>
@@ -39,17 +61,20 @@ public class GISTool {
 	 */
 	public static double getDistance(double x1, double x2, double y1, double y2) {
 		// transform to radian
-		x1 = x1 * (Math.PI / 180);
-		x2 = x2 * (Math.PI / 180);
-		y1 = y1 * (Math.PI / 180);
-		y2 = y2 * (Math.PI / 180);
+		final double deg2rad = Math.PI / 180;
+
+		x1 = x1 * deg2rad;
+		x2 = x2 * deg2rad;
+		y1 = y1 * deg2rad;
+		y2 = y2 * deg2rad;
+
 		// great-circle-distance with hypersine formula
 		final double dlong = x1 - x2;
 		final double dlat = y1 - y2;
 		final double a = Math.pow(Math.sin(dlat / 2), 2) + (Math.cos(y1) * Math.cos(y2) * Math.pow(Math.sin(dlong / 2), 2));
 		final double c = 2 * Math.asin(Math.sqrt(a));
-		// Earth radius in kilometers
-		return 6371 * c;
+
+		return GISTool.EARTH_RADIUS_KILOMETERS * c;
 	}
 
 }
