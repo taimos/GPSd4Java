@@ -211,7 +211,6 @@ public class ResultParser extends AbstractResultParser {
 			watch.setDump(json.optBoolean("json", false));
 			gps = watch;
 		} else if ("POLL".equals(clazz)) {
-			System.out.println("POLL RAW: " + json.toString());
 			// check this for gpsd version <= 3.5
 			// final PollObject poll = new PollObject();
 			// poll.setTimestamp(this.parseTimestamp(json, "time"));
@@ -222,7 +221,7 @@ public class ResultParser extends AbstractResultParser {
 
 			// check this for gpsd version > 3.5
 			final PollObject poll = new PollObject();
-			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+			poll.setTimestamp(this.parseTimestamp(json, "time"));
 			poll.setActive(json.optInt("active", 0));
 			poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
 			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
