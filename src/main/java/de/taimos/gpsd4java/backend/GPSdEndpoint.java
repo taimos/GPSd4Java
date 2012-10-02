@@ -55,7 +55,7 @@ public class GPSdEndpoint {
 
 	private final BufferedWriter out;
 
-	private Thread listenThread;
+	private SocketThread listenThread;
 
 	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>(1);
 
@@ -107,6 +107,18 @@ public class GPSdEndpoint {
 		} catch (final InterruptedException e) {
 			log.log(Level.FINE, null, e);
 		}
+	}
+	
+	/**
+	 * Stops the endpoint.
+	 */
+	public void stop() {
+		try {
+			this.listenThread.halt();
+		} catch (Exception e) {
+			log.log(Level.FINE, null, e);
+		}
+		this.listenThread = null;
 	}
 
 	/**

@@ -13,6 +13,7 @@
 package de.taimos.gpsd4java.backend;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,8 @@ public class SocketThread extends Thread {
 	private final GPSdEndpoint endpoint;
 
 	private final AbstractResultParser resultParser;
+	
+	private boolean doRun = true;
 
 	/**
 	 * @param reader
@@ -60,7 +63,7 @@ public class SocketThread extends Thread {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (doRun) {
 			try {
 				// read line from socket
 				final String s = this.reader.readLine();
@@ -79,5 +82,19 @@ public class SocketThread extends Thread {
 				log.log(Level.WARNING, null, e);
 			}
 		}
+	}
+	
+	/**
+	 * Halts the socket thread.
+	 * @throws InterruptedException
+	 */
+	public void halt() throws InterruptedException {
+		doRun = false;
+		try {
+			this.reader.close();
+		} catch (IOException e) {
+			//ignore
+		}
+		this.join(1000);
 	}
 }
