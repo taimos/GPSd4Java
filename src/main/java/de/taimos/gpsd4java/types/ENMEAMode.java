@@ -59,6 +59,8 @@ public enum ENMEAMode {
 			return TwoDimensional;
 		case 3:
 			return ThreeDimensional;
+		default:
+			break;
 		}
 		return NotSeen;
 	}

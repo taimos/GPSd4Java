@@ -55,7 +55,7 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  */
 public class GPSdEndpoint {
 
-	private static final Logger log = Logger.getLogger(GPSdEndpoint.class.getName());
+	private static final Logger LOG = Logger.getLogger(GPSdEndpoint.class.getName());
 
 	private final Socket socket;
 
@@ -114,7 +114,7 @@ public class GPSdEndpoint {
 		try {
 			Thread.sleep(500);
 		} catch (final InterruptedException e) {
-			GPSdEndpoint.log.log(Level.FINE, null, e);
+			GPSdEndpoint.LOG.log(Level.FINE, null, e);
 		}
 	}
 
@@ -125,7 +125,7 @@ public class GPSdEndpoint {
 		try {
 			this.listenThread.halt();
 		} catch (final Exception e) {
-			GPSdEndpoint.log.log(Level.FINE, null, e);
+			GPSdEndpoint.LOG.log(Level.FINE, null, e);
 		}
 		this.listenThread = null;
 	}
@@ -255,7 +255,7 @@ public class GPSdEndpoint {
 			try {
 				this.asyncWaitMutex.wait(1000);
 			} catch (final InterruptedException e) {
-				GPSdEndpoint.log.log(Level.INFO, null, e);
+				GPSdEndpoint.LOG.log(Level.INFO, null, e);
 			}
 			if (this.asnycResult != null) {
 				return this.asnycResult;

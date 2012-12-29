@@ -27,9 +27,13 @@ import de.taimos.gpsd4java.types.TPVObject;
  * 
  * @author thoeger
  */
-public class GISTool {
+public final class GISTool {
 
 	private static final int EARTH_RADIUS_KILOMETERS = 6371;
+
+	private GISTool() {
+		//
+	}
 
 	/**
 	 * calculates the distance between two {@link TPVObject} in kilometers<br>
@@ -59,19 +63,19 @@ public class GISTool {
 	 *            - latitude of position 2
 	 * @return distance in kilometers
 	 */
-	public static double getDistance(double x1, double x2, double y1, double y2) {
+	public static double getDistance(final double x1, final double x2, final double y1, final double y2) {
 		// transform to radian
 		final double deg2rad = Math.PI / 180;
 
-		x1 = x1 * deg2rad;
-		x2 = x2 * deg2rad;
-		y1 = y1 * deg2rad;
-		y2 = y2 * deg2rad;
+		final double x1rad = x1 * deg2rad;
+		final double x2rad = x2 * deg2rad;
+		final double y1rad = y1 * deg2rad;
+		final double y2rad = y2 * deg2rad;
 
 		// great-circle-distance with hypersine formula
-		final double dlong = x1 - x2;
-		final double dlat = y1 - y2;
-		final double a = Math.pow(Math.sin(dlat / 2), 2) + (Math.cos(y1) * Math.cos(y2) * Math.pow(Math.sin(dlong / 2), 2));
+		final double dlong = x1rad - x2rad;
+		final double dlat = y1rad - y2rad;
+		final double a = Math.pow(Math.sin(dlat / 2), 2) + (Math.cos(y1rad) * Math.cos(y2rad) * Math.pow(Math.sin(dlong / 2), 2));
 		final double c = 2 * Math.asin(Math.sqrt(a));
 
 		return GISTool.EARTH_RADIUS_KILOMETERS * c;

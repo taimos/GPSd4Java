@@ -23,6 +23,7 @@ package de.taimos.gpsd4java.backend;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.SocketException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +34,7 @@ import java.util.logging.Logger;
  */
 public class SocketThread extends Thread {
 
-	private static final Logger log = Logger.getLogger(SocketThread.class.getName());
+	private static final Logger LOG = Logger.getLogger(SocketThread.class.getName());
 
 	private final BufferedReader reader;
 
@@ -41,7 +42,7 @@ public class SocketThread extends Thread {
 
 	private final AbstractResultParser resultParser;
 
-	private boolean running = true;
+	private final AtomicBoolean running = new AtomicBoolean(true);
 
 	/**
 	 * @param reader
@@ -71,7 +72,7 @@ public class SocketThread extends Thread {
 
 	@Override
 	public void run() {
-		while (this.running) {
+		while (this.running.get()) {
 			try {
 				// read line from socket
 				final String s = this.reader.readLine();
@@ -87,7 +88,7 @@ public class SocketThread extends Thread {
 				break;
 			} catch (final Exception e) {
 				// TODO handle this better
-				SocketThread.log.log(Level.WARNING, null, e);
+				SocketThread.LOG.log(Level.WARNING, null, e);
 			}
 		}
 	}
@@ -98,7 +99,7 @@ public class SocketThread extends Thread {
 	 * @throws InterruptedException
 	 */
 	public void halt() throws InterruptedException {
-		this.running = false;
+		this.running.set(false);
 		try {
 			this.reader.close();
 		} catch (final IOException e) {

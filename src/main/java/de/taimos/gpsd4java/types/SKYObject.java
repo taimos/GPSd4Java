@@ -377,4 +377,5 @@ public class SKYObject implements IGPSObject {
 
 		return sb.toString();
 	}
+
 }

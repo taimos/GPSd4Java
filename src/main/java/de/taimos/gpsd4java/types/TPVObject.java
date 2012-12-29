@@ -1,5 +1,6 @@
 package de.taimos.gpsd4java.types;
 
+
 /*
  * #%L
  * GPSd4Java
@@ -540,4 +541,5 @@ public class TPVObject implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
+
 }

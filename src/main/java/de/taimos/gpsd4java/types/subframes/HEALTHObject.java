@@ -134,7 +134,7 @@ public class HEALTHObject implements IGPSObject {
 		}
 		for (int index = 0; index <= 7; index++) {
 			sb.append(", SVH");
-			sb.append((index + 25));
+			sb.append(index + 25);
 			sb.append("=");
 			sb.append(this.SVH[index]);
 		}
