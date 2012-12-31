@@ -29,6 +29,9 @@ import java.util.List;
  */
 public class SKYObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "SKY";
+
 	private String tag = null;
 
 	private String device = null;

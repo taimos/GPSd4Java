@@ -1,6 +1,5 @@
 package de.taimos.gpsd4java.types;
 
-
 /*
  * #%L
  * GPSd4Java
@@ -30,6 +29,9 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public class TPVObject implements IGPSObject {
+
+	/** the GPSd internal name */
+	public static final String NAME = "TPV";
 
 	private String tag = null;
 

@@ -29,6 +29,9 @@ package de.taimos.gpsd4java.types;
  */
 public class GSTObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "GST";
+
 	private String tag = null;
 
 	private String device = null;

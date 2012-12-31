@@ -30,6 +30,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class ERDObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "ERD";
+
 	private int[] ERD = new int[30];
 
 	private int ai = -1;

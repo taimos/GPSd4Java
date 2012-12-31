@@ -28,6 +28,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class SUBFRAMEObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "SUBFRAME";
+
 	private String device = null;
 
 	private int subframeNumber = -1;

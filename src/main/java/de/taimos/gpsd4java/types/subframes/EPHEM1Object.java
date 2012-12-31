@@ -28,6 +28,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class EPHEM1Object implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "EPHEM1";
+
 	private int WN = -1;
 
 	private int IODC = -1;

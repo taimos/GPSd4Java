@@ -26,6 +26,9 @@ package de.taimos.gpsd4java.types;
  */
 public class VersionObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "VERSION";
+
 	private String release;
 
 	private String rev;

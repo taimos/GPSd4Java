@@ -30,6 +30,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class HEALTHObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "HEALTH";
+
 	private final int[] SV = new int[32];
 
 	private final int[] SVH = new int[8];

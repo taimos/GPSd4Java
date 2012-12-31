@@ -28,6 +28,9 @@ import java.util.List;
  */
 public class DevicesObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "DEVICES";
+
 	private List<DeviceObject> devices;
 
 	/**

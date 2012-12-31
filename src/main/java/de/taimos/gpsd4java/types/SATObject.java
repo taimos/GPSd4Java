@@ -26,6 +26,9 @@ package de.taimos.gpsd4java.types;
  */
 public class SATObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "SAT";
+
 	private int PRN = -1;
 
 	private int azimuth = -1;

@@ -28,6 +28,9 @@ import java.util.List;
  */
 public class PollObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "POLL";
+
 	private double timestamp;
 
 	private int active;

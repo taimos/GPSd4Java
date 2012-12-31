@@ -26,6 +26,9 @@ package de.taimos.gpsd4java.types;
  */
 public class WatchObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "WATCH";
+
 	private boolean enable = true;
 
 	private boolean dump = false;

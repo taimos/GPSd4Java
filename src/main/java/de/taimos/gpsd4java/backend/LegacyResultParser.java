@@ -20,8 +20,6 @@ package de.taimos.gpsd4java.backend;
  * #L%
  */
 
-import org.json.JSONObject;
-
 import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
@@ -46,6 +44,8 @@ import de.taimos.gpsd4java.types.subframes.HEALTHObject;
 import de.taimos.gpsd4java.types.subframes.IONOObject;
 import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
+import org.json.JSONObject;
+
 /**
  * This class is used to parse responses from GPSd<br>
  * 
@@ -67,25 +67,25 @@ public class LegacyResultParser extends AbstractResultParser {
 		IGPSObject gps = null;
 		final String clazz = json.optString("class");
 
-		if ("TPV".equals(clazz)) {
+		if (TPVObject.NAME.equals(clazz)) {
 			gps = this.parseTPV(json);
-		} else if ("SKY".equals(clazz)) {
+		} else if (SKYObject.NAME.equals(clazz)) {
 			gps = this.parseSKY(json);
-		} else if ("GST".equals(clazz)) {
+		} else if (GSTObject.NAME.equals(clazz)) {
 			gps = this.parseGST(json);
-		} else if ("ATT".equals(clazz)) {
+		} else if (ATTObject.NAME.equals(clazz)) {
 			gps = this.parseATT(json);
-		} else if ("SUBFRAME".equals(clazz)) {
+		} else if (SUBFRAMEObject.NAME.equals(clazz)) {
 			gps = this.parseSUBFRAME(json);
-		} else if ("VERSION".equals(clazz)) {
+		} else if (VersionObject.NAME.equals(clazz)) {
 			gps = this.parseVERSION(json);
-		} else if ("DEVICES".equals(clazz)) {
+		} else if (DevicesObject.NAME.equals(clazz)) {
 			gps = this.parseDEVICES(json);
-		} else if ("DEVICE".equals(clazz)) {
+		} else if (DeviceObject.NAME.equals(clazz)) {
 			gps = this.parseDEVICE(json);
-		} else if ("WATCH".equals(clazz)) {
+		} else if (WatchObject.NAME.equals(clazz)) {
 			gps = this.parseWATCH(json);
-		} else if ("POLL".equals(clazz)) {
+		} else if (PollObject.NAME.equals(clazz)) {
 			gps = this.parsePOLL(json);
 		} else if (json.has("PRN")) { // SATObject
 			gps = this.parsePRN(json);
@@ -321,22 +321,22 @@ public class LegacyResultParser extends AbstractResultParser {
 		subframe.setPageid(json.optInt("pageid"));
 		if (json.has("system_message")) {
 			subframe.setSystemMessage(json.optString("system_message"));
-		} else if (json.has("ALMANAC")) {
-			subframe.setAlmanac((ALMANACObject) this.parse(json.optJSONObject("ALMANAC")));
-		} else if (json.has("EPHEM1")) {
-			subframe.setEphem1((EPHEM1Object) this.parse(json.optJSONObject("EPHEM1")));
-		} else if (json.has("EPHEM2")) {
-			subframe.setEphem2((EPHEM2Object) this.parse(json.optJSONObject("EPHEM2")));
-		} else if (json.has("EPHEM3")) {
-			subframe.setEphem3((EPHEM3Object) this.parse(json.optJSONObject("EPHEM3")));
-		} else if (json.has("ERD")) {
-			subframe.setErd((ERDObject) this.parse(json.optJSONObject("ERD")));
-		} else if (json.has("HEALTH")) {
-			subframe.setHealth((HEALTHObject) this.parse(json.optJSONObject("HEALTH")));
-		} else if (json.has("HEALTH2")) {
-			subframe.setHealth2((HEALTH2Object) this.parse(json.optJSONObject("HEALTH2")));
-		} else if (json.has("IONO")) {
-			subframe.setIono((IONOObject) this.parse(json.optJSONObject("IONO")));
+		} else if (json.has(ALMANACObject.NAME)) {
+			subframe.setAlmanac((ALMANACObject) this.parse(json.optJSONObject(ALMANACObject.NAME)));
+		} else if (json.has(EPHEM1Object.NAME)) {
+			subframe.setEphem1((EPHEM1Object) this.parse(json.optJSONObject(EPHEM1Object.NAME)));
+		} else if (json.has(EPHEM2Object.NAME)) {
+			subframe.setEphem2((EPHEM2Object) this.parse(json.optJSONObject(EPHEM2Object.NAME)));
+		} else if (json.has(EPHEM3Object.NAME)) {
+			subframe.setEphem3((EPHEM3Object) this.parse(json.optJSONObject(EPHEM3Object.NAME)));
+		} else if (json.has(ERDObject.NAME)) {
+			subframe.setErd((ERDObject) this.parse(json.optJSONObject(ERDObject.NAME)));
+		} else if (json.has(HEALTHObject.NAME)) {
+			subframe.setHealth((HEALTHObject) this.parse(json.optJSONObject(HEALTHObject.NAME)));
+		} else if (json.has(HEALTH2Object.NAME)) {
+			subframe.setHealth2((HEALTH2Object) this.parse(json.optJSONObject(HEALTH2Object.NAME)));
+		} else if (json.has(IONOObject.NAME)) {
+			subframe.setIono((IONOObject) this.parse(json.optJSONObject(IONOObject.NAME)));
 		} else {
 			System.err.println("Unknown subframe: " + json.toString());
 		}

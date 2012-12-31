@@ -28,6 +28,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class IONOObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "IONO";
+
 	private double alpha0 = Double.NaN;
 
 	private double alpha1 = Double.NaN;

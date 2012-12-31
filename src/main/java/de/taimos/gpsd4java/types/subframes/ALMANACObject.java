@@ -28,6 +28,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class ALMANACObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "ALMANAC";
+
 	private int ID = -1;
 
 	private int Health = -1;

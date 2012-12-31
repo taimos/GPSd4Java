@@ -28,6 +28,9 @@ import de.taimos.gpsd4java.types.IGPSObject;
  */
 public class EPHEM3Object implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "EPHEM3";
+
 	private int IODE = -1;
 
 	private double IDOT = Double.NaN;

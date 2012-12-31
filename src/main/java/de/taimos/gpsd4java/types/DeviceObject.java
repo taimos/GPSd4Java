@@ -26,6 +26,9 @@ package de.taimos.gpsd4java.types;
  */
 public class DeviceObject implements IGPSObject {
 
+	/** the GPSd internal name */
+	public static final String NAME = "DEVICE";
+
 	private String path;
 
 	private double activated;
