@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,32 +28,33 @@ import java.util.List;
  * @author aevdokimov
  */
 public class SKYObject implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "SKY";
-
+	
 	private String tag = null;
-
+	
 	private String device = null;
-
+	
 	private double timestamp = Double.NaN;
-
+	
 	private double longitudeDOP = Double.NaN;
-
+	
 	private double latitudeDOP = Double.NaN;
-
+	
 	private double altitudeDOP = Double.NaN;
-
+	
 	private double timestampDOP = Double.NaN;
-
+	
 	private double horizontalDOP = Double.NaN;
-
+	
 	private double sphericalDOP = Double.NaN;
-
+	
 	private double hypersphericalDOP = Double.NaN;
-
+	
 	private List<SATObject> satellites;
-
+	
+	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
 	 * 
@@ -62,7 +63,7 @@ public class SKYObject implements IGPSObject {
 	public String getTag() {
 		return this.tag;
 	}
-
+	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
 	 * 
@@ -72,7 +73,7 @@ public class SKYObject implements IGPSObject {
 	public void setTag(final String tag) {
 		this.tag = tag;
 	}
-
+	
 	/**
 	 * Name of originating device
 	 * 
@@ -81,7 +82,7 @@ public class SKYObject implements IGPSObject {
 	public String getDevice() {
 		return this.device;
 	}
-
+	
 	/**
 	 * Name of originating device
 	 * 
@@ -91,7 +92,7 @@ public class SKYObject implements IGPSObject {
 	public void setDevice(final String device) {
 		this.device = device;
 	}
-
+	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .01sec precision.
 	 * 
@@ -100,7 +101,7 @@ public class SKYObject implements IGPSObject {
 	public double getTimestamp() {
 		return this.timestamp;
 	}
-
+	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .01sec precision.
 	 * 
@@ -110,7 +111,7 @@ public class SKYObject implements IGPSObject {
 	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
 	}
-
+	
 	/**
 	 * Longitudinal dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -119,7 +120,7 @@ public class SKYObject implements IGPSObject {
 	public double getLongitudeDOP() {
 		return this.longitudeDOP;
 	}
-
+	
 	/**
 	 * Longitudinal dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -129,7 +130,7 @@ public class SKYObject implements IGPSObject {
 	public void setLongitudeDOP(final double longitudeDOP) {
 		this.longitudeDOP = longitudeDOP;
 	}
-
+	
 	/**
 	 * Latitudinal dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -138,7 +139,7 @@ public class SKYObject implements IGPSObject {
 	public double getLatitudeDOP() {
 		return this.latitudeDOP;
 	}
-
+	
 	/**
 	 * Latitudinal dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -148,7 +149,7 @@ public class SKYObject implements IGPSObject {
 	public void setLatitudeDOP(final double latitudeDOP) {
 		this.latitudeDOP = latitudeDOP;
 	}
-
+	
 	/**
 	 * Altitude dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -157,7 +158,7 @@ public class SKYObject implements IGPSObject {
 	public double getAltitudeDOP() {
 		return this.altitudeDOP;
 	}
-
+	
 	/**
 	 * Altitude dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -167,7 +168,7 @@ public class SKYObject implements IGPSObject {
 	public void setAltitudeDOP(final double altitudeDOP) {
 		this.altitudeDOP = altitudeDOP;
 	}
-
+	
 	/**
 	 * Time dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -176,7 +177,7 @@ public class SKYObject implements IGPSObject {
 	public double getTimestampDOP() {
 		return this.timestampDOP;
 	}
-
+	
 	/**
 	 * Time dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -186,7 +187,7 @@ public class SKYObject implements IGPSObject {
 	public void setTimestampDOP(final double timestampDOP) {
 		this.timestampDOP = timestampDOP;
 	}
-
+	
 	/**
 	 * Horizontal dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get a circular error estimate.
 	 * 
@@ -195,7 +196,7 @@ public class SKYObject implements IGPSObject {
 	public double getHorizontalDOP() {
 		return this.horizontalDOP;
 	}
-
+	
 	/**
 	 * Horizontal dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get a circular error estimate.
 	 * 
@@ -205,7 +206,7 @@ public class SKYObject implements IGPSObject {
 	public void setHorizontalDOP(final double horizontalDOP) {
 		this.horizontalDOP = horizontalDOP;
 	}
-
+	
 	/**
 	 * Spherical dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -214,7 +215,7 @@ public class SKYObject implements IGPSObject {
 	public double getSphericalDOP() {
 		return this.sphericalDOP;
 	}
-
+	
 	/**
 	 * Spherical dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -224,7 +225,7 @@ public class SKYObject implements IGPSObject {
 	public void setSphericalDOP(final double sphericalDOP) {
 		this.sphericalDOP = sphericalDOP;
 	}
-
+	
 	/**
 	 * Hyperspherical dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -233,7 +234,7 @@ public class SKYObject implements IGPSObject {
 	public double getHypersphericalDOP() {
 		return this.hypersphericalDOP;
 	}
-
+	
 	/**
 	 * Hyperspherical dilution of precision, a dimensionless factor which should be multiplied by a base UERE to get an error estimate.
 	 * 
@@ -243,7 +244,7 @@ public class SKYObject implements IGPSObject {
 	public void setHypersphericalDOP(final double hypersphericalDOP) {
 		this.hypersphericalDOP = hypersphericalDOP;
 	}
-
+	
 	/**
 	 * list of Satellite objects
 	 * 
@@ -252,7 +253,7 @@ public class SKYObject implements IGPSObject {
 	public List<SATObject> getSatellites() {
 		return this.satellites;
 	}
-
+	
 	/**
 	 * list of Satellite objects
 	 * 
@@ -262,7 +263,7 @@ public class SKYObject implements IGPSObject {
 	public void setSatellites(final List<SATObject> satellites) {
 		this.satellites = satellites;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -288,7 +289,7 @@ public class SKYObject implements IGPSObject {
 		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -351,10 +352,10 @@ public class SKYObject implements IGPSObject {
 		} catch (final IndexOutOfBoundsException e) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -377,8 +378,8 @@ public class SKYObject implements IGPSObject {
 		sb.append(", sat=");
 		sb.append(this.satellites == null ? 0 : this.satellites.size());
 		sb.append("}");
-
+		
 		return sb.toString();
 	}
-
+	
 }

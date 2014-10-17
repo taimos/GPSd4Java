@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types.subframes;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,23 +29,24 @@ import de.taimos.gpsd4java.types.IGPSObject;
  * @author aevdokimov
  */
 public class HEALTH2Object implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "HEALTH2";
-
+	
 	private final int[] SV = new int[24];
-
+	
 	private int toa = -1;
-
+	
 	private int WNa = -1;
-
+	
+	
 	/**
 	 * @return the toa
 	 */
 	public int getToa() {
 		return this.toa;
 	}
-
+	
 	/**
 	 * @param toa
 	 *            the toa to set
@@ -53,14 +54,14 @@ public class HEALTH2Object implements IGPSObject {
 	public void setToa(final int toa) {
 		this.toa = toa;
 	}
-
+	
 	/**
 	 * @return the wNa
 	 */
 	public int getWNa() {
 		return this.WNa;
 	}
-
+	
 	/**
 	 * @param wNa
 	 *            the wNa to set
@@ -68,7 +69,7 @@ public class HEALTH2Object implements IGPSObject {
 	public void setWNa(final int wNa) {
 		this.WNa = wNa;
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -77,7 +78,7 @@ public class HEALTH2Object implements IGPSObject {
 	public int getSVbyIndex(final int index) {
 		return this.SV[index];
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -87,7 +88,7 @@ public class HEALTH2Object implements IGPSObject {
 	public void setSVbyIndex(final int index, final int SVvalue) {
 		this.SV[index] = SVvalue;
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -96,9 +97,9 @@ public class HEALTH2Object implements IGPSObject {
 		if (!(o instanceof HEALTH2Object)) {
 			return false;
 		}
-
+		
 		final HEALTH2Object that = (HEALTH2Object) o;
-
+		
 		if (this.WNa != that.WNa) {
 			return false;
 		}
@@ -108,10 +109,10 @@ public class HEALTH2Object implements IGPSObject {
 		if (!Arrays.equals(this.SV, that.SV)) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = this.SV != null ? Arrays.hashCode(this.SV) : 0;
@@ -119,7 +120,7 @@ public class HEALTH2Object implements IGPSObject {
 		result = (31 * result) + this.WNa;
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -136,5 +137,5 @@ public class HEALTH2Object implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

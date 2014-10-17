@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.backend;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -54,27 +54,28 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  * @author thoeger
  */
 public class GPSdEndpoint {
-
+	
 	private static final Logger LOG = Logger.getLogger(GPSdEndpoint.class.getName());
-
+	
 	private final Socket socket;
-
+	
 	private final BufferedReader in;
-
+	
 	private final BufferedWriter out;
-
+	
 	private SocketThread listenThread;
-
+	
 	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>(1);
-
+	
 	private IGPSObject asnycResult = null;
-
+	
 	private final Object asyncMutex = new Object();
-
+	
 	private final Object asyncWaitMutex = new Object();
-
+	
 	private final AbstractResultParser resultParser;
-
+	
+	
 	/**
 	 * Instantiate this class to connect to a GPSd server
 	 * 
@@ -86,8 +87,7 @@ public class GPSdEndpoint {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
-	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException,
-			IOException {
+	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException, IOException {
 		if (server == null) {
 			throw new IllegalArgumentException("server can not be null!");
 		}
@@ -97,27 +97,27 @@ public class GPSdEndpoint {
 		if (resultParser == null) {
 			throw new IllegalArgumentException("resultParser can not be null!");
 		}
-
+		
 		this.socket = new Socket(server, port);
 		this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 		this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 		this.resultParser = resultParser;
 	}
-
+	
 	/**
 	 * start the endpoint
 	 */
 	public void start() {
 		this.listenThread = new SocketThread(this.in, this, this.resultParser);
 		this.listenThread.start();
-
+		
 		try {
 			Thread.sleep(500);
 		} catch (final InterruptedException e) {
 			GPSdEndpoint.LOG.log(Level.FINE, null, e);
 		}
 	}
-
+	
 	/**
 	 * Stops the endpoint.
 	 */
@@ -129,7 +129,7 @@ public class GPSdEndpoint {
 		}
 		this.listenThread = null;
 	}
-
+	
 	/**
 	 * send WATCH command
 	 * 
@@ -145,7 +145,7 @@ public class GPSdEndpoint {
 	public WatchObject watch(final boolean enable, final boolean dumpData) throws IOException, JSONException {
 		return this.watch(enable, dumpData, null);
 	}
-
+	
 	/**
 	 * send WATCH command
 	 * 
@@ -170,7 +170,7 @@ public class GPSdEndpoint {
 		}
 		return this.syncCommand("?WATCH=" + watch.toString(), WatchObject.class);
 	}
-
+	
 	/**
 	 * Poll GPSd for Message
 	 * 
@@ -183,7 +183,7 @@ public class GPSdEndpoint {
 	public PollObject poll() throws IOException, ParseException {
 		return this.syncCommand("?POLL;", PollObject.class);
 	}
-
+	
 	/**
 	 * Poll GPSd version
 	 * 
@@ -196,7 +196,7 @@ public class GPSdEndpoint {
 	public VersionObject version() throws IOException, ParseException {
 		return this.syncCommand("?VERSION;", VersionObject.class);
 	}
-
+	
 	// TODO implement rest of commands
 	// ########################################################
 	/**
@@ -206,7 +206,7 @@ public class GPSdEndpoint {
 	public void addListener(final IObjectListener listener) {
 		this.listeners.add(listener);
 	}
-
+	
 	/**
 	 * @param listener
 	 *            the listener to remove
@@ -214,9 +214,9 @@ public class GPSdEndpoint {
 	public void removeListener(final IObjectListener listener) {
 		this.listeners.remove(listener);
 	}
-
+	
 	// ########################################################
-
+	
 	/*
 	 * send command to GPSd and wait for response
 	 */
@@ -224,7 +224,7 @@ public class GPSdEndpoint {
 		synchronized (this.asyncMutex) {
 			this.out.write(command + "\n");
 			this.out.flush();
-
+			
 			while (true) {
 				// wait for awaited message
 				final IGPSObject result = this.waitForResult();
@@ -234,7 +234,7 @@ public class GPSdEndpoint {
 			}
 		}
 	}
-
+	
 	/*
 	 * send command without response
 	 */
@@ -245,7 +245,7 @@ public class GPSdEndpoint {
 			this.out.flush();
 		}
 	}
-
+	
 	/*
 	 * wait for a response for one second
 	 */
@@ -263,7 +263,7 @@ public class GPSdEndpoint {
 		}
 		return null;
 	}
-
+	
 	/*
 	 * handle incoming messages and dispatch them
 	 */

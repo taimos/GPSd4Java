@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types.subframes;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,35 +27,36 @@ import de.taimos.gpsd4java.types.IGPSObject;
  * @author aevdokimov
  */
 public class EPHEM3Object implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "EPHEM3";
-
+	
 	private int IODE = -1;
-
+	
 	private double IDOT = Double.NaN;
-
+	
 	private double Cic = Double.NaN;
-
+	
 	private double Omega0 = Double.NaN;
-
+	
 	private double Cis = Double.NaN;
-
+	
 	private double i0 = Double.NaN;
-
+	
 	private double Crc = Double.NaN;
-
+	
 	private double omega = Double.NaN;
-
+	
 	private double Omegad = Double.NaN;
-
+	
+	
 	/**
 	 * @return the iODE
 	 */
 	public int getIODE() {
 		return this.IODE;
 	}
-
+	
 	/**
 	 * @param iODE
 	 *            the iODE to set
@@ -63,14 +64,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setIODE(final int iODE) {
 		this.IODE = iODE;
 	}
-
+	
 	/**
 	 * @return the iDOT
 	 */
 	public double getIDOT() {
 		return this.IDOT;
 	}
-
+	
 	/**
 	 * @param iDOT
 	 *            the iDOT to set
@@ -78,14 +79,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setIDOT(final double iDOT) {
 		this.IDOT = iDOT;
 	}
-
+	
 	/**
 	 * @return the cic
 	 */
 	public double getCic() {
 		return this.Cic;
 	}
-
+	
 	/**
 	 * @param cic
 	 *            the cic to set
@@ -93,14 +94,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setCic(final double cic) {
 		this.Cic = cic;
 	}
-
+	
 	/**
 	 * @return the omega0
 	 */
 	public double getOmega0() {
 		return this.Omega0;
 	}
-
+	
 	/**
 	 * @param omega0
 	 *            the omega0 to set
@@ -108,14 +109,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setOmega0(final double omega0) {
 		this.Omega0 = omega0;
 	}
-
+	
 	/**
 	 * @return the cis
 	 */
 	public double getCis() {
 		return this.Cis;
 	}
-
+	
 	/**
 	 * @param cis
 	 *            the cis to set
@@ -123,14 +124,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setCis(final double cis) {
 		this.Cis = cis;
 	}
-
+	
 	/**
 	 * @return the i0
 	 */
 	public double getI0() {
 		return this.i0;
 	}
-
+	
 	/**
 	 * @param i0
 	 *            the i0 to set
@@ -138,14 +139,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setI0(final double i0) {
 		this.i0 = i0;
 	}
-
+	
 	/**
 	 * @return the crc
 	 */
 	public double getCrc() {
 		return this.Crc;
 	}
-
+	
 	/**
 	 * @param crc
 	 *            the crc to set
@@ -153,14 +154,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setCrc(final double crc) {
 		this.Crc = crc;
 	}
-
+	
 	/**
 	 * @return the omega
 	 */
 	public double getOmega() {
 		return this.omega;
 	}
-
+	
 	/**
 	 * @param omega
 	 *            the omega to set
@@ -168,14 +169,14 @@ public class EPHEM3Object implements IGPSObject {
 	public void setOmega(final double omega) {
 		this.omega = omega;
 	}
-
+	
 	/**
 	 * @return the omegad
 	 */
 	public double getOmegad() {
 		return this.Omegad;
 	}
-
+	
 	/**
 	 * @param omegad
 	 *            the omegad to set
@@ -183,7 +184,7 @@ public class EPHEM3Object implements IGPSObject {
 	public void setOmegad(final double omegad) {
 		this.Omegad = omegad;
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -192,9 +193,9 @@ public class EPHEM3Object implements IGPSObject {
 		if (!(o instanceof EPHEM3Object)) {
 			return false;
 		}
-
+		
 		final EPHEM3Object that = (EPHEM3Object) o;
-
+		
 		if (Double.compare(that.Cic, this.Cic) != 0) {
 			return false;
 		}
@@ -222,10 +223,10 @@ public class EPHEM3Object implements IGPSObject {
 		if (Double.compare(that.omega, this.omega) != 0) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result;
@@ -249,7 +250,7 @@ public class EPHEM3Object implements IGPSObject {
 		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -274,5 +275,5 @@ public class EPHEM3Object implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

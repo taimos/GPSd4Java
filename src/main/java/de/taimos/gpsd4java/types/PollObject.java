@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,20 +27,21 @@ import java.util.List;
  * @author thoeger
  */
 public class PollObject implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "POLL";
-
+	
 	private double timestamp;
-
+	
 	private int active;
-
+	
 	private List<TPVObject> fixes;
-
+	
 	private List<SKYObject> skyviews;
-
+	
 	private List<GSTObject> gst;
-
+	
+	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
 	 * 
@@ -49,7 +50,7 @@ public class PollObject implements IGPSObject {
 	public double getTimestamp() {
 		return this.timestamp;
 	}
-
+	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
 	 * 
@@ -59,7 +60,7 @@ public class PollObject implements IGPSObject {
 	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
 	}
-
+	
 	/**
 	 * Count of active devices.
 	 * 
@@ -68,7 +69,7 @@ public class PollObject implements IGPSObject {
 	public int getActive() {
 		return this.active;
 	}
-
+	
 	/**
 	 * Count of active devices.
 	 * 
@@ -78,7 +79,7 @@ public class PollObject implements IGPSObject {
 	public void setActive(final int active) {
 		this.active = active;
 	}
-
+	
 	/**
 	 * list of TPV objects
 	 * 
@@ -87,7 +88,7 @@ public class PollObject implements IGPSObject {
 	public List<TPVObject> getFixes() {
 		return this.fixes;
 	}
-
+	
 	/**
 	 * list of TPV objects
 	 * 
@@ -97,7 +98,7 @@ public class PollObject implements IGPSObject {
 	public void setFixes(final List<TPVObject> fixes) {
 		this.fixes = fixes;
 	}
-
+	
 	/**
 	 * list of SKY objects
 	 * 
@@ -106,7 +107,7 @@ public class PollObject implements IGPSObject {
 	public List<SKYObject> getSkyviews() {
 		return this.skyviews;
 	}
-
+	
 	/**
 	 * list of SKY objects
 	 * 
@@ -116,14 +117,14 @@ public class PollObject implements IGPSObject {
 	public void setSkyviews(final List<SKYObject> skyviews) {
 		this.skyviews = skyviews;
 	}
-
+	
 	/**
 	 * @return the gst
 	 */
 	public List<GSTObject> getGst() {
 		return this.gst;
 	}
-
+	
 	/**
 	 * @param gst
 	 *            the gst to set
@@ -131,7 +132,7 @@ public class PollObject implements IGPSObject {
 	public void setGst(final List<GSTObject> gst) {
 		this.gst = gst;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -145,7 +146,7 @@ public class PollObject implements IGPSObject {
 		result = (prime * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -187,11 +188,11 @@ public class PollObject implements IGPSObject {
 		}
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-
+		
 		sb.append("PollObject{timestamp=");
 		sb.append(this.timestamp);
 		sb.append(", active=");
@@ -203,7 +204,7 @@ public class PollObject implements IGPSObject {
 		sb.append(", gst=");
 		sb.append(this.gst.size());
 		sb.append("}");
-
+		
 		return sb.toString();
 	}
 }

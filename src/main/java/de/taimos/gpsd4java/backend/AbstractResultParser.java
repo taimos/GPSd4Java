@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.backend;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -41,11 +41,12 @@ import de.taimos.gpsd4java.types.ParseException;
  * @author irakli, thoeger
  */
 public abstract class AbstractResultParser {
-
+	
 	protected static final Logger LOG = Logger.getLogger(ResultParser.class.getName());
-
+	
 	protected final DateFormat dateFormat; // Don't make this static!
-
+	
+	
 	/**
 	 * Create new ResultParser
 	 */
@@ -53,7 +54,7 @@ public abstract class AbstractResultParser {
 		this.dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 		this.dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
-
+	
 	/**
 	 * Parse a received line into a {@link IGPSObject}
 	 * 
@@ -71,18 +72,18 @@ public abstract class AbstractResultParser {
 			throw new ParseException("Parsing failed", e);
 		}
 	}
-
+	
 	/**
 	 * @param json
 	 * @return the parsed {@link IGPSObject}
 	 * @throws ParseException
 	 */
 	public abstract IGPSObject parse(final JSONObject json) throws ParseException;
-
+	
 	/**
 	 * parse a whole JSONArray into a list of IGPSObjects
 	 */
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({"unchecked", "unused"})
 	protected <T extends IGPSObject> List<T> parseObjectArray(final JSONArray array, final Class<T> type) throws ParseException {
 		try {
 			if (array == null) {
@@ -97,12 +98,12 @@ public abstract class AbstractResultParser {
 			throw new ParseException("Parsing failed", e);
 		}
 	}
-
+	
 	protected double parseTimestamp(final JSONObject json, final String fieldName) {
 		try {
 			final String text = json.optString(fieldName, null);
 			AbstractResultParser.LOG.log(Level.FINE, fieldName + ": {0}", text);
-
+			
 			if (text != null) {
 				final Date date = this.dateFormat.parse(text);
 				if (AbstractResultParser.LOG.isLoggable(Level.FINE)) {

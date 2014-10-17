@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,28 +25,29 @@ package de.taimos.gpsd4java.types;
  * @author thoeger
  */
 public class DeviceObject implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "DEVICE";
-
+	
 	private String path;
-
+	
 	private double activated;
-
+	
 	private String driver;
-
+	
 	private int bps;
-
+	
 	private EParity parity;
-
+	
 	private int stopbit;
-
+	
 	private boolean nativeMode;
-
+	
 	private double cycle;
-
+	
 	private double mincycle;
-
+	
+	
 	/**
 	 * Name the device for which the control bits are being reported
 	 * 
@@ -55,7 +56,7 @@ public class DeviceObject implements IGPSObject {
 	public String getPath() {
 		return this.path;
 	}
-
+	
 	/**
 	 * Name the device for which the control bits are being reported
 	 * 
@@ -65,7 +66,7 @@ public class DeviceObject implements IGPSObject {
 	public void setPath(final String path) {
 		this.path = path;
 	}
-
+	
 	/**
 	 * Time the device was activated, or 0 if it is being closed.
 	 * 
@@ -74,7 +75,7 @@ public class DeviceObject implements IGPSObject {
 	public double getActivated() {
 		return this.activated;
 	}
-
+	
 	/**
 	 * Time the device was activated, or 0 if it is being closed.
 	 * 
@@ -84,7 +85,7 @@ public class DeviceObject implements IGPSObject {
 	public void setActivated(final double activated) {
 		this.activated = activated;
 	}
-
+	
 	/**
 	 * GPSD's name for the device driver type. Won't be reported before gpsd has seen identifiable packets from the device.
 	 * 
@@ -93,7 +94,7 @@ public class DeviceObject implements IGPSObject {
 	public String getDriver() {
 		return this.driver;
 	}
-
+	
 	/**
 	 * GPSD's name for the device driver type. Won't be reported before gpsd has seen identifiable packets from the device.
 	 * 
@@ -103,7 +104,7 @@ public class DeviceObject implements IGPSObject {
 	public void setDriver(final String driver) {
 		this.driver = driver;
 	}
-
+	
 	/**
 	 * Device speed in bits per second.
 	 * 
@@ -112,7 +113,7 @@ public class DeviceObject implements IGPSObject {
 	public int getBps() {
 		return this.bps;
 	}
-
+	
 	/**
 	 * Device speed in bits per second.
 	 * 
@@ -122,7 +123,7 @@ public class DeviceObject implements IGPSObject {
 	public void setBps(final int bps) {
 		this.bps = bps;
 	}
-
+	
 	/**
 	 * Device parity
 	 * 
@@ -131,7 +132,7 @@ public class DeviceObject implements IGPSObject {
 	public EParity getParity() {
 		return this.parity;
 	}
-
+	
 	/**
 	 * Device parity
 	 * 
@@ -141,7 +142,7 @@ public class DeviceObject implements IGPSObject {
 	public void setParity(final EParity parity) {
 		this.parity = parity;
 	}
-
+	
 	/**
 	 * Device Stopbits
 	 * 
@@ -150,7 +151,7 @@ public class DeviceObject implements IGPSObject {
 	public int getStopbit() {
 		return this.stopbit;
 	}
-
+	
 	/**
 	 * Device Stopbits
 	 * 
@@ -160,7 +161,7 @@ public class DeviceObject implements IGPSObject {
 	public void setStopbit(final int stopbit) {
 		this.stopbit = stopbit;
 	}
-
+	
 	/**
 	 * false means NMEA mode and true means alternate mode (binary if it has one, for SiRF and Evermore chipsets in particular).
 	 * 
@@ -169,7 +170,7 @@ public class DeviceObject implements IGPSObject {
 	public boolean isNativeMode() {
 		return this.nativeMode;
 	}
-
+	
 	/**
 	 * false means NMEA mode and true means alternate mode (binary if it has one, for SiRF and Evermore chipsets in particular).
 	 * 
@@ -179,7 +180,7 @@ public class DeviceObject implements IGPSObject {
 	public void setNativeMode(final boolean nativeMode) {
 		this.nativeMode = nativeMode;
 	}
-
+	
 	/**
 	 * Device cycle time in seconds.
 	 * 
@@ -188,7 +189,7 @@ public class DeviceObject implements IGPSObject {
 	public double getCycle() {
 		return this.cycle;
 	}
-
+	
 	/**
 	 * Device cycle time in seconds.
 	 * 
@@ -198,7 +199,7 @@ public class DeviceObject implements IGPSObject {
 	public void setCycle(final double cycle) {
 		this.cycle = cycle;
 	}
-
+	
 	/**
 	 * Device minimum cycle time in seconds.
 	 * 
@@ -207,7 +208,7 @@ public class DeviceObject implements IGPSObject {
 	public double getMincycle() {
 		return this.mincycle;
 	}
-
+	
 	/**
 	 * Device minimum cycle time in seconds.
 	 * 
@@ -217,7 +218,7 @@ public class DeviceObject implements IGPSObject {
 	public void setMincycle(final double mincycle) {
 		this.mincycle = mincycle;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -237,7 +238,7 @@ public class DeviceObject implements IGPSObject {
 		result = (prime * result) + this.stopbit;
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -287,7 +288,7 @@ public class DeviceObject implements IGPSObject {
 		}
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -312,5 +313,5 @@ public class DeviceObject implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

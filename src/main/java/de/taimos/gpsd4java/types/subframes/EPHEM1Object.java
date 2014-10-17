@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types.subframes;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,39 +27,40 @@ import de.taimos.gpsd4java.types.IGPSObject;
  * @author aevdokimov
  */
 public class EPHEM1Object implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "EPHEM1";
-
+	
 	private int WN = -1;
-
+	
 	private int IODC = -1;
-
+	
 	private int L2 = -1;
-
+	
 	private double ura = Double.NaN;
-
+	
 	private double hlth = Double.NaN;
-
+	
 	private int L2P = -1;
-
+	
 	private double Tgd = Double.NaN;
-
+	
 	private int toc = -1;
-
+	
 	private double af2 = Double.NaN;
-
+	
 	private double af1 = Double.NaN;
-
+	
 	private double af0 = Double.NaN;
-
+	
+	
 	/**
 	 * @return the wN
 	 */
 	public int getWN() {
 		return this.WN;
 	}
-
+	
 	/**
 	 * @param wN
 	 *            the wN to set
@@ -67,14 +68,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setWN(final int wN) {
 		this.WN = wN;
 	}
-
+	
 	/**
 	 * @return the iODC
 	 */
 	public int getIODC() {
 		return this.IODC;
 	}
-
+	
 	/**
 	 * @param iODC
 	 *            the iODC to set
@@ -82,14 +83,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setIODC(final int iODC) {
 		this.IODC = iODC;
 	}
-
+	
 	/**
 	 * @return the l2
 	 */
 	public int getL2() {
 		return this.L2;
 	}
-
+	
 	/**
 	 * @param l2
 	 *            the l2 to set
@@ -97,14 +98,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setL2(final int l2) {
 		this.L2 = l2;
 	}
-
+	
 	/**
 	 * @return the ura
 	 */
 	public double getUra() {
 		return this.ura;
 	}
-
+	
 	/**
 	 * @param ura
 	 *            the ura to set
@@ -112,14 +113,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setUra(final double ura) {
 		this.ura = ura;
 	}
-
+	
 	/**
 	 * @return the hlth
 	 */
 	public double getHlth() {
 		return this.hlth;
 	}
-
+	
 	/**
 	 * @param hlth
 	 *            the hlth to set
@@ -127,14 +128,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setHlth(final double hlth) {
 		this.hlth = hlth;
 	}
-
+	
 	/**
 	 * @return the l2P
 	 */
 	public int getL2P() {
 		return this.L2P;
 	}
-
+	
 	/**
 	 * @param l2p
 	 *            the l2P to set
@@ -142,14 +143,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setL2P(final int l2p) {
 		this.L2P = l2p;
 	}
-
+	
 	/**
 	 * @return the tgd
 	 */
 	public double getTgd() {
 		return this.Tgd;
 	}
-
+	
 	/**
 	 * @param tgd
 	 *            the tgd to set
@@ -157,14 +158,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setTgd(final double tgd) {
 		this.Tgd = tgd;
 	}
-
+	
 	/**
 	 * @return the toc
 	 */
 	public int getToc() {
 		return this.toc;
 	}
-
+	
 	/**
 	 * @param toc
 	 *            the toc to set
@@ -172,14 +173,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setToc(final int toc) {
 		this.toc = toc;
 	}
-
+	
 	/**
 	 * @return the af2
 	 */
 	public double getAf2() {
 		return this.af2;
 	}
-
+	
 	/**
 	 * @param af2
 	 *            the af2 to set
@@ -187,14 +188,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setAf2(final double af2) {
 		this.af2 = af2;
 	}
-
+	
 	/**
 	 * @return the af1
 	 */
 	public double getAf1() {
 		return this.af1;
 	}
-
+	
 	/**
 	 * @param af1
 	 *            the af1 to set
@@ -202,14 +203,14 @@ public class EPHEM1Object implements IGPSObject {
 	public void setAf1(final double af1) {
 		this.af1 = af1;
 	}
-
+	
 	/**
 	 * @return the af0
 	 */
 	public double getAf0() {
 		return this.af0;
 	}
-
+	
 	/**
 	 * @param af0
 	 *            the af0 to set
@@ -217,7 +218,7 @@ public class EPHEM1Object implements IGPSObject {
 	public void setAf0(final double af0) {
 		this.af0 = af0;
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -226,9 +227,9 @@ public class EPHEM1Object implements IGPSObject {
 		if ((o == null) || (this.getClass() != o.getClass())) {
 			return false;
 		}
-
+		
 		final EPHEM1Object that = (EPHEM1Object) o;
-
+		
 		if (this.IODC != that.IODC) {
 			return false;
 		}
@@ -262,10 +263,10 @@ public class EPHEM1Object implements IGPSObject {
 		if (Double.compare(that.ura, this.ura) != 0) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result;
@@ -289,7 +290,7 @@ public class EPHEM1Object implements IGPSObject {
 		result = (31 * result) + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -318,5 +319,5 @@ public class EPHEM1Object implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

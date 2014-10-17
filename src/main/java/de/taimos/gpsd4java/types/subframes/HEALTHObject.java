@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types.subframes;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,23 +29,24 @@ import de.taimos.gpsd4java.types.IGPSObject;
  * @author aevdokimov
  */
 public class HEALTHObject implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "HEALTH";
-
+	
 	private final int[] SV = new int[32];
-
+	
 	private final int[] SVH = new int[8];
-
+	
 	private int data_id = -1;
-
+	
+	
 	/**
 	 * @return the data_id
 	 */
 	public int getData_id() {
 		return this.data_id;
 	}
-
+	
 	/**
 	 * @param data_id
 	 *            the data_id to set
@@ -53,7 +54,7 @@ public class HEALTHObject implements IGPSObject {
 	public void setData_id(final int data_id) {
 		this.data_id = data_id;
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -62,7 +63,7 @@ public class HEALTHObject implements IGPSObject {
 	public int getSVbyIndex(final int index) {
 		return this.SV[index];
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -72,7 +73,7 @@ public class HEALTHObject implements IGPSObject {
 	public void setSVbyIndex(final int index, final int SVvalue) {
 		this.SV[index] = SVvalue;
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -81,7 +82,7 @@ public class HEALTHObject implements IGPSObject {
 	public int getSVHbyIndex(final int index) {
 		return this.SVH[index];
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -91,7 +92,7 @@ public class HEALTHObject implements IGPSObject {
 	public void setSVHbyIndex(final int index, final int SVHvalue) {
 		this.SVH[index] = SVHvalue;
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -100,9 +101,9 @@ public class HEALTHObject implements IGPSObject {
 		if (!(o instanceof HEALTHObject)) {
 			return false;
 		}
-
+		
 		final HEALTHObject that = (HEALTHObject) o;
-
+		
 		if (this.data_id != that.data_id) {
 			return false;
 		}
@@ -112,10 +113,10 @@ public class HEALTHObject implements IGPSObject {
 		if (!Arrays.equals(this.SVH, that.SVH)) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = this.SV != null ? Arrays.hashCode(this.SV) : 0;
@@ -123,7 +124,7 @@ public class HEALTHObject implements IGPSObject {
 		result = (31 * result) + this.data_id;
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -144,5 +145,5 @@ public class HEALTHObject implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

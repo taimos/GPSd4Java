@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types.subframes;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,21 +29,22 @@ import de.taimos.gpsd4java.types.IGPSObject;
  * @author aevdokimov
  */
 public class ERDObject implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "ERD";
-
+	
 	private int[] ERD = new int[30];
-
+	
 	private int ai = -1;
-
+	
+	
 	/**
 	 * @return the eRD
 	 */
 	public int[] getERD() {
 		return this.ERD;
 	}
-
+	
 	/**
 	 * @param eRD
 	 *            the eRD to set
@@ -51,14 +52,14 @@ public class ERDObject implements IGPSObject {
 	public void setERD(final int[] eRD) {
 		this.ERD = eRD;
 	}
-
+	
 	/**
 	 * @return the ai
 	 */
 	public int getAi() {
 		return this.ai;
 	}
-
+	
 	/**
 	 * @param ai
 	 *            the ai to set
@@ -66,7 +67,7 @@ public class ERDObject implements IGPSObject {
 	public void setAi(final int ai) {
 		this.ai = ai;
 	}
-
+	
 	/**
 	 * @param index
 	 * @return the ERD
@@ -74,7 +75,7 @@ public class ERDObject implements IGPSObject {
 	public int getERDbyIndex(final int index) {
 		return this.ERD[index];
 	}
-
+	
 	/**
 	 * @param index
 	 *            the index
@@ -84,7 +85,7 @@ public class ERDObject implements IGPSObject {
 	public void setERDbyIndex(final int index, final int ERDvalue) {
 		this.ERD[index] = ERDvalue;
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -93,26 +94,26 @@ public class ERDObject implements IGPSObject {
 		if (!(o instanceof ERDObject)) {
 			return false;
 		}
-
+		
 		final ERDObject erdObject = (ERDObject) o;
-
+		
 		if (this.ai != erdObject.ai) {
 			return false;
 		}
 		if (!Arrays.equals(this.ERD, erdObject.ERD)) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = this.ERD != null ? Arrays.hashCode(this.ERD) : 0;
 		result = (31 * result) + this.ai;
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -127,5 +128,5 @@ public class ERDObject implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

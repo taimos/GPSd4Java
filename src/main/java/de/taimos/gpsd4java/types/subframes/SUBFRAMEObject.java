@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.types.subframes;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,40 +27,41 @@ import de.taimos.gpsd4java.types.IGPSObject;
  * @author aevdokimov
  */
 public class SUBFRAMEObject implements IGPSObject {
-
+	
 	/** the GPSd internal name */
 	public static final String NAME = "SUBFRAME";
-
+	
 	private String device = null;
-
+	
 	private int subframeNumber = -1;
-
+	
 	private int satelliteNumber = -1;
-
+	
 	private int MSBs = -1;
-
+	
 	private boolean scaled = false;
-
+	
 	private int pageid = -1;
-
+	
 	private String systemMessage = null;
-
+	
 	private ALMANACObject almanac;
-
+	
 	private EPHEM1Object ephem1;
-
+	
 	private EPHEM2Object ephem2;
-
+	
 	private EPHEM3Object ephem3;
-
+	
 	private ERDObject erd;
-
+	
 	private HEALTHObject health;
-
+	
 	private HEALTH2Object health2;
-
+	
 	private IONOObject iono;
-
+	
+	
 	/**
 	 * Name of originating device
 	 * 
@@ -69,7 +70,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public String getDevice() {
 		return this.device;
 	}
-
+	
 	/**
 	 * Name of originating device
 	 * 
@@ -79,7 +80,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setDevice(final String device) {
 		this.device = device;
 	}
-
+	
 	/**
 	 * Subframe number
 	 * 
@@ -88,7 +89,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public int getSubFrameNumber() {
 		return this.subframeNumber;
 	}
-
+	
 	/**
 	 * Subframe number
 	 * 
@@ -98,7 +99,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setSubframeNumber(final int subframeNumber) {
 		this.subframeNumber = subframeNumber;
 	}
-
+	
 	/**
 	 * Satellite number
 	 * 
@@ -107,7 +108,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public int getSatelliteNumber() {
 		return this.satelliteNumber;
 	}
-
+	
 	/**
 	 * Satellite number
 	 * 
@@ -117,7 +118,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setSatelliteNumber(final int satelliteNumber) {
 		this.satelliteNumber = satelliteNumber;
 	}
-
+	
 	/**
 	 * TOW17 field containing the 17 MSBs of the start of the next 12-second message
 	 * 
@@ -126,7 +127,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public int getMSBs() {
 		return this.MSBs;
 	}
-
+	
 	/**
 	 * TOW17 field containing the 17 MSBs of the start of the next 12-second message
 	 * 
@@ -136,7 +137,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setMSBs(final int MSBs) {
 		this.MSBs = MSBs;
 	}
-
+	
 	/**
 	 * field telling whether the remainder of the fields are dumped in scaled or unscaled form
 	 * 
@@ -145,7 +146,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public boolean getScaled() {
 		return this.scaled;
 	}
-
+	
 	/**
 	 * field telling whether the remainder of the fields are dumped in scaled or unscaled form
 	 * 
@@ -155,7 +156,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setScaled(final boolean scaled) {
 		this.scaled = scaled;
 	}
-
+	
 	/**
 	 * optional pageid for ERD, IONO, HEALTH and system message
 	 * 
@@ -164,7 +165,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public int getPageid() {
 		return this.pageid;
 	}
-
+	
 	/**
 	 * optional pageid for ERD, IONO, HEALTH and system message
 	 * 
@@ -174,7 +175,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setPageid(final int pageid) {
 		this.pageid = pageid;
 	}
-
+	
 	/**
 	 * optional system message
 	 * 
@@ -183,7 +184,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public String getSystemMessage() {
 		return this.systemMessage;
 	}
-
+	
 	/**
 	 * optional system message
 	 * 
@@ -193,7 +194,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setSystemMessage(final String systemMessage) {
 		this.systemMessage = systemMessage;
 	}
-
+	
 	/**
 	 * Optional ALMANAC object
 	 * 
@@ -202,7 +203,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public ALMANACObject getAlmanac() {
 		return this.almanac;
 	}
-
+	
 	/**
 	 * Optional ALMANAC object
 	 * 
@@ -212,7 +213,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setAlmanac(final ALMANACObject almanac) {
 		this.almanac = almanac;
 	}
-
+	
 	/**
 	 * Optional EPHEM1 object
 	 * 
@@ -221,7 +222,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public EPHEM1Object getEphem1() {
 		return this.ephem1;
 	}
-
+	
 	/**
 	 * Optional EPHEM1 object
 	 * 
@@ -231,7 +232,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setEphem1(final EPHEM1Object ephem1) {
 		this.ephem1 = ephem1;
 	}
-
+	
 	/**
 	 * Optional EPHEM2 object
 	 * 
@@ -240,7 +241,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public EPHEM2Object getEphem2() {
 		return this.ephem2;
 	}
-
+	
 	/**
 	 * Optional EPHEM2 object
 	 * 
@@ -250,7 +251,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setEphem2(final EPHEM2Object ephem2) {
 		this.ephem2 = ephem2;
 	}
-
+	
 	/**
 	 * Optional EPHEM3 object
 	 * 
@@ -259,7 +260,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public EPHEM3Object getEphem3() {
 		return this.ephem3;
 	}
-
+	
 	/**
 	 * Optional EPHEM3 object
 	 * 
@@ -269,7 +270,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setEphem3(final EPHEM3Object ephem3) {
 		this.ephem3 = ephem3;
 	}
-
+	
 	/**
 	 * Optional ERD object
 	 * 
@@ -278,7 +279,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public ERDObject getErd() {
 		return this.erd;
 	}
-
+	
 	/**
 	 * Optional ERD object
 	 * 
@@ -288,7 +289,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setErd(final ERDObject erd) {
 		this.erd = erd;
 	}
-
+	
 	/**
 	 * Optional HEALTH object
 	 * 
@@ -297,7 +298,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public HEALTHObject getHealth() {
 		return this.health;
 	}
-
+	
 	/**
 	 * Optional HEALTH object
 	 * 
@@ -307,7 +308,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setHealth(final HEALTHObject health) {
 		this.health = health;
 	}
-
+	
 	/**
 	 * Optional HEALTH2 object
 	 * 
@@ -316,7 +317,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public HEALTH2Object getHealth2() {
 		return this.health2;
 	}
-
+	
 	/**
 	 * Optional HEALTH2 object
 	 * 
@@ -326,7 +327,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setHealth2(final HEALTH2Object health2) {
 		this.health2 = health2;
 	}
-
+	
 	/**
 	 * Optional IONO object
 	 * 
@@ -335,7 +336,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public IONOObject getIono() {
 		return this.iono;
 	}
-
+	
 	/**
 	 * Optional IONO object
 	 * 
@@ -345,7 +346,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	public void setIono(final IONOObject iono) {
 		this.iono = iono;
 	}
-
+	
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -354,9 +355,9 @@ public class SUBFRAMEObject implements IGPSObject {
 		if (!(o instanceof SUBFRAMEObject)) {
 			return false;
 		}
-
+		
 		final SUBFRAMEObject that = (SUBFRAMEObject) o;
-
+		
 		if (this.MSBs != that.MSBs) {
 			return false;
 		}
@@ -402,10 +403,10 @@ public class SUBFRAMEObject implements IGPSObject {
 		if (this.systemMessage != null ? !this.systemMessage.equals(that.systemMessage) : that.systemMessage != null) {
 			return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = this.device != null ? this.device.hashCode() : 0;
@@ -425,7 +426,7 @@ public class SUBFRAMEObject implements IGPSObject {
 		result = (31 * result) + (this.iono != null ? this.iono.hashCode() : 0);
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -480,5 +481,5 @@ public class SUBFRAMEObject implements IGPSObject {
 		sb.append("}");
 		return sb.toString();
 	}
-
+	
 }

@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.backend;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,17 +33,18 @@ import java.util.logging.Logger;
  * @author thoeger
  */
 public class SocketThread extends Thread {
-
+	
 	private static final Logger LOG = Logger.getLogger(SocketThread.class.getName());
-
+	
 	private final BufferedReader reader;
-
+	
 	private final GPSdEndpoint endpoint;
-
+	
 	private final AbstractResultParser resultParser;
-
+	
 	private final AtomicBoolean running = new AtomicBoolean(true);
-
+	
+	
 	/**
 	 * @param reader
 	 *            the socket input
@@ -61,15 +62,15 @@ public class SocketThread extends Thread {
 		if (resultParser == null) {
 			throw new IllegalArgumentException("resultParser can not be null!");
 		}
-
+		
 		this.reader = reader;
 		this.endpoint = endpoint;
 		this.resultParser = resultParser;
-
+		
 		this.setDaemon(true);
 		this.setName("GPS Socket Thread");
 	}
-
+	
 	@Override
 	public void run() {
 		while (this.running.get()) {
@@ -92,7 +93,7 @@ public class SocketThread extends Thread {
 			}
 		}
 	}
-
+	
 	/**
 	 * Halts the socket thread.
 	 * 

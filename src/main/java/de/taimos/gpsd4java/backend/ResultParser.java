@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.backend;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -52,7 +52,7 @@ import org.json.JSONObject;
  * @author thoeger
  */
 public class ResultParser extends AbstractResultParser {
-
+	
 	/**
 	 * parse {@link JSONObject} into {@link IGPSObject}
 	 * 
@@ -66,7 +66,7 @@ public class ResultParser extends AbstractResultParser {
 	public IGPSObject parse(final JSONObject json) throws ParseException {
 		IGPSObject gps = null;
 		final String clazz = json.optString("class");
-
+		
 		if (TPVObject.NAME.equals(clazz)) {
 			gps = this.parseTPV(json);
 		} else if (SKYObject.NAME.equals(clazz)) {
@@ -110,7 +110,7 @@ public class ResultParser extends AbstractResultParser {
 		}
 		return gps;
 	}
-
+	
 	private IGPSObject parseIONO(final JSONObject json) {
 		IGPSObject gps;
 		final IONOObject iono = new IONOObject();
@@ -133,7 +133,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = iono;
 		return gps;
 	}
-
+	
 	private IGPSObject parseHEALTH2(final JSONObject json) {
 		IGPSObject gps;
 		final HEALTH2Object health2 = new HEALTH2Object();
@@ -145,7 +145,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = health2;
 		return gps;
 	}
-
+	
 	private IGPSObject parseHEALTH(final JSONObject json) {
 		IGPSObject gps;
 		final HEALTHObject health = new HEALTHObject();
@@ -159,7 +159,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = health;
 		return gps;
 	}
-
+	
 	private IGPSObject parseERD(final JSONObject json) {
 		IGPSObject gps;
 		final ERDObject erd = new ERDObject();
@@ -170,7 +170,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = erd;
 		return gps;
 	}
-
+	
 	private IGPSObject parseEPHEM3(final JSONObject json) {
 		IGPSObject gps;
 		final EPHEM3Object emphem3 = new EPHEM3Object();
@@ -186,7 +186,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = emphem3;
 		return gps;
 	}
-
+	
 	private IGPSObject parseEPHEM2(final JSONObject json) {
 		IGPSObject gps;
 		final EPHEM2Object emphem2 = new EPHEM2Object();
@@ -204,7 +204,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = emphem2;
 		return gps;
 	}
-
+	
 	private IGPSObject parseEPHEM1(final JSONObject json) {
 		IGPSObject gps;
 		final EPHEM1Object emphem1 = new EPHEM1Object();
@@ -222,7 +222,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = emphem1;
 		return gps;
 	}
-
+	
 	private IGPSObject parseALMANAC(final JSONObject json) {
 		IGPSObject gps;
 		final ALMANACObject almanac = new ALMANACObject();
@@ -241,7 +241,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = almanac;
 		return gps;
 	}
-
+	
 	private IGPSObject parsePRN(final JSONObject json) {
 		IGPSObject gps;
 		final SATObject sat = new SATObject();
@@ -253,7 +253,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = sat;
 		return gps;
 	}
-
+	
 	private IGPSObject parsePOLL(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		// for gpsd version > 3.5
@@ -266,7 +266,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = poll;
 		return gps;
 	}
-
+	
 	private IGPSObject parseWATCH(final JSONObject json) {
 		IGPSObject gps;
 		final WatchObject watch = new WatchObject();
@@ -275,7 +275,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = watch;
 		return gps;
 	}
-
+	
 	private IGPSObject parseDEVICE(final JSONObject json) {
 		IGPSObject gps;
 		final DeviceObject dev = new DeviceObject();
@@ -291,7 +291,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = dev;
 		return gps;
 	}
-
+	
 	private IGPSObject parseDEVICES(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		final DevicesObject devs = new DevicesObject();
@@ -299,7 +299,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = devs;
 		return gps;
 	}
-
+	
 	private IGPSObject parseVERSION(final JSONObject json) {
 		IGPSObject gps;
 		final VersionObject ver = new VersionObject();
@@ -310,7 +310,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = ver;
 		return gps;
 	}
-
+	
 	private IGPSObject parseSUBFRAME(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		final SUBFRAMEObject subframe = new SUBFRAMEObject();
@@ -344,7 +344,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = subframe;
 		return gps;
 	}
-
+	
 	private IGPSObject parseATT(final JSONObject json) {
 		IGPSObject gps;
 		final ATTObject att = new ATTObject();
@@ -375,7 +375,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = att;
 		return gps;
 	}
-
+	
 	private IGPSObject parseGST(final JSONObject json) {
 		IGPSObject gps;
 		final GSTObject gst = new GSTObject();
@@ -392,7 +392,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = gst;
 		return gps;
 	}
-
+	
 	private IGPSObject parseSKY(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		final SKYObject sky = new SKYObject();
@@ -410,7 +410,7 @@ public class ResultParser extends AbstractResultParser {
 		gps = sky;
 		return gps;
 	}
-
+	
 	private IGPSObject parseTPV(final JSONObject json) {
 		IGPSObject gps;
 		final TPVObject tpv = new TPVObject();

@@ -10,7 +10,7 @@ package de.taimos.gpsd4java.api;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,41 +33,41 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  * @author thoeger
  */
 public interface IObjectListener {
-
+	
 	/**
 	 * @param tpv
 	 *            the TPV object
 	 */
 	void handleTPV(TPVObject tpv);
-
+	
 	/**
 	 * @param sky
 	 *            the SKY object
 	 */
 	void handleSKY(SKYObject sky);
-
+	
 	/**
 	 * @param att
 	 *            the ATT object
 	 */
 	void handleATT(ATTObject att);
-
+	
 	/**
 	 * @param subframe
 	 *            the SUBFRAME object
 	 */
 	void handleSUBFRAME(SUBFRAMEObject subframe);
-
+	
 	/**
 	 * @param devices
 	 *            the devices object
 	 */
 	void handleDevices(DevicesObject devices);
-
+	
 	/**
 	 * @param device
 	 *            the device object
 	 */
 	void handleDevice(DeviceObject device);
-
+	
 }
