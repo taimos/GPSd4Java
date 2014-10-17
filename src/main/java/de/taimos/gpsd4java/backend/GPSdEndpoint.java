@@ -40,7 +40,6 @@ import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
 import de.taimos.gpsd4java.types.IGPSObject;
-import de.taimos.gpsd4java.types.ParseException;
 import de.taimos.gpsd4java.types.PollObject;
 import de.taimos.gpsd4java.types.SKYObject;
 import de.taimos.gpsd4java.types.TPVObject;
@@ -177,10 +176,8 @@ public class GPSdEndpoint {
 	 * @return {@link PollObject}
 	 * @throws IOException
 	 *             on IO error in socket
-	 * @throws ParseException
-	 *             on illegal response
 	 */
-	public PollObject poll() throws IOException, ParseException {
+	public PollObject poll() throws IOException {
 		return this.syncCommand("?POLL;", PollObject.class);
 	}
 	
@@ -190,10 +187,8 @@ public class GPSdEndpoint {
 	 * @return {@link VersionObject}
 	 * @throws IOException
 	 *             on IO error in socket
-	 * @throws ParseException
-	 *             on illegal response
 	 */
-	public VersionObject version() throws IOException, ParseException {
+	public VersionObject version() throws IOException {
 		return this.syncCommand("?VERSION;", VersionObject.class);
 	}
 	
