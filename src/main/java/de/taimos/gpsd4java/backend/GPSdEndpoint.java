@@ -113,7 +113,7 @@ public class GPSdEndpoint {
 		try {
 			Thread.sleep(500);
 		} catch (final InterruptedException e) {
-			GPSdEndpoint.LOG.debug("", e);
+			GPSdEndpoint.LOG.debug("Interrupted while sleeping", e);
 		}
 	}
 	
@@ -124,7 +124,7 @@ public class GPSdEndpoint {
 		try {
 			this.listenThread.halt();
 		} catch (final Exception e) {
-			GPSdEndpoint.LOG.debug("", e);
+			GPSdEndpoint.LOG.debug("Interrupted while waiting for listenThread to stop", e);
 		}
 		this.listenThread = null;
 	}
@@ -250,7 +250,7 @@ public class GPSdEndpoint {
 			try {
 				this.asyncWaitMutex.wait(1000);
 			} catch (final InterruptedException e) {
-				GPSdEndpoint.LOG.info("", e);
+				GPSdEndpoint.LOG.info("Interrupted while waiting for result", e);
 			}
 			if (this.asnycResult != null) {
 				return this.asnycResult;

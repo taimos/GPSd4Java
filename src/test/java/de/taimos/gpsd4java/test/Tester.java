@@ -127,7 +127,7 @@ public class Tester {
 			
 			Thread.sleep(60000);
 		} catch (final Exception e) {
-			Tester.log.error("", e);
+			Tester.log.error("Problem encountered", e);
 		}
 	}
 }

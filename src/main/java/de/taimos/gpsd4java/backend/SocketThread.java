@@ -90,7 +90,7 @@ public class SocketThread extends Thread {
 				break;
 			} catch (final Exception e) {
 				// TODO handle this better
-				SocketThread.LOG.warn("", e);
+				SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line", e);
 			}
 		}
 	}
