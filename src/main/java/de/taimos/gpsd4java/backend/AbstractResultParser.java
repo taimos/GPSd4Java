@@ -26,12 +26,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.taimos.gpsd4java.types.IGPSObject;
 import de.taimos.gpsd4java.types.ParseException;
@@ -42,7 +42,7 @@ import de.taimos.gpsd4java.types.ParseException;
  */
 public abstract class AbstractResultParser {
 	
-	protected static final Logger LOG = Logger.getLogger(ResultParser.class.getName());
+	protected static final Logger LOG = LoggerFactory.getLogger(ResultParser.class);
 	
 	protected final DateFormat dateFormat; // Don't make this static!
 	
@@ -102,18 +102,18 @@ public abstract class AbstractResultParser {
 	protected double parseTimestamp(final JSONObject json, final String fieldName) {
 		try {
 			final String text = json.optString(fieldName, null);
-			AbstractResultParser.LOG.log(Level.FINE, fieldName + ": {0}", text);
+			AbstractResultParser.LOG.debug(fieldName + ": {}", text);
 			
 			if (text != null) {
 				final Date date = this.dateFormat.parse(text);
-				if (AbstractResultParser.LOG.isLoggable(Level.FINE)) {
+				if (AbstractResultParser.LOG.isDebugEnabled()) {
 					final String ds = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(date);
-					AbstractResultParser.LOG.log(Level.FINE, "Date: {0}", ds);
+					AbstractResultParser.LOG.debug("Date: {}", ds);
 				}
 				return date.getTime() / 1000.0;
 			}
 		} catch (final Exception ex) {
-			AbstractResultParser.LOG.log(Level.INFO, "Failed to parse time", ex);
+			AbstractResultParser.LOG.info("Failed to parse time", ex);
 		}
 		return Double.NaN;
 	}

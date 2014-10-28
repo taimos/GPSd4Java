@@ -20,8 +20,8 @@ package de.taimos.gpsd4java.test;
  * #L%
  */
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.taimos.gpsd4java.api.ObjectListener;
 import de.taimos.gpsd4java.backend.GPSdEndpoint;
@@ -43,7 +43,7 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  */
 public class Tester {
 	
-	static final Logger log = Logger.getLogger(Tester.class.getName());
+	static final Logger log = LoggerFactory.getLogger(Tester.class);
 	
 	
 	private Tester() {
@@ -83,51 +83,51 @@ public class Tester {
 				
 				@Override
 				public void handleTPV(final TPVObject tpv) {
-					Tester.log.log(Level.INFO, "TPV: {0}", tpv);
+					Tester.log.info("TPV: {}", tpv);
 				}
 				
 				@Override
 				public void handleSKY(final SKYObject sky) {
-					Tester.log.log(Level.INFO, "SKY: {0}", sky);
+					Tester.log.info("SKY: {}", sky);
 					for (final SATObject sat : sky.getSatellites()) {
-						Tester.log.log(Level.INFO, "  SAT: {0}", sat);
+						Tester.log.info("  SAT: {}", sat);
 					}
 				}
 				
 				@Override
 				public void handleSUBFRAME(final SUBFRAMEObject subframe) {
-					Tester.log.log(Level.INFO, "SUBFRAME: {0}", subframe);
+					Tester.log.info("SUBFRAME: {}", subframe);
 				}
 				
 				@Override
 				public void handleATT(final ATTObject att) {
-					Tester.log.log(Level.INFO, "ATT: {0}", att);
+					Tester.log.info("ATT: {}", att);
 				}
 				
 				@Override
 				public void handleDevice(final DeviceObject device) {
-					Tester.log.log(Level.INFO, "Device: {0}", device);
+					Tester.log.info("Device: {}", device);
 				}
 				
 				@Override
 				public void handleDevices(final DevicesObject devices) {
 					for (final DeviceObject d : devices.getDevices()) {
-						Tester.log.log(Level.INFO, "Device: {0}", d);
+						Tester.log.info("Device: {}", d);
 					}
 				}
 			});
 			
 			ep.start();
 			
-			Tester.log.log(Level.INFO, "Version: {0}", ep.version());
+			Tester.log.info("Version: {}", ep.version());
 			
-			Tester.log.log(Level.INFO, "Watch: {0}", ep.watch(true, true));
+			Tester.log.info("Watch: {}", ep.watch(true, true));
 			
-			Tester.log.log(Level.INFO, "Poll: {0}", ep.poll());
+			Tester.log.info("Poll: {}", ep.poll());
 			
 			Thread.sleep(60000);
 		} catch (final Exception e) {
-			Tester.log.log(Level.SEVERE, null, e);
+			Tester.log.error("Problem encountered", e);
 		}
 	}
 }
