@@ -24,8 +24,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * thread reading input from GPSd server
@@ -34,7 +35,7 @@ import java.util.logging.Logger;
  */
 public class SocketThread extends Thread {
 	
-	private static final Logger LOG = Logger.getLogger(SocketThread.class.getName());
+	private static final Logger LOG = LoggerFactory.getLogger(SocketThread.class);
 	
 	private final BufferedReader reader;
 	
@@ -89,7 +90,7 @@ public class SocketThread extends Thread {
 				break;
 			} catch (final Exception e) {
 				// TODO handle this better
-				SocketThread.LOG.log(Level.WARNING, null, e);
+				SocketThread.LOG.warn("", e);
 			}
 		}
 	}

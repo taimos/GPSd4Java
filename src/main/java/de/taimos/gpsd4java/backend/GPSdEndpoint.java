@@ -29,11 +29,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.taimos.gpsd4java.api.IObjectListener;
 import de.taimos.gpsd4java.types.ATTObject;
@@ -54,7 +54,7 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
  */
 public class GPSdEndpoint {
 	
-	private static final Logger LOG = Logger.getLogger(GPSdEndpoint.class.getName());
+	private static final Logger LOG = LoggerFactory.getLogger(GPSdEndpoint.class);
 	
 	private final Socket socket;
 	
@@ -113,7 +113,7 @@ public class GPSdEndpoint {
 		try {
 			Thread.sleep(500);
 		} catch (final InterruptedException e) {
-			GPSdEndpoint.LOG.log(Level.FINE, null, e);
+			GPSdEndpoint.LOG.debug("", e);
 		}
 	}
 	
@@ -124,7 +124,7 @@ public class GPSdEndpoint {
 		try {
 			this.listenThread.halt();
 		} catch (final Exception e) {
-			GPSdEndpoint.LOG.log(Level.FINE, null, e);
+			GPSdEndpoint.LOG.debug("", e);
 		}
 		this.listenThread = null;
 	}
@@ -250,7 +250,7 @@ public class GPSdEndpoint {
 			try {
 				this.asyncWaitMutex.wait(1000);
 			} catch (final InterruptedException e) {
-				GPSdEndpoint.LOG.log(Level.INFO, null, e);
+				GPSdEndpoint.LOG.info("", e);
 			}
 			if (this.asnycResult != null) {
 				return this.asnycResult;
