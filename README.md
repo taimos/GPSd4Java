@@ -12,7 +12,7 @@ You can use GPSd4Java with a Maven project. Just add the following lines to your
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>gpsd4java</artifactId>
-			<version>1.2.0</version>
+			<version>1.3.0</version>
 		</dependency>
 	</dependencies>
 
@@ -31,6 +31,6 @@ To get the latest development snapshot add the following lines to your pom.xml.
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>gpsd4java</artifactId>
-			<version>1.3.0-SNAPSHOT</version>
+			<version>1.4.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
