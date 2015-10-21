@@ -122,7 +122,15 @@ public class GPSdEndpoint {
 	 */
 	public void stop() {
 		try {
-			this.listenThread.halt();
+			socket.close();
+		} catch (final IOException e1) {
+			GPSdEndpoint.LOG.debug("Close forced: "+ e1.getMessage());
+		}
+
+		try {
+			this.listeners.clear();
+			if(listenThread != null)
+				this.listenThread.halt();
 		} catch (final Exception e) {
 			GPSdEndpoint.LOG.debug("Interrupted while waiting for listenThread to stop", e);
 		}
