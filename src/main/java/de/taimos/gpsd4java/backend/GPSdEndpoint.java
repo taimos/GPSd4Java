@@ -303,4 +303,20 @@ public class GPSdEndpoint {
 			}
 		}
 	}
+
+	/**
+	 * Attempt to kick a failed device back into life on gpsd server.
+	 *  
+	 * @see https://lists.gnu.org/archive/html/gpsd-dev/2015-06/msg00001.html
+	 *  
+	 * @param path Path of device known to gpsd
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public void kickDevice(String path) throws IOException, JSONException {
+		final JSONObject d = new JSONObject();
+		d.put("class", "DEVICE");
+		d.put("path", path);
+		voidCommand("?DEVICE="+d);	
+	}
 }
