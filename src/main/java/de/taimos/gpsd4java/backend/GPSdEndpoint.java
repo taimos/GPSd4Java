@@ -129,8 +129,9 @@ public class GPSdEndpoint {
 
 		try {
 			this.listeners.clear();
-			if(listenThread != null)
+			if(listenThread != null) {
 				this.listenThread.halt();
+			}
 		} catch (final Exception e) {
 			GPSdEndpoint.LOG.debug("Interrupted while waiting for listenThread to stop", e);
 		}
