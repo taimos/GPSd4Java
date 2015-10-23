@@ -122,7 +122,16 @@ public class GPSdEndpoint {
 	 */
 	public void stop() {
 		try {
-			this.listenThread.halt();
+			socket.close();
+		} catch (final IOException e1) {
+			GPSdEndpoint.LOG.debug("Close forced: "+ e1.getMessage());
+		}
+
+		try {
+			this.listeners.clear();
+			if(listenThread != null) {
+				this.listenThread.halt();
+			}
 		} catch (final Exception e) {
 			GPSdEndpoint.LOG.debug("Interrupted while waiting for listenThread to stop", e);
 		}
@@ -294,5 +303,21 @@ public class GPSdEndpoint {
 				this.asyncWaitMutex.notifyAll();
 			}
 		}
+	}
+
+	/**
+	 * Attempt to kick a failed device back into life on gpsd server.
+	 *  
+	 * @see https://lists.gnu.org/archive/html/gpsd-dev/2015-06/msg00001.html
+	 *  
+	 * @param path Path of device known to gpsd
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public void kickDevice(String path) throws IOException, JSONException {
+		final JSONObject d = new JSONObject();
+		d.put("class", "DEVICE");
+		d.put("path", path);
+		voidCommand("?DEVICE="+d);	
 	}
 }
