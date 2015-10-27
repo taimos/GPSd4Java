@@ -122,14 +122,14 @@ public class GPSdEndpoint {
 	 */
 	public void stop() {
 		try {
-			socket.close();
+			this.socket.close();
 		} catch (final IOException e1) {
-			GPSdEndpoint.LOG.debug("Close forced: "+ e1.getMessage());
+			GPSdEndpoint.LOG.debug("Close forced: " + e1.getMessage());
 		}
-
+		
 		try {
 			this.listeners.clear();
-			if(listenThread != null) {
+			if (this.listenThread != null) {
 				this.listenThread.halt();
 			}
 		} catch (final Exception e) {
@@ -304,12 +304,12 @@ public class GPSdEndpoint {
 			}
 		}
 	}
-
+	
 	/**
 	 * Attempt to kick a failed device back into life on gpsd server.
-	 *  
-	 * @see https://lists.gnu.org/archive/html/gpsd-dev/2015-06/msg00001.html
-	 *  
+	 * 
+	 * see: https://lists.gnu.org/archive/html/gpsd-dev/2015-06/msg00001.html
+	 * 
 	 * @param path Path of device known to gpsd
 	 * @throws IOException
 	 * @throws JSONException
@@ -318,6 +318,6 @@ public class GPSdEndpoint {
 		final JSONObject d = new JSONObject();
 		d.put("class", "DEVICE");
 		d.put("path", path);
-		voidCommand("?DEVICE="+d);	
+		this.voidCommand("?DEVICE=" + d);
 	}
 }
