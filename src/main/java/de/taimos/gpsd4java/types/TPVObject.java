@@ -539,8 +539,10 @@ public class TPVObject implements IGPSObject {
 		sb.append(this.speedError);
 		sb.append(", climbRateError=");
 		sb.append(this.climbRateError);
-		sb.append(", mode=");
-		sb.append(this.mode.name());
+		if (mode != null) {
+			sb.append(", mode=");
+			sb.append(this.mode.name());
+		}
 		sb.append("}");
 		return sb.toString();
 	}
