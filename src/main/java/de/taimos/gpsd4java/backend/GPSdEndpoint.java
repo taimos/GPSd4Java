@@ -66,7 +66,7 @@ public class GPSdEndpoint {
 	
 	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>(1);
 	
-	private IGPSObject asnycResult = null;
+	private IGPSObject asyncResult = null;
 	
 	private final Object asyncMutex = new Object();
 	
@@ -255,17 +255,17 @@ public class GPSdEndpoint {
 	 */
 	private IGPSObject waitForResult() {
 		synchronized (this.asyncWaitMutex) {
-			this.asnycResult = null;
-			try {
-				this.asyncWaitMutex.wait(1000);
-			} catch (final InterruptedException e) {
-				GPSdEndpoint.LOG.info("Interrupted while waiting for result", e);
+			if (this.asyncResult == null) {
+				try {
+					this.asyncWaitMutex.wait(1000);
+				} catch (final InterruptedException e) {
+					GPSdEndpoint.LOG.info("Interrupted while waiting for result", e);
+				}
 			}
-			if (this.asnycResult != null) {
-				return this.asnycResult;
-			}
+			final IGPSObject result = this.asyncResult;
+			this.asyncResult = null;
+			return result;
 		}
-		return null;
 	}
 	
 	/*
@@ -299,7 +299,7 @@ public class GPSdEndpoint {
 		} else {
 			// object was requested, so put it in the response object
 			synchronized (this.asyncWaitMutex) {
-				this.asnycResult = object;
+				this.asyncResult = object;
 				this.asyncWaitMutex.notifyAll();
 			}
 		}
