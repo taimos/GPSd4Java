@@ -23,7 +23,6 @@ package de.taimos.gpsd4java.backend;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.SocketException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +42,7 @@ public class SocketThread extends Thread {
 	
 	private final AbstractResultParser resultParser;
 	
-	private final AtomicBoolean running = new AtomicBoolean(true);
+	private final WaitableBoolean running = new WaitableBoolean(true);
 	
 	
 	/**
@@ -86,11 +85,32 @@ public class SocketThread extends Thread {
 					this.endpoint.handle(this.resultParser.parse(s));
 				}
 			} catch (final SocketException e) {
-				// stop if socket fails
-				break;
+				break; // stop 
 			} catch (final Exception e) {
 				// TODO handle this better
 				SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line", e);
+			} 
+		}
+		if( running.get() && !Thread.interrupted()){
+			SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line, attempting restart");
+			retry();
+		}
+	}
+	
+	
+	protected void retry(){
+		SocketThread.LOG.debug("Disconnected from GPS socket, retrying connection");
+
+		while(this.running.get()){
+			try {
+				running.waitFor(1000);
+				this.endpoint.handleDisconnected();
+				SocketThread.LOG.debug("Reconnected to GPS socket");
+				running.set(false);
+			} catch (InterruptedException ix){
+				break;
+			} catch (IOException e) {
+				SocketThread.LOG.debug("Still disconnected from GPS socket, retrying connection again");
 			}
 		}
 	}
@@ -108,5 +128,29 @@ public class SocketThread extends Thread {
 			// ignore
 		}
 		this.join(1000);
+	}
+}
+/**
+ * Not as efficient as AtomicBoolean but you can wait on it.
+ * @author TimW
+ *
+ */
+class WaitableBoolean {
+	private boolean val;
+	
+	public WaitableBoolean(boolean b) {
+		val=b;
+	}
+
+	synchronized void set(boolean value){
+		this.val=value;
+		notifyAll();
+	}
+	
+	synchronized boolean get(){
+		return val;
+	}
+	synchronized public void waitFor(long millis) throws InterruptedException{
+		super.wait(millis);
 	}
 }
