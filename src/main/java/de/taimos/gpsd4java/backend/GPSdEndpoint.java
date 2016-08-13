@@ -29,6 +29,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,8 +79,9 @@ public class GPSdEndpoint {
 
 	private int port;
 
-	private JSONObject watch;
+	private String lastWatch;
 	
+	private AtomicLong retryInterval = new AtomicLong(1000);
 	
 	/**
 	 * Instantiate this class to connect to a GPSd server
@@ -178,7 +180,7 @@ public class GPSdEndpoint {
 	 * @throws JSONException
 	 */
 	public WatchObject watch(final boolean enable, final boolean dumpData, final String device) throws IOException, JSONException {
-		watch = new JSONObject();
+		JSONObject watch = new JSONObject();
 		watch.put("class", "WATCH");
 		watch.put("enable", enable);
 		watch.put("json", dumpData);
@@ -237,7 +239,9 @@ public class GPSdEndpoint {
 		synchronized (this.asyncMutex) {
 			this.out.write(command + "\n");
 			this.out.flush();
-			
+			if( responseClass == WatchObject.class ){
+				lastWatch=command;
+			}
 			while (true) {
 				// wait for awaited message
 				final IGPSObject result = this.waitForResult();
@@ -342,10 +346,20 @@ public class GPSdEndpoint {
 			
 			this.listenThread = new SocketThread(this.in, this, this.resultParser);
 			this.listenThread.start();
-			if( watch!=null){
-					this.syncCommand("?WATCH=" + watch.toString(), WatchObject.class);					
+			if( lastWatch!=null){ // restore watch if we had one.
+					this.syncCommand("?WATCH=" + lastWatch, WatchObject.class);					
 			}
 		}
 		
 	}
+	/**
+	 * Set a retry interval for reconnecting to GPSD if the socket closes.
+	 * Default value is 1000ms.
+	 * 
+	 * @param millis how long to wait between each reconnection attempts.
+	 */
+	public void setRetryInterval(long millis){
+		retryInterval.set(millis);
+	}
+	
 }
