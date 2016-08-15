@@ -29,6 +29,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,11 +57,11 @@ public class GPSdEndpoint {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GPSdEndpoint.class);
 	
-	private final Socket socket;
+	private Socket socket;
 	
-	private final BufferedReader in;
+	private BufferedReader in;
 	
-	private final BufferedWriter out;
+	private BufferedWriter out;
 	
 	private SocketThread listenThread;
 	
@@ -73,7 +74,14 @@ public class GPSdEndpoint {
 	private final Object asyncWaitMutex = new Object();
 	
 	private final AbstractResultParser resultParser;
+
+	private String server;
+
+	private int port;
+
+	private String lastWatch;
 	
+	private AtomicLong retryInterval = new AtomicLong(1000);
 	
 	/**
 	 * Instantiate this class to connect to a GPSd server
@@ -87,6 +95,8 @@ public class GPSdEndpoint {
 	 * @throws IOException
 	 */
 	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException, IOException {
+		this.server = server;
+		this.port = port;
 		if (server == null) {
 			throw new IllegalArgumentException("server can not be null!");
 		}
@@ -121,6 +131,7 @@ public class GPSdEndpoint {
 	 * Stops the endpoint.
 	 */
 	public void stop() {
+		
 		try {
 			this.socket.close();
 		} catch (final IOException e1) {
@@ -169,7 +180,7 @@ public class GPSdEndpoint {
 	 * @throws JSONException
 	 */
 	public WatchObject watch(final boolean enable, final boolean dumpData, final String device) throws IOException, JSONException {
-		final JSONObject watch = new JSONObject();
+		JSONObject watch = new JSONObject();
 		watch.put("class", "WATCH");
 		watch.put("enable", enable);
 		watch.put("json", dumpData);
@@ -228,7 +239,9 @@ public class GPSdEndpoint {
 		synchronized (this.asyncMutex) {
 			this.out.write(command + "\n");
 			this.out.flush();
-			
+			if( responseClass == WatchObject.class ){
+				lastWatch=command;
+			}
 			while (true) {
 				// wait for awaited message
 				final IGPSObject result = this.waitForResult();
@@ -320,4 +333,33 @@ public class GPSdEndpoint {
 		d.put("path", path);
 		this.voidCommand("?DEVICE=" + d);
 	}
+
+	/**
+	 * Our socket thread got disconnect and is exiting.
+	 */
+	void handleDisconnected() throws IOException{
+		synchronized (this.asyncMutex) {
+			socket.close();
+			this.socket = new Socket(server, port);
+			this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+			this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));		
+			
+			this.listenThread = new SocketThread(this.in, this, this.resultParser);
+			this.listenThread.start();
+			if( lastWatch!=null){ // restore watch if we had one.
+					this.syncCommand("?WATCH=" + lastWatch, WatchObject.class);					
+			}
+		}
+		
+	}
+	/**
+	 * Set a retry interval for reconnecting to GPSD if the socket closes.
+	 * Default value is 1000ms.
+	 * 
+	 * @param millis how long to wait between each reconnection attempts.
+	 */
+	public void setRetryInterval(long millis){
+		retryInterval.set(millis);
+	}
+	
 }
