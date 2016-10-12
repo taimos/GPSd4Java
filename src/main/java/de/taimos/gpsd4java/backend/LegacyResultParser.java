@@ -338,7 +338,7 @@ public class LegacyResultParser extends AbstractResultParser {
 		} else if (json.has(IONOObject.NAME)) {
 			subframe.setIono((IONOObject) this.parse(json.optJSONObject(IONOObject.NAME)));
 		} else {
-			System.err.println("Unknown subframe: " + json.toString());
+			AbstractResultParser.LOG.error("Unknown subframe: {}", json.toString());
 		}
 		gps = subframe;
 		return gps;
