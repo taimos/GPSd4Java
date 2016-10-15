@@ -13,7 +13,7 @@ You can use GPSd4Java with a Maven project. Just add the following lines to your
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>gpsd4java</artifactId>
-			<version>1.6</version>
+			<version>1.7</version>
 		</dependency>
 	</dependencies>
 
