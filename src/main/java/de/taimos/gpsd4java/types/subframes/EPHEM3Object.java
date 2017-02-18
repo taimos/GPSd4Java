@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types.subframes;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class EPHEM3Object implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "EPHEM3";
 	
 	private int IODE = -1;
@@ -49,7 +50,6 @@ public class EPHEM3Object implements IGPSObject {
 	
 	private double Omegad = Double.NaN;
 	
-	
 	/**
 	 * @return the iODE
 	 */
@@ -58,8 +58,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param iODE
-	 *            the iODE to set
+	 * @param iODE the iODE to set
 	 */
 	public void setIODE(final int iODE) {
 		this.IODE = iODE;
@@ -73,8 +72,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param iDOT
-	 *            the iDOT to set
+	 * @param iDOT the iDOT to set
 	 */
 	public void setIDOT(final double iDOT) {
 		this.IDOT = iDOT;
@@ -88,8 +86,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param cic
-	 *            the cic to set
+	 * @param cic the cic to set
 	 */
 	public void setCic(final double cic) {
 		this.Cic = cic;
@@ -103,8 +100,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param omega0
-	 *            the omega0 to set
+	 * @param omega0 the omega0 to set
 	 */
 	public void setOmega0(final double omega0) {
 		this.Omega0 = omega0;
@@ -118,8 +114,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param cis
-	 *            the cis to set
+	 * @param cis the cis to set
 	 */
 	public void setCis(final double cis) {
 		this.Cis = cis;
@@ -133,8 +128,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param i0
-	 *            the i0 to set
+	 * @param i0 the i0 to set
 	 */
 	public void setI0(final double i0) {
 		this.i0 = i0;
@@ -148,8 +142,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param crc
-	 *            the crc to set
+	 * @param crc the crc to set
 	 */
 	public void setCrc(final double crc) {
 		this.Crc = crc;
@@ -163,8 +156,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param omega
-	 *            the omega to set
+	 * @param omega the omega to set
 	 */
 	public void setOmega(final double omega) {
 		this.omega = omega;
@@ -178,8 +170,7 @@ public class EPHEM3Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param omegad
-	 *            the omegad to set
+	 * @param omegad the omegad to set
 	 */
 	public void setOmegad(final double omegad) {
 		this.Omegad = omegad;

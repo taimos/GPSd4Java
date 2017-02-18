@@ -25,12 +25,14 @@ package de.taimos.gpsd4java.types;
  * <br>
  * all getters for double values may return <code>Double.NaN</code> if value is not present<br>
  * other getters may return <code>null</code>
- * 
+ *
  * @author thoeger
  */
 public class TPVObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "TPV";
 	
 	private String tag = null;
@@ -67,10 +69,9 @@ public class TPVObject implements IGPSObject {
 	
 	private ENMEAMode mode;
 	
-	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
-	 * 
+	 *
 	 * @return the tag
 	 */
 	public String getTag() {
@@ -79,9 +80,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
-	 * 
-	 * @param tag
-	 *            the tag to set
+	 *
+	 * @param tag the tag to set
 	 */
 	public void setTag(final String tag) {
 		this.tag = tag;
@@ -89,7 +89,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
+	 *
 	 * @return the device
 	 */
 	public String getDevice() {
@@ -98,9 +98,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
-	 * @param device
-	 *            the device to set
+	 *
+	 * @param device the device to set
 	 */
 	public void setDevice(final String device) {
 		this.device = device;
@@ -108,7 +107,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .01sec precision.
-	 * 
+	 *
 	 * @return the timestamp
 	 */
 	public double getTimestamp() {
@@ -117,9 +116,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .01sec precision.
-	 * 
-	 * @param timestamp
-	 *            the timestamp to set
+	 *
+	 * @param timestamp the timestamp to set
 	 */
 	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
@@ -127,7 +125,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Estimated timestamp error (%f, seconds, 95% confidence).
-	 * 
+	 *
 	 * @return the timestampError
 	 */
 	public double getTimestampError() {
@@ -136,9 +134,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Estimated timestamp error (%f, seconds, 95% confidence).
-	 * 
-	 * @param timestampError
-	 *            the timestampError to set
+	 *
+	 * @param timestampError the timestampError to set
 	 */
 	public void setTimestampError(final double timestampError) {
 		this.timestampError = timestampError;
@@ -146,7 +143,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Latitude in degrees: +/- signifies North/South
-	 * 
+	 *
 	 * @return the latitude
 	 */
 	public double getLatitude() {
@@ -155,9 +152,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Latitude in degrees: +/- signifies North/South
-	 * 
-	 * @param latitude
-	 *            the latitude to set
+	 *
+	 * @param latitude the latitude to set
 	 */
 	public void setLatitude(final double latitude) {
 		this.latitude = latitude;
@@ -165,7 +161,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Longitude in degrees: +/- signifies East/West
-	 * 
+	 *
 	 * @return the longitude
 	 */
 	public double getLongitude() {
@@ -174,9 +170,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Longitude in degrees: +/- signifies East/West
-	 * 
-	 * @param longitude
-	 *            the longitude to set
+	 *
+	 * @param longitude the longitude to set
 	 */
 	public void setLongitude(final double longitude) {
 		this.longitude = longitude;
@@ -184,7 +179,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Altitude in meters.
-	 * 
+	 *
 	 * @return the altitude
 	 */
 	public double getAltitude() {
@@ -193,9 +188,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Altitude in meters.
-	 * 
-	 * @param altitude
-	 *            the altitude to set
+	 *
+	 * @param altitude the altitude to set
 	 */
 	public void setAltitude(final double altitude) {
 		this.altitude = altitude;
@@ -203,7 +197,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Latitude error estimate in meters, 95% confidence.
-	 * 
+	 *
 	 * @return the latitudeError
 	 */
 	public double getLatitudeError() {
@@ -212,9 +206,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Latitude error estimate in meters, 95% confidence.
-	 * 
-	 * @param latitudeError
-	 *            the latitudeError to set
+	 *
+	 * @param latitudeError the latitudeError to set
 	 */
 	public void setLatitudeError(final double latitudeError) {
 		this.latitudeError = latitudeError;
@@ -222,7 +215,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Longitude error estimate in meters, 95% confidence.
-	 * 
+	 *
 	 * @return the longitudeError
 	 */
 	public double getLongitudeError() {
@@ -231,9 +224,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Longitude error estimate in meters, 95% confidence.
-	 * 
-	 * @param longitudeError
-	 *            the longitudeError to set
+	 *
+	 * @param longitudeError the longitudeError to set
 	 */
 	public void setLongitudeError(final double longitudeError) {
 		this.longitudeError = longitudeError;
@@ -241,7 +233,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Estimated vertical error in meters, 95% confidence.
-	 * 
+	 *
 	 * @return the altitudeError
 	 */
 	public double getAltitudeError() {
@@ -250,9 +242,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Estimated vertical error in meters, 95% confidence.
-	 * 
-	 * @param altitudeError
-	 *            the altitudeError to set
+	 *
+	 * @param altitudeError the altitudeError to set
 	 */
 	public void setAltitudeError(final double altitudeError) {
 		this.altitudeError = altitudeError;
@@ -260,7 +251,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Course over ground, degrees from true north.
-	 * 
+	 *
 	 * @return the course
 	 */
 	public double getCourse() {
@@ -269,9 +260,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Course over ground, degrees from true north.
-	 * 
-	 * @param course
-	 *            the course to set
+	 *
+	 * @param course the course to set
 	 */
 	public void setCourse(final double course) {
 		this.course = course;
@@ -279,7 +269,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Speed over ground, meters per second.
-	 * 
+	 *
 	 * @return the speed
 	 */
 	public double getSpeed() {
@@ -288,9 +278,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Speed over ground, meters per second.
-	 * 
-	 * @param speed
-	 *            the speed to set
+	 *
+	 * @param speed the speed to set
 	 */
 	public void setSpeed(final double speed) {
 		this.speed = speed;
@@ -298,7 +287,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Climb (positive) or sink (negative) rate, meters per second.
-	 * 
+	 *
 	 * @return the climbRate
 	 */
 	public double getClimbRate() {
@@ -307,9 +296,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Climb (positive) or sink (negative) rate, meters per second.
-	 * 
-	 * @param climbRate
-	 *            the climbRate to set
+	 *
+	 * @param climbRate the climbRate to set
 	 */
 	public void setClimbRate(final double climbRate) {
 		this.climbRate = climbRate;
@@ -317,7 +305,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Direction error estimate in degrees, 95% confidence.
-	 * 
+	 *
 	 * @return the courseError
 	 */
 	public double getCourseError() {
@@ -326,9 +314,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Direction error estimate in degrees, 95% confidence.
-	 * 
-	 * @param courseError
-	 *            the courseError to set
+	 *
+	 * @param courseError the courseError to set
 	 */
 	public void setCourseError(final double courseError) {
 		this.courseError = courseError;
@@ -336,7 +323,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Speed error estimate in meters/sec, 95% confidence.
-	 * 
+	 *
 	 * @return the speedError
 	 */
 	public double getSpeedError() {
@@ -345,9 +332,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Speed error estimate in meters/sec, 95% confidence.
-	 * 
-	 * @param speedError
-	 *            the speedError to set
+	 *
+	 * @param speedError the speedError to set
 	 */
 	public void setSpeedError(final double speedError) {
 		this.speedError = speedError;
@@ -355,7 +341,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Climb/sink error estimate in meters/sec, 95% confidence.
-	 * 
+	 *
 	 * @return the climbRateError
 	 */
 	public double getClimbRateError() {
@@ -364,9 +350,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * Climb/sink error estimate in meters/sec, 95% confidence.
-	 * 
-	 * @param climbRateError
-	 *            the climbRateError to set
+	 *
+	 * @param climbRateError the climbRateError to set
 	 */
 	public void setClimbRateError(final double climbRateError) {
 		this.climbRateError = climbRateError;
@@ -374,7 +359,7 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * NMEA mode
-	 * 
+	 *
 	 * @return the mode
 	 */
 	public ENMEAMode getMode() {
@@ -383,9 +368,8 @@ public class TPVObject implements IGPSObject {
 	
 	/**
 	 * NMEA mode
-	 * 
-	 * @param mode
-	 *            the mode to set
+	 *
+	 * @param mode the mode to set
 	 */
 	public void setMode(final ENMEAMode mode) {
 		this.mode = mode;

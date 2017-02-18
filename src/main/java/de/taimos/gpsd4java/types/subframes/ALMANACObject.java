@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types.subframes;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class ALMANACObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "ALMANAC";
 	
 	private int ID = -1;
@@ -55,7 +56,6 @@ public class ALMANACObject implements IGPSObject {
 	
 	private double af1 = Double.NaN;
 	
-	
 	/**
 	 * @return the iD
 	 */
@@ -64,8 +64,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param iD
-	 *            the iD to set
+	 * @param iD the iD to set
 	 */
 	public void setID(final int iD) {
 		this.ID = iD;
@@ -79,8 +78,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param health
-	 *            the health to set
+	 * @param health the health to set
 	 */
 	public void setHealth(final int health) {
 		this.Health = health;
@@ -94,8 +92,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param e
-	 *            the e to set
+	 * @param e the e to set
 	 */
 	public void setE(final double e) {
 		this.e = e;
@@ -109,8 +106,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param toa
-	 *            the toa to set
+	 * @param toa the toa to set
 	 */
 	public void setToa(final int toa) {
 		this.toa = toa;
@@ -124,8 +120,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param deltai
-	 *            the deltai to set
+	 * @param deltai the deltai to set
 	 */
 	public void setDeltai(final double deltai) {
 		this.deltai = deltai;
@@ -139,8 +134,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param omegad
-	 *            the omegad to set
+	 * @param omegad the omegad to set
 	 */
 	public void setOmegad(final double omegad) {
 		this.Omegad = omegad;
@@ -154,8 +148,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param sqrtA
-	 *            the sqrtA to set
+	 * @param sqrtA the sqrtA to set
 	 */
 	public void setSqrtA(final double sqrtA) {
 		this.sqrtA = sqrtA;
@@ -169,8 +162,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param omega0
-	 *            the omega0 to set
+	 * @param omega0 the omega0 to set
 	 */
 	public void setOmega0(final double omega0) {
 		this.Omega0 = omega0;
@@ -184,8 +176,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param omega
-	 *            the omega to set
+	 * @param omega the omega to set
 	 */
 	public void setOmega(final double omega) {
 		this.omega = omega;
@@ -199,8 +190,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param m0
-	 *            the m0 to set
+	 * @param m0 the m0 to set
 	 */
 	public void setM0(final double m0) {
 		this.M0 = m0;
@@ -214,8 +204,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param af0
-	 *            the af0 to set
+	 * @param af0 the af0 to set
 	 */
 	public void setAf0(final double af0) {
 		this.af0 = af0;
@@ -229,8 +218,7 @@ public class ALMANACObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param af1
-	 *            the af1 to set
+	 * @param af1 the af1 to set
 	 */
 	public void setAf1(final double af1) {
 		this.af1 = af1;

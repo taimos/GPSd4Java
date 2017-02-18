@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types.subframes;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class EPHEM2Object implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "EPHEM2";
 	
 	private int IODE = -1;
@@ -53,7 +54,6 @@ public class EPHEM2Object implements IGPSObject {
 	
 	private int AODO = -1;
 	
-	
 	/**
 	 * @return the iODE
 	 */
@@ -62,8 +62,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param iODE
-	 *            the iODE to set
+	 * @param iODE the iODE to set
 	 */
 	public void setIODE(final int iODE) {
 		this.IODE = iODE;
@@ -77,8 +76,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param crs
-	 *            the crs to set
+	 * @param crs the crs to set
 	 */
 	public void setCrs(final double crs) {
 		this.Crs = crs;
@@ -92,8 +90,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param deltan
-	 *            the deltan to set
+	 * @param deltan the deltan to set
 	 */
 	public void setDeltan(final double deltan) {
 		this.deltan = deltan;
@@ -107,8 +104,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param m0
-	 *            the m0 to set
+	 * @param m0 the m0 to set
 	 */
 	public void setM0(final double m0) {
 		this.M0 = m0;
@@ -122,8 +118,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param cuc
-	 *            the cuc to set
+	 * @param cuc the cuc to set
 	 */
 	public void setCuc(final double cuc) {
 		this.Cuc = cuc;
@@ -137,8 +132,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param e
-	 *            the e to set
+	 * @param e the e to set
 	 */
 	public void setE(final double e) {
 		this.e = e;
@@ -152,8 +146,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param cus
-	 *            the cus to set
+	 * @param cus the cus to set
 	 */
 	public void setCus(final double cus) {
 		this.Cus = cus;
@@ -167,8 +160,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param sqrtA
-	 *            the sqrtA to set
+	 * @param sqrtA the sqrtA to set
 	 */
 	public void setSqrtA(final double sqrtA) {
 		this.sqrtA = sqrtA;
@@ -182,8 +174,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param toe
-	 *            the toe to set
+	 * @param toe the toe to set
 	 */
 	public void setToe(final int toe) {
 		this.toe = toe;
@@ -197,8 +188,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param fIT
-	 *            the fIT to set
+	 * @param fIT the fIT to set
 	 */
 	public void setFIT(final int fIT) {
 		this.FIT = fIT;
@@ -212,8 +202,7 @@ public class EPHEM2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param aODO
-	 *            the aODO to set
+	 * @param aODO the aODO to set
 	 */
 	public void setAODO(final int aODO) {
 		this.AODO = aODO;

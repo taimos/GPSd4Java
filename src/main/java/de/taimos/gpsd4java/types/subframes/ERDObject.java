@@ -25,18 +25,18 @@ import java.util.Arrays;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class ERDObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "ERD";
 	
 	private int[] ERD = new int[30];
 	
 	private int ai = -1;
-	
 	
 	/**
 	 * @return the eRD
@@ -46,8 +46,7 @@ public class ERDObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param eRD
-	 *            the eRD to set
+	 * @param eRD the eRD to set
 	 */
 	public void setERD(final int[] eRD) {
 		this.ERD = eRD;
@@ -61,8 +60,7 @@ public class ERDObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param ai
-	 *            the ai to set
+	 * @param ai the ai to set
 	 */
 	public void setAi(final int ai) {
 		this.ai = ai;
@@ -77,10 +75,8 @@ public class ERDObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param index
-	 *            the index
-	 * @param ERDvalue
-	 *            the ERD
+	 * @param index    the index
+	 * @param ERDvalue the ERD
 	 */
 	public void setERDbyIndex(final int index, final int ERDvalue) {
 		this.ERD[index] = ERDvalue;

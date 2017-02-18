@@ -24,12 +24,14 @@ package de.taimos.gpsd4java.types;
  * A GST object is a pseudorange noise report. <br>
  * all getters for double values may return <code>Double.NaN</code> if value is not present<br>
  * other getters may return <code>null</code>
- * 
+ *
  * @author thoeger
  */
 public class GSTObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "GST";
 	
 	private String tag = null;
@@ -52,10 +54,9 @@ public class GSTObject implements IGPSObject {
 	
 	private double alt = Double.NaN;
 	
-	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
-	 * 
+	 *
 	 * @return the tag
 	 */
 	public String getTag() {
@@ -64,9 +65,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
-	 * 
-	 * @param tag
-	 *            the tag to set
+	 *
+	 * @param tag the tag to set
 	 */
 	public void setTag(final String tag) {
 		this.tag = tag;
@@ -74,7 +74,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
+	 *
 	 * @return the device
 	 */
 	public String getDevice() {
@@ -83,9 +83,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
-	 * @param device
-	 *            the device to set
+	 *
+	 * @param device the device to set
 	 */
 	public void setDevice(final String device) {
 		this.device = device;
@@ -93,7 +92,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
-	 * 
+	 *
 	 * @return the timestamp
 	 */
 	public double getTimestamp() {
@@ -102,9 +101,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
-	 * 
-	 * @param timestamp
-	 *            the timestamp to set
+	 *
+	 * @param timestamp the timestamp to set
 	 */
 	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
@@ -113,7 +111,7 @@ public class GSTObject implements IGPSObject {
 	/**
 	 * Value of the standard deviation of the range inputs to the navigation process (range inputs include pseudoranges and DGPS
 	 * corrections).
-	 * 
+	 *
 	 * @return the rms
 	 */
 	public double getRms() {
@@ -123,9 +121,8 @@ public class GSTObject implements IGPSObject {
 	/**
 	 * Value of the standard deviation of the range inputs to the navigation process (range inputs include pseudoranges and DGPS
 	 * corrections).
-	 * 
-	 * @param rms
-	 *            the rms to set
+	 *
+	 * @param rms the rms to set
 	 */
 	public void setRms(final double rms) {
 		this.rms = rms;
@@ -133,7 +130,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of semi-major axis of error ellipse, in meters.
-	 * 
+	 *
 	 * @return the major
 	 */
 	public double getMajor() {
@@ -142,9 +139,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of semi-major axis of error ellipse, in meters.
-	 * 
-	 * @param major
-	 *            the major to set
+	 *
+	 * @param major the major to set
 	 */
 	public void setMajor(final double major) {
 		this.major = major;
@@ -152,7 +148,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of semi-minor axis of error ellipse, in meters.
-	 * 
+	 *
 	 * @return the minor
 	 */
 	public double getMinor() {
@@ -161,9 +157,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of semi-minor axis of error ellipse, in meters.
-	 * 
-	 * @param minor
-	 *            the minor to set
+	 *
+	 * @param minor the minor to set
 	 */
 	public void setMinor(final double minor) {
 		this.minor = minor;
@@ -171,7 +166,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Orientation of semi-major axis of error ellipse, in degrees from true north.
-	 * 
+	 *
 	 * @return the orient
 	 */
 	public double getOrient() {
@@ -180,9 +175,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Orientation of semi-major axis of error ellipse, in degrees from true north.
-	 * 
-	 * @param orient
-	 *            the orient to set
+	 *
+	 * @param orient the orient to set
 	 */
 	public void setOrient(final double orient) {
 		this.orient = orient;
@@ -190,7 +184,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of latitude error, in meters.
-	 * 
+	 *
 	 * @return the lat
 	 */
 	public double getLat() {
@@ -199,9 +193,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of latitude error, in meters.
-	 * 
-	 * @param lat
-	 *            the lat to set
+	 *
+	 * @param lat the lat to set
 	 */
 	public void setLat(final double lat) {
 		this.lat = lat;
@@ -209,7 +202,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of longitude error, in meters.
-	 * 
+	 *
 	 * @return the lon
 	 */
 	public double getLon() {
@@ -218,9 +211,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of longitude error, in meters.
-	 * 
-	 * @param lon
-	 *            the lon to set
+	 *
+	 * @param lon the lon to set
 	 */
 	public void setLon(final double lon) {
 		this.lon = lon;
@@ -228,7 +220,7 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of altitude error, in meters.
-	 * 
+	 *
 	 * @return the alt
 	 */
 	public double getAlt() {
@@ -237,9 +229,8 @@ public class GSTObject implements IGPSObject {
 	
 	/**
 	 * Standard deviation of altitude error, in meters.
-	 * 
-	 * @param alt
-	 *            the alt to set
+	 *
+	 * @param alt the alt to set
 	 */
 	public void setAlt(final double alt) {
 		this.alt = alt;

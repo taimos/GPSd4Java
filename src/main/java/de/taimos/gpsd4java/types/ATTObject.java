@@ -25,15 +25,17 @@ package de.taimos.gpsd4java.types;
  * heading, pitch, roll, yaw, gyroscope, and magnetic-field readings. Because such sensors are often bundled as part of marine-navigation
  * systems, the ATT response may also include water depth.<br>
  * <br>
- * 
+ * <p>
  * all getters for double values may return <code>Double.NaN</code> if value is not present<br>
  * other getters may return <code>null</code>
- * 
+ *
  * @author thoeger
  */
 public class ATTObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "ATT";
 	
 	private String tag = null;
@@ -84,10 +86,9 @@ public class ATTObject implements IGPSObject {
 	
 	private String rollState = null;
 	
-	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
-	 * 
+	 *
 	 * @return the tag
 	 */
 	public String getTag() {
@@ -96,9 +97,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Type tag associated with this GPS sentence; from an NMEA device this is just the NMEA sentence type.
-	 * 
-	 * @param tag
-	 *            the tag to set
+	 *
+	 * @param tag the tag to set
 	 */
 	public void setTag(final String tag) {
 		this.tag = tag;
@@ -106,7 +106,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
+	 *
 	 * @return the device
 	 */
 	public String getDevice() {
@@ -115,9 +115,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
-	 * @param device
-	 *            the device to set
+	 *
+	 * @param device the device to set
 	 */
 	public void setDevice(final String device) {
 		this.device = device;
@@ -125,7 +124,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
-	 * 
+	 *
 	 * @return the timestamp
 	 */
 	public double getTimestamp() {
@@ -134,9 +133,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
-	 * 
-	 * @param timestamp
-	 *            the timestamp to set
+	 *
+	 * @param timestamp the timestamp to set
 	 */
 	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
@@ -144,7 +142,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Heading, degrees from true north.
-	 * 
+	 *
 	 * @return the heading
 	 */
 	public double getHeading() {
@@ -153,9 +151,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Heading, degrees from true north.
-	 * 
-	 * @param heading
-	 *            the heading to set
+	 *
+	 * @param heading the heading to set
 	 */
 	public void setHeading(final double heading) {
 		this.heading = heading;
@@ -163,7 +160,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Pitch in degrees.
-	 * 
+	 *
 	 * @return the pitch
 	 */
 	public double getPitch() {
@@ -172,9 +169,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Pitch in degrees.
-	 * 
-	 * @param pitch
-	 *            the pitch to set
+	 *
+	 * @param pitch the pitch to set
 	 */
 	public void setPitch(final double pitch) {
 		this.pitch = pitch;
@@ -182,7 +178,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Yaw in degrees
-	 * 
+	 *
 	 * @return the yaw
 	 */
 	public double getYaw() {
@@ -191,9 +187,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Yaw in degrees
-	 * 
-	 * @param yaw
-	 *            the yaw to set
+	 *
+	 * @param yaw the yaw to set
 	 */
 	public void setYaw(final double yaw) {
 		this.yaw = yaw;
@@ -201,7 +196,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Roll in degrees.
-	 * 
+	 *
 	 * @return the roll
 	 */
 	public double getRoll() {
@@ -210,9 +205,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Roll in degrees.
-	 * 
-	 * @param roll
-	 *            the roll to set
+	 *
+	 * @param roll the roll to set
 	 */
 	public void setRoll(final double roll) {
 		this.roll = roll;
@@ -220,7 +214,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Roll in degrees.
-	 * 
+	 *
 	 * @return the dip
 	 */
 	public double getDip() {
@@ -229,9 +223,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Roll in degrees.
-	 * 
-	 * @param dip
-	 *            the dip to set
+	 *
+	 * @param dip the dip to set
 	 */
 	public void setDip(final double dip) {
 		this.dip = dip;
@@ -239,7 +232,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Scalar magnetic field strength.
-	 * 
+	 *
 	 * @return the mag_len
 	 */
 	public double getMag_len() {
@@ -248,9 +241,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Scalar magnetic field strength.
-	 * 
-	 * @param mag_len
-	 *            the mag_len to set
+	 *
+	 * @param mag_len the mag_len to set
 	 */
 	public void setMag_len(final double mag_len) {
 		this.mag_len = mag_len;
@@ -258,7 +250,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * X component of magnetic field strength.
-	 * 
+	 *
 	 * @return the mag_x
 	 */
 	public double getMag_x() {
@@ -267,9 +259,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * X component of magnetic field strength.
-	 * 
-	 * @param mag_x
-	 *            the mag_x to set
+	 *
+	 * @param mag_x the mag_x to set
 	 */
 	public void setMag_x(final double mag_x) {
 		this.mag_x = mag_x;
@@ -277,7 +268,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Y component of magnetic field strength.
-	 * 
+	 *
 	 * @return the mag_y
 	 */
 	public double getMag_y() {
@@ -286,9 +277,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Y component of magnetic field strength.
-	 * 
-	 * @param mag_y
-	 *            the mag_y to set
+	 *
+	 * @param mag_y the mag_y to set
 	 */
 	public void setMag_y(final double mag_y) {
 		this.mag_y = mag_y;
@@ -296,7 +286,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Z component of magnetic field strength.
-	 * 
+	 *
 	 * @return the mag_z
 	 */
 	public double getMag_z() {
@@ -305,9 +295,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Z component of magnetic field strength.
-	 * 
-	 * @param mag_z
-	 *            the mag_z to set
+	 *
+	 * @param mag_z the mag_z to set
 	 */
 	public void setMag_z(final double mag_z) {
 		this.mag_z = mag_z;
@@ -315,7 +304,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Scalar acceleration.
-	 * 
+	 *
 	 * @return the acc_len
 	 */
 	public double getAcc_len() {
@@ -324,9 +313,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Scalar acceleration.
-	 * 
-	 * @param acc_len
-	 *            the acc_len to set
+	 *
+	 * @param acc_len the acc_len to set
 	 */
 	public void setAcc_len(final double acc_len) {
 		this.acc_len = acc_len;
@@ -334,7 +322,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * X component of acceleration.
-	 * 
+	 *
 	 * @return the acc_x
 	 */
 	public double getAcc_x() {
@@ -343,9 +331,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * X component of acceleration.
-	 * 
-	 * @param acc_x
-	 *            the acc_x to set
+	 *
+	 * @param acc_x the acc_x to set
 	 */
 	public void setAcc_x(final double acc_x) {
 		this.acc_x = acc_x;
@@ -353,7 +340,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Y component of acceleration.
-	 * 
+	 *
 	 * @return the acc_y
 	 */
 	public double getAcc_y() {
@@ -362,9 +349,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Y component of acceleration.
-	 * 
-	 * @param acc_y
-	 *            the acc_y to set
+	 *
+	 * @param acc_y the acc_y to set
 	 */
 	public void setAcc_y(final double acc_y) {
 		this.acc_y = acc_y;
@@ -372,7 +358,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Z component of acceleration.
-	 * 
+	 *
 	 * @return the acc_z
 	 */
 	public double getAcc_z() {
@@ -381,9 +367,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Z component of acceleration.
-	 * 
-	 * @param acc_z
-	 *            the acc_z to set
+	 *
+	 * @param acc_z the acc_z to set
 	 */
 	public void setAcc_z(final double acc_z) {
 		this.acc_z = acc_z;
@@ -391,7 +376,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * X component of acceleration.
-	 * 
+	 *
 	 * @return the gyro_x
 	 */
 	public double getGyro_x() {
@@ -400,9 +385,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * X component of acceleration.
-	 * 
-	 * @param gyro_x
-	 *            the gyro_x to set
+	 *
+	 * @param gyro_x the gyro_x to set
 	 */
 	public void setGyro_x(final double gyro_x) {
 		this.gyro_x = gyro_x;
@@ -410,7 +394,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Y component of acceleration.
-	 * 
+	 *
 	 * @return the gyro_y
 	 */
 	public double getGyro_y() {
@@ -419,9 +403,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Y component of acceleration.
-	 * 
-	 * @param gyro_y
-	 *            the gyro_y to set
+	 *
+	 * @param gyro_y the gyro_y to set
 	 */
 	public void setGyro_y(final double gyro_y) {
 		this.gyro_y = gyro_y;
@@ -429,7 +412,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Water depth in meters.
-	 * 
+	 *
 	 * @return the depth
 	 */
 	public double getDepth() {
@@ -438,9 +421,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Water depth in meters.
-	 * 
-	 * @param depth
-	 *            the depth to set
+	 *
+	 * @param depth the depth to set
 	 */
 	public void setDepth(final double depth) {
 		this.depth = depth;
@@ -448,7 +430,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Temperature at sensor, degrees centigrade.
-	 * 
+	 *
 	 * @return the temperature
 	 */
 	public double getTemperature() {
@@ -457,9 +439,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Temperature at sensor, degrees centigrade.
-	 * 
-	 * @param temperature
-	 *            the temperature to set
+	 *
+	 * @param temperature the temperature to set
 	 */
 	public void setTemperature(final double temperature) {
 		this.temperature = temperature;
@@ -467,7 +448,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Magnetometer status.
-	 * 
+	 *
 	 * @return the magState
 	 */
 	public String getMagState() {
@@ -476,9 +457,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Magnetometer status.
-	 * 
-	 * @param magState
-	 *            the magState to set
+	 *
+	 * @param magState the magState to set
 	 */
 	public void setMagState(final String magState) {
 		this.magState = magState;
@@ -486,7 +466,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Pitch sensor status.
-	 * 
+	 *
 	 * @return the pitchState
 	 */
 	public String getPitchState() {
@@ -495,9 +475,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Pitch sensor status.
-	 * 
-	 * @param pitchState
-	 *            the pitchState to set
+	 *
+	 * @param pitchState the pitchState to set
 	 */
 	public void setPitchState(final String pitchState) {
 		this.pitchState = pitchState;
@@ -505,7 +484,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Yaw sensor status.
-	 * 
+	 *
 	 * @return the yawState
 	 */
 	public String getYawState() {
@@ -514,9 +493,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Yaw sensor status.
-	 * 
-	 * @param yawState
-	 *            the yawState to set
+	 *
+	 * @param yawState the yawState to set
 	 */
 	public void setYawState(final String yawState) {
 		this.yawState = yawState;
@@ -524,7 +502,7 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Roll sensor status.
-	 * 
+	 *
 	 * @return the rollState
 	 */
 	public String getRollState() {
@@ -533,9 +511,8 @@ public class ATTObject implements IGPSObject {
 	
 	/**
 	 * Roll sensor status.
-	 * 
-	 * @param rollState
-	 *            the rollState to set
+	 *
+	 * @param rollState the rollState to set
 	 */
 	public void setRollState(final String rollState) {
 		this.rollState = rollState;

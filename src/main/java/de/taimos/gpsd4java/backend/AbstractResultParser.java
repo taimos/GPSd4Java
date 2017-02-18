@@ -37,7 +37,6 @@ import de.taimos.gpsd4java.types.IGPSObject;
 import de.taimos.gpsd4java.types.ParseException;
 
 /**
- * 
  * @author irakli, thoeger
  */
 public abstract class AbstractResultParser {
@@ -45,7 +44,6 @@ public abstract class AbstractResultParser {
 	protected static final Logger LOG = LoggerFactory.getLogger(ResultParser.class);
 	
 	protected final DateFormat dateFormat; // Don't make this static!
-	
 	
 	/**
 	 * Create new ResultParser
@@ -57,12 +55,10 @@ public abstract class AbstractResultParser {
 	
 	/**
 	 * Parse a received line into a {@link IGPSObject}
-	 * 
-	 * @param line
-	 *            the line read from GPSd
+	 *
+	 * @param line the line read from GPSd
 	 * @return the parsed object
-	 * @throws ParseException
-	 *             if parsing fails
+	 * @throws ParseException if parsing fails
 	 */
 	public IGPSObject parse(final String line) throws ParseException {
 		try {

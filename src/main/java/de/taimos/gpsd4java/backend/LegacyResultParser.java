@@ -48,19 +48,17 @@ import org.json.JSONObject;
 
 /**
  * This class is used to parse responses from GPSd<br>
- * 
+ *
  * @author thoeger
  */
 public class LegacyResultParser extends AbstractResultParser {
 	
 	/**
 	 * parse {@link JSONObject} into {@link IGPSObject}
-	 * 
-	 * @param json
-	 *            the {@link JSONObject} to parse
+	 *
+	 * @param json the {@link JSONObject} to parse
 	 * @return the parsed object
-	 * @throws ParseException
-	 *             if parsing fails
+	 * @throws ParseException if parsing fails
 	 */
 	@Override
 	public IGPSObject parse(final JSONObject json) throws ParseException {

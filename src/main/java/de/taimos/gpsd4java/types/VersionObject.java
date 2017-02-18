@@ -21,12 +21,13 @@ package de.taimos.gpsd4java.types;
  */
 
 /**
- * 
  * @author thoeger
  */
 public class VersionObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "VERSION";
 	
 	private String release;
@@ -37,7 +38,6 @@ public class VersionObject implements IGPSObject {
 	
 	private double protocolMinor;
 	
-	
 	/**
 	 * @return the release
 	 */
@@ -46,8 +46,7 @@ public class VersionObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param release
-	 *            the release to set
+	 * @param release the release to set
 	 */
 	public void setRelease(final String release) {
 		this.release = release;
@@ -61,8 +60,7 @@ public class VersionObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param rev
-	 *            the rev to set
+	 * @param rev the rev to set
 	 */
 	public void setRev(final String rev) {
 		this.rev = rev;
@@ -76,8 +74,7 @@ public class VersionObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param protocolMajor
-	 *            the protocolMajor to set
+	 * @param protocolMajor the protocolMajor to set
 	 */
 	public void setProtocolMajor(final double protocolMajor) {
 		this.protocolMajor = protocolMajor;
@@ -91,8 +88,7 @@ public class VersionObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param protocolMinor
-	 *            the protocolMinor to set
+	 * @param protocolMinor the protocolMinor to set
 	 */
 	public void setProtocolMinor(final double protocolMinor) {
 		this.protocolMinor = protocolMinor;

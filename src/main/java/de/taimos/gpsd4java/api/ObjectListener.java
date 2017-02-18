@@ -29,7 +29,7 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * Adapter class for {@link IObjectListener}
- * 
+ *
  * @author thoeger
  */
 public class ObjectListener implements IObjectListener {

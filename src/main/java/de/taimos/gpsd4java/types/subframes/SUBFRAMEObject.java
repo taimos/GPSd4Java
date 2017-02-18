@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types.subframes;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class SUBFRAMEObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "SUBFRAME";
 	
 	private String device = null;
@@ -61,10 +62,9 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	private IONOObject iono;
 	
-	
 	/**
 	 * Name of originating device
-	 * 
+	 *
 	 * @return the device
 	 */
 	public String getDevice() {
@@ -73,9 +73,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Name of originating device
-	 * 
-	 * @param device
-	 *            the device to set
+	 *
+	 * @param device the device to set
 	 */
 	public void setDevice(final String device) {
 		this.device = device;
@@ -83,7 +82,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Subframe number
-	 * 
+	 *
 	 * @return the subframe number
 	 */
 	public int getSubFrameNumber() {
@@ -92,9 +91,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Subframe number
-	 * 
-	 * @param subframeNumber
-	 *            to set
+	 *
+	 * @param subframeNumber to set
 	 */
 	public void setSubframeNumber(final int subframeNumber) {
 		this.subframeNumber = subframeNumber;
@@ -102,7 +100,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Satellite number
-	 * 
+	 *
 	 * @return the satellite number
 	 */
 	public int getSatelliteNumber() {
@@ -111,9 +109,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Satellite number
-	 * 
-	 * @param satelliteNumber
-	 *            satellite number to set
+	 *
+	 * @param satelliteNumber satellite number to set
 	 */
 	public void setSatelliteNumber(final int satelliteNumber) {
 		this.satelliteNumber = satelliteNumber;
@@ -121,7 +118,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * TOW17 field containing the 17 MSBs of the start of the next 12-second message
-	 * 
+	 *
 	 * @return TOW17
 	 */
 	public int getMSBs() {
@@ -130,9 +127,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * TOW17 field containing the 17 MSBs of the start of the next 12-second message
-	 * 
-	 * @param MSBs
-	 *            TOW17 to set
+	 *
+	 * @param MSBs TOW17 to set
 	 */
 	public void setMSBs(final int MSBs) {
 		this.MSBs = MSBs;
@@ -140,7 +136,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * field telling whether the remainder of the fields are dumped in scaled or unscaled form
-	 * 
+	 *
 	 * @return scaled
 	 */
 	public boolean getScaled() {
@@ -149,9 +145,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * field telling whether the remainder of the fields are dumped in scaled or unscaled form
-	 * 
-	 * @param scaled
-	 *            scaled to set
+	 *
+	 * @param scaled scaled to set
 	 */
 	public void setScaled(final boolean scaled) {
 		this.scaled = scaled;
@@ -159,7 +154,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * optional pageid for ERD, IONO, HEALTH and system message
-	 * 
+	 *
 	 * @return pageid
 	 */
 	public int getPageid() {
@@ -168,9 +163,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * optional pageid for ERD, IONO, HEALTH and system message
-	 * 
-	 * @param pageid
-	 *            page id to set
+	 *
+	 * @param pageid page id to set
 	 */
 	public void setPageid(final int pageid) {
 		this.pageid = pageid;
@@ -178,7 +172,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * optional system message
-	 * 
+	 *
 	 * @return system message
 	 */
 	public String getSystemMessage() {
@@ -187,9 +181,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * optional system message
-	 * 
-	 * @param systemMessage
-	 *            system message to set
+	 *
+	 * @param systemMessage system message to set
 	 */
 	public void setSystemMessage(final String systemMessage) {
 		this.systemMessage = systemMessage;
@@ -197,7 +190,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional ALMANAC object
-	 * 
+	 *
 	 * @return ALMANAC
 	 */
 	public ALMANACObject getAlmanac() {
@@ -206,9 +199,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional ALMANAC object
-	 * 
-	 * @param almanac
-	 *            ALMANAC to set
+	 *
+	 * @param almanac ALMANAC to set
 	 */
 	public void setAlmanac(final ALMANACObject almanac) {
 		this.almanac = almanac;
@@ -216,7 +208,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional EPHEM1 object
-	 * 
+	 *
 	 * @return EPHEM1
 	 */
 	public EPHEM1Object getEphem1() {
@@ -225,9 +217,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional EPHEM1 object
-	 * 
-	 * @param ephem1
-	 *            EPHEM1 to set
+	 *
+	 * @param ephem1 EPHEM1 to set
 	 */
 	public void setEphem1(final EPHEM1Object ephem1) {
 		this.ephem1 = ephem1;
@@ -235,7 +226,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional EPHEM2 object
-	 * 
+	 *
 	 * @return EPHEM2
 	 */
 	public EPHEM2Object getEphem2() {
@@ -244,9 +235,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional EPHEM2 object
-	 * 
-	 * @param ephem2
-	 *            EPHEM2 to set
+	 *
+	 * @param ephem2 EPHEM2 to set
 	 */
 	public void setEphem2(final EPHEM2Object ephem2) {
 		this.ephem2 = ephem2;
@@ -254,7 +244,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional EPHEM3 object
-	 * 
+	 *
 	 * @return EPHEM3
 	 */
 	public EPHEM3Object getEphem3() {
@@ -263,9 +253,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional EPHEM3 object
-	 * 
-	 * @param ephem3
-	 *            EPHEM3 to set
+	 *
+	 * @param ephem3 EPHEM3 to set
 	 */
 	public void setEphem3(final EPHEM3Object ephem3) {
 		this.ephem3 = ephem3;
@@ -273,7 +262,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional ERD object
-	 * 
+	 *
 	 * @return ERD
 	 */
 	public ERDObject getErd() {
@@ -282,9 +271,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional ERD object
-	 * 
-	 * @param erd
-	 *            ERD to set
+	 *
+	 * @param erd ERD to set
 	 */
 	public void setErd(final ERDObject erd) {
 		this.erd = erd;
@@ -292,7 +280,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional HEALTH object
-	 * 
+	 *
 	 * @return HEALTH
 	 */
 	public HEALTHObject getHealth() {
@@ -301,9 +289,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional HEALTH object
-	 * 
-	 * @param health
-	 *            HEALTH to set
+	 *
+	 * @param health HEALTH to set
 	 */
 	public void setHealth(final HEALTHObject health) {
 		this.health = health;
@@ -311,7 +298,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional HEALTH2 object
-	 * 
+	 *
 	 * @return HEALTH2
 	 */
 	public HEALTH2Object getHealth2() {
@@ -320,9 +307,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional HEALTH2 object
-	 * 
-	 * @param health2
-	 *            HEALTH2 to set
+	 *
+	 * @param health2 HEALTH2 to set
 	 */
 	public void setHealth2(final HEALTH2Object health2) {
 		this.health2 = health2;
@@ -330,7 +316,7 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional IONO object
-	 * 
+	 *
 	 * @return IONO
 	 */
 	public IONOObject getIono() {
@@ -339,9 +325,8 @@ public class SUBFRAMEObject implements IGPSObject {
 	
 	/**
 	 * Optional IONO object
-	 * 
-	 * @param iono
-	 *            IONO to set
+	 *
+	 * @param iono IONO to set
 	 */
 	public void setIono(final IONOObject iono) {
 		this.iono = iono;

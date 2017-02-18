@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * thread reading input from GPSd server
- * 
+ *
  * @author thoeger
  */
 public class SocketThread extends Thread {
@@ -44,12 +44,9 @@ public class SocketThread extends Thread {
 	
 	private final WaitableBoolean running = new WaitableBoolean(true);
 	
-	
 	/**
-	 * @param reader
-	 *            the socket input
-	 * @param endpoint
-	 *            the endpoint
+	 * @param reader       the socket input
+	 * @param endpoint     the endpoint
 	 * @param resultParser
 	 */
 	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
@@ -89,25 +86,24 @@ public class SocketThread extends Thread {
 			} catch (final Exception e) {
 				// TODO handle this better
 				SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line", e);
-			} 
+			}
 		}
-		if( running.get() && !Thread.interrupted()){
+		if (running.get() && !Thread.interrupted()) {
 			SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line, attempting restart");
 			retry();
 		}
 	}
 	
-	
-	protected void retry(){
+	protected void retry() {
 		SocketThread.LOG.debug("Disconnected from GPS socket, retrying connection");
-
-		while(this.running.get()){
+		
+		while (this.running.get()) {
 			try {
 				running.waitFor(1000);
 				this.endpoint.handleDisconnected();
 				SocketThread.LOG.debug("Reconnected to GPS socket");
 				running.set(false);
-			} catch (InterruptedException ix){
+			} catch (InterruptedException ix) {
 				break;
 			} catch (IOException e) {
 				SocketThread.LOG.debug("Still disconnected from GPS socket, retrying connection again");
@@ -117,7 +113,7 @@ public class SocketThread extends Thread {
 	
 	/**
 	 * Halts the socket thread.
-	 * 
+	 *
 	 * @throws InterruptedException
 	 */
 	public void halt() throws InterruptedException {

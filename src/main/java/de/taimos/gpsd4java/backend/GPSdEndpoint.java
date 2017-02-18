@@ -50,7 +50,7 @@ import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * GPSd client endpoint
- * 
+ *
  * @author thoeger
  */
 public class GPSdEndpoint {
@@ -74,22 +74,20 @@ public class GPSdEndpoint {
 	private final Object asyncWaitMutex = new Object();
 	
 	private final AbstractResultParser resultParser;
-
+	
 	private String server;
-
+	
 	private int port;
-
+	
 	private String lastWatch;
 	
 	private AtomicLong retryInterval = new AtomicLong(1000);
 	
 	/**
 	 * Instantiate this class to connect to a GPSd server
-	 * 
-	 * @param server
-	 *            the server name or IP
-	 * @param port
-	 *            the server port
+	 *
+	 * @param server       the server name or IP
+	 * @param port         the server port
 	 * @param resultParser
 	 * @throws UnknownHostException
 	 * @throws IOException
@@ -151,14 +149,11 @@ public class GPSdEndpoint {
 	
 	/**
 	 * send WATCH command
-	 * 
-	 * @param enable
-	 *            enable/disable watch mode
-	 * @param dumpData
-	 *            enable/disable dumping of data
+	 *
+	 * @param enable   enable/disable watch mode
+	 * @param dumpData enable/disable dumping of data
 	 * @return {@link WatchObject}
-	 * @throws IOException
-	 *             on IO error in socket
+	 * @throws IOException   on IO error in socket
 	 * @throws JSONException
 	 */
 	public WatchObject watch(final boolean enable, final boolean dumpData) throws IOException, JSONException {
@@ -167,16 +162,12 @@ public class GPSdEndpoint {
 	
 	/**
 	 * send WATCH command
-	 * 
-	 * @param enable
-	 *            enable/disable watch mode
-	 * @param dumpData
-	 *            enable/disable dumping of data
-	 * @param device
-	 *            If present, enable watching only of the specified device rather than all devices
+	 *
+	 * @param enable   enable/disable watch mode
+	 * @param dumpData enable/disable dumping of data
+	 * @param device   If present, enable watching only of the specified device rather than all devices
 	 * @return {@link WatchObject}
-	 * @throws IOException
-	 *             on IO error in socket
+	 * @throws IOException   on IO error in socket
 	 * @throws JSONException
 	 */
 	public WatchObject watch(final boolean enable, final boolean dumpData, final String device) throws IOException, JSONException {
@@ -192,10 +183,9 @@ public class GPSdEndpoint {
 	
 	/**
 	 * Poll GPSd for Message
-	 * 
+	 *
 	 * @return {@link PollObject}
-	 * @throws IOException
-	 *             on IO error in socket
+	 * @throws IOException on IO error in socket
 	 */
 	public PollObject poll() throws IOException {
 		return this.syncCommand("?POLL;", PollObject.class);
@@ -203,10 +193,9 @@ public class GPSdEndpoint {
 	
 	/**
 	 * Poll GPSd version
-	 * 
+	 *
 	 * @return {@link VersionObject}
-	 * @throws IOException
-	 *             on IO error in socket
+	 * @throws IOException on IO error in socket
 	 */
 	public VersionObject version() throws IOException {
 		return this.syncCommand("?VERSION;", VersionObject.class);
@@ -214,17 +203,16 @@ public class GPSdEndpoint {
 	
 	// TODO implement rest of commands
 	// ########################################################
+	
 	/**
-	 * @param listener
-	 *            the listener to add
+	 * @param listener the listener to add
 	 */
 	public void addListener(final IObjectListener listener) {
 		this.listeners.add(listener);
 	}
 	
 	/**
-	 * @param listener
-	 *            the listener to remove
+	 * @param listener the listener to remove
 	 */
 	public void removeListener(final IObjectListener listener) {
 		this.listeners.remove(listener);
@@ -239,8 +227,8 @@ public class GPSdEndpoint {
 		synchronized (this.asyncMutex) {
 			this.out.write(command + "\n");
 			this.out.flush();
-			if( responseClass == WatchObject.class ){
-				lastWatch=command;
+			if (responseClass == WatchObject.class) {
+				lastWatch = command;
 			}
 			while (true) {
 				// wait for awaited message
@@ -320,9 +308,9 @@ public class GPSdEndpoint {
 	
 	/**
 	 * Attempt to kick a failed device back into life on gpsd server.
-	 * 
+	 * <p>
 	 * see: https://lists.gnu.org/archive/html/gpsd-dev/2015-06/msg00001.html
-	 * 
+	 *
 	 * @param path Path of device known to gpsd
 	 * @throws IOException
 	 * @throws JSONException
@@ -333,16 +321,16 @@ public class GPSdEndpoint {
 		d.put("path", path);
 		this.voidCommand("?DEVICE=" + d);
 	}
-
+	
 	/**
 	 * Our socket thread got disconnect and is exiting.
 	 */
-	void handleDisconnected() throws IOException{
+	void handleDisconnected() throws IOException {
 		synchronized (this.asyncMutex) {
 			socket.close();
 			this.socket = new Socket(server, port);
 			this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-			this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));		
+			this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 			
 			this.listenThread = new SocketThread(this.in, this, this.resultParser);
 			this.listenThread.start();
@@ -352,13 +340,14 @@ public class GPSdEndpoint {
 		}
 		
 	}
+	
 	/**
 	 * Set a retry interval for reconnecting to GPSD if the socket closes.
 	 * Default value is 1000ms.
-	 * 
+	 *
 	 * @param millis how long to wait between each reconnection attempts.
 	 */
-	public void setRetryInterval(long millis){
+	public void setRetryInterval(long millis) {
 		retryInterval.set(millis);
 	}
 	

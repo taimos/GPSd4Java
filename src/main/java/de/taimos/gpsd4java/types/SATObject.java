@@ -21,12 +21,13 @@ package de.taimos.gpsd4java.types;
  */
 
 /**
- * 
  * @author aevdokimov
  */
 public class SATObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "SAT";
 	
 	private int PRN = -1;
@@ -39,10 +40,9 @@ public class SATObject implements IGPSObject {
 	
 	private boolean used = false;
 	
-	
 	/**
 	 * PRN ID of the satellite. 1-63 are GNSS satellites, 64-96 are GLONASS satellites, 100-164 are SBAS satellites
-	 * 
+	 *
 	 * @return PRN
 	 */
 	public int getPRN() {
@@ -51,9 +51,8 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * PRN ID of the satellite. 1-63 are GNSS satellites, 64-96 are GLONASS satellites, 100-164 are SBAS satellites
-	 * 
-	 * @param PRN
-	 *            the PRN to set
+	 *
+	 * @param PRN the PRN to set
 	 */
 	public void setPRN(final int PRN) {
 		this.PRN = PRN;
@@ -61,7 +60,7 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * Azimuth, degrees from true north.
-	 * 
+	 *
 	 * @return azimuth
 	 */
 	public int getAzimuth() {
@@ -70,9 +69,8 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * Azimuth, degrees from true north.
-	 * 
-	 * @param azimuth
-	 *            the azimuth to set
+	 *
+	 * @param azimuth the azimuth to set
 	 */
 	public void setAzimuth(final int azimuth) {
 		this.azimuth = azimuth;
@@ -80,7 +78,7 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * Elevation in degrees.
-	 * 
+	 *
 	 * @return elevation
 	 */
 	public int getElevation() {
@@ -89,9 +87,8 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * Elevation in degrees.
-	 * 
-	 * @param elevation
-	 *            the elevation to set
+	 *
+	 * @param elevation the elevation to set
 	 */
 	public void setElevation(final int elevation) {
 		this.elevation = elevation;
@@ -99,7 +96,7 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * Signal strength in dB.
-	 * 
+	 *
 	 * @return signal strength
 	 */
 	public int getSignalStrength() {
@@ -108,9 +105,8 @@ public class SATObject implements IGPSObject {
 	
 	/**
 	 * Signal strength in dB.
-	 * 
-	 * @param signalStrength
-	 *            the signal strength to set
+	 *
+	 * @param signalStrength the signal strength to set
 	 */
 	public void setSignalStrength(final int signalStrength) {
 		this.signalStrength = signalStrength;
@@ -119,7 +115,7 @@ public class SATObject implements IGPSObject {
 	/**
 	 * Used in current solution? (SBAS/WAAS/EGNOS satellites may be flagged used if the solution has corrections from them, but not all
 	 * drivers make this information available.)
-	 * 
+	 *
 	 * @return used
 	 */
 	public boolean getUsed() {
@@ -129,9 +125,8 @@ public class SATObject implements IGPSObject {
 	/**
 	 * Used in current solution? (SBAS/WAAS/EGNOS satellites may be flagged used if the solution has corrections from them, but not all
 	 * drivers make this information available.)
-	 * 
-	 * @param used
-	 *            the used flag to set
+	 *
+	 * @param used the used flag to set
 	 */
 	public void setUsed(final boolean used) {
 		this.used = used;

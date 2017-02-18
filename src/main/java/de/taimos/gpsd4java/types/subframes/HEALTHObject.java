@@ -25,12 +25,13 @@ import java.util.Arrays;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class HEALTHObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "HEALTH";
 	
 	private final int[] SV = new int[32];
@@ -38,7 +39,6 @@ public class HEALTHObject implements IGPSObject {
 	private final int[] SVH = new int[8];
 	
 	private int data_id = -1;
-	
 	
 	/**
 	 * @return the data_id
@@ -48,16 +48,14 @@ public class HEALTHObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param data_id
-	 *            the data_id to set
+	 * @param data_id the data_id to set
 	 */
 	public void setData_id(final int data_id) {
 		this.data_id = data_id;
 	}
 	
 	/**
-	 * @param index
-	 *            the index
+	 * @param index the index
 	 * @return the SV
 	 */
 	public int getSVbyIndex(final int index) {
@@ -65,18 +63,15 @@ public class HEALTHObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param index
-	 *            the index
-	 * @param SVvalue
-	 *            the SV
+	 * @param index   the index
+	 * @param SVvalue the SV
 	 */
 	public void setSVbyIndex(final int index, final int SVvalue) {
 		this.SV[index] = SVvalue;
 	}
 	
 	/**
-	 * @param index
-	 *            the index
+	 * @param index the index
 	 * @return the SVH
 	 */
 	public int getSVHbyIndex(final int index) {
@@ -84,10 +79,8 @@ public class HEALTHObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param index
-	 *            the index
-	 * @param SVHvalue
-	 *            the SVH
+	 * @param index    the index
+	 * @param SVHvalue the SVH
 	 */
 	public void setSVHbyIndex(final int index, final int SVHvalue) {
 		this.SVH[index] = SVHvalue;

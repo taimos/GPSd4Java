@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types.subframes;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class EPHEM1Object implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "EPHEM1";
 	
 	private int WN = -1;
@@ -53,7 +54,6 @@ public class EPHEM1Object implements IGPSObject {
 	
 	private double af0 = Double.NaN;
 	
-	
 	/**
 	 * @return the wN
 	 */
@@ -62,8 +62,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param wN
-	 *            the wN to set
+	 * @param wN the wN to set
 	 */
 	public void setWN(final int wN) {
 		this.WN = wN;
@@ -77,8 +76,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param iODC
-	 *            the iODC to set
+	 * @param iODC the iODC to set
 	 */
 	public void setIODC(final int iODC) {
 		this.IODC = iODC;
@@ -92,8 +90,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param l2
-	 *            the l2 to set
+	 * @param l2 the l2 to set
 	 */
 	public void setL2(final int l2) {
 		this.L2 = l2;
@@ -107,8 +104,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param ura
-	 *            the ura to set
+	 * @param ura the ura to set
 	 */
 	public void setUra(final double ura) {
 		this.ura = ura;
@@ -122,8 +118,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param hlth
-	 *            the hlth to set
+	 * @param hlth the hlth to set
 	 */
 	public void setHlth(final double hlth) {
 		this.hlth = hlth;
@@ -137,8 +132,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param l2p
-	 *            the l2P to set
+	 * @param l2p the l2P to set
 	 */
 	public void setL2P(final int l2p) {
 		this.L2P = l2p;
@@ -152,8 +146,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param tgd
-	 *            the tgd to set
+	 * @param tgd the tgd to set
 	 */
 	public void setTgd(final double tgd) {
 		this.Tgd = tgd;
@@ -167,8 +160,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param toc
-	 *            the toc to set
+	 * @param toc the toc to set
 	 */
 	public void setToc(final int toc) {
 		this.toc = toc;
@@ -182,8 +174,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param af2
-	 *            the af2 to set
+	 * @param af2 the af2 to set
 	 */
 	public void setAf2(final double af2) {
 		this.af2 = af2;
@@ -197,8 +188,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param af1
-	 *            the af1 to set
+	 * @param af1 the af1 to set
 	 */
 	public void setAf1(final double af1) {
 		this.af1 = af1;
@@ -212,8 +202,7 @@ public class EPHEM1Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param af0
-	 *            the af0 to set
+	 * @param af0 the af0 to set
 	 */
 	public void setAf0(final double af0) {
 		this.af0 = af0;

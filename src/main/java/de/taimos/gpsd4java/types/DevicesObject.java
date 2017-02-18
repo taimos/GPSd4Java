@@ -23,20 +23,20 @@ package de.taimos.gpsd4java.types;
 import java.util.List;
 
 /**
- * 
  * @author thoeger
  */
 public class DevicesObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "DEVICES";
 	
 	private List<DeviceObject> devices;
 	
-	
 	/**
 	 * list of devices
-	 * 
+	 *
 	 * @return the devices
 	 */
 	public List<DeviceObject> getDevices() {
@@ -45,9 +45,8 @@ public class DevicesObject implements IGPSObject {
 	
 	/**
 	 * list of devices
-	 * 
-	 * @param devices
-	 *            the devices to set
+	 *
+	 * @param devices the devices to set
 	 */
 	public void setDevices(final List<DeviceObject> devices) {
 		this.devices = devices;

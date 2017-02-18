@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types;
 import java.util.List;
 
 /**
- * 
  * @author thoeger
  */
 public class PollObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "POLL";
 	
 	private double timestamp;
@@ -41,10 +42,9 @@ public class PollObject implements IGPSObject {
 	
 	private List<GSTObject> gst;
 	
-	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
-	 * 
+	 *
 	 * @return the timestamp
 	 */
 	public double getTimestamp() {
@@ -53,9 +53,8 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * Seconds since the Unix epoch, UTC. May have a fractional part of up to .001sec precision.
-	 * 
-	 * @param timestamp
-	 *            the timestamp to set
+	 *
+	 * @param timestamp the timestamp to set
 	 */
 	public void setTimestamp(final double timestamp) {
 		this.timestamp = timestamp;
@@ -63,7 +62,7 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * Count of active devices.
-	 * 
+	 *
 	 * @return the active
 	 */
 	public int getActive() {
@@ -72,9 +71,8 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * Count of active devices.
-	 * 
-	 * @param active
-	 *            the active to set
+	 *
+	 * @param active the active to set
 	 */
 	public void setActive(final int active) {
 		this.active = active;
@@ -82,7 +80,7 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * list of TPV objects
-	 * 
+	 *
 	 * @return the fixes
 	 */
 	public List<TPVObject> getFixes() {
@@ -91,9 +89,8 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * list of TPV objects
-	 * 
-	 * @param fixes
-	 *            the fixes to set
+	 *
+	 * @param fixes the fixes to set
 	 */
 	public void setFixes(final List<TPVObject> fixes) {
 		this.fixes = fixes;
@@ -101,7 +98,7 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * list of SKY objects
-	 * 
+	 *
 	 * @return the skyviews
 	 */
 	public List<SKYObject> getSkyviews() {
@@ -110,9 +107,8 @@ public class PollObject implements IGPSObject {
 	
 	/**
 	 * list of SKY objects
-	 * 
-	 * @param skyviews
-	 *            the skyviews to set
+	 *
+	 * @param skyviews the skyviews to set
 	 */
 	public void setSkyviews(final List<SKYObject> skyviews) {
 		this.skyviews = skyviews;
@@ -126,8 +122,7 @@ public class PollObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param gst
-	 *            the gst to set
+	 * @param gst the gst to set
 	 */
 	public void setGst(final List<GSTObject> gst) {
 		this.gst = gst;

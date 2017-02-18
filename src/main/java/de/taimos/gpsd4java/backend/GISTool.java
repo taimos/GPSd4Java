@@ -24,13 +24,12 @@ import de.taimos.gpsd4java.types.TPVObject;
 
 /**
  * This class provides tools to measure the distance between two locations in WGS84 coordinates
- * 
+ *
  * @author thoeger
  */
 public final class GISTool {
 	
 	private static final int EARTH_RADIUS_KILOMETERS = 6371;
-	
 	
 	private GISTool() {
 		//
@@ -39,11 +38,9 @@ public final class GISTool {
 	/**
 	 * calculates the distance between two {@link TPVObject} in kilometers<br>
 	 * the method used is the great-circle-distance with hypersine formula
-	 * 
-	 * @param tpv1
-	 *            - position 1
-	 * @param tpv2
-	 *            - position 2
+	 *
+	 * @param tpv1 - position 1
+	 * @param tpv2 - position 2
 	 * @return distance in kilometers
 	 */
 	public static double getDistance(final TPVObject tpv1, final TPVObject tpv2) {
@@ -53,15 +50,11 @@ public final class GISTool {
 	/**
 	 * calculates the distance between two locations, which are given as coordinates, in kilometers<br>
 	 * the method used is the great-circle-distance with hypersine formula
-	 * 
-	 * @param x1
-	 *            - longitude of position 1
-	 * @param x2
-	 *            - longitude of position 2
-	 * @param y1
-	 *            - latitude of position 1
-	 * @param y2
-	 *            - latitude of position 2
+	 *
+	 * @param x1 - longitude of position 1
+	 * @param x2 - longitude of position 2
+	 * @param y1 - latitude of position 1
+	 * @param y2 - latitude of position 2
 	 * @return distance in kilometers
 	 */
 	public static double getDistance(final double x1, final double x2, final double y1, final double y2) {

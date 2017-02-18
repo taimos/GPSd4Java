@@ -22,42 +22,37 @@ package de.taimos.gpsd4java.types;
 
 /**
  * {@link Exception} indication an error while parsing the GPSd line
- * 
+ *
  * @author thoeger
  */
 public class ParseException extends Exception {
 	
 	private static final long serialVersionUID = 7747422116792199432L;
 	
-	
 	/**
-	 * 
+	 *
 	 */
 	public ParseException() {
 		super();
 	}
 	
 	/**
-	 * @param message
-	 *            the message
+	 * @param message the message
 	 */
 	public ParseException(final String message) {
 		super(message);
 	}
 	
 	/**
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
+	 * @param message the message
+	 * @param cause   the cause
 	 */
 	public ParseException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 	
 	/**
-	 * @param cause
-	 *            the cause
+	 * @param cause the cause
 	 */
 	public ParseException(final Throwable cause) {
 		super(cause);

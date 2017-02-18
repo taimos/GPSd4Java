@@ -23,12 +23,13 @@ package de.taimos.gpsd4java.types.subframes;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class IONOObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "IONO";
 	
 	private double alpha0 = Double.NaN;
@@ -63,7 +64,6 @@ public class IONOObject implements IGPSObject {
 	
 	private int lsf = -1;
 	
-	
 	/**
 	 * @return the alpha0
 	 */
@@ -72,8 +72,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param alpha0
-	 *            the alpha0 to set
+	 * @param alpha0 the alpha0 to set
 	 */
 	public void setAlpha0(final double alpha0) {
 		this.alpha0 = alpha0;
@@ -87,8 +86,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param alpha1
-	 *            the alpha1 to set
+	 * @param alpha1 the alpha1 to set
 	 */
 	public void setAlpha1(final double alpha1) {
 		this.alpha1 = alpha1;
@@ -102,8 +100,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param alpha2
-	 *            the alpha2 to set
+	 * @param alpha2 the alpha2 to set
 	 */
 	public void setAlpha2(final double alpha2) {
 		this.alpha2 = alpha2;
@@ -117,8 +114,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param alpha3
-	 *            the alpha3 to set
+	 * @param alpha3 the alpha3 to set
 	 */
 	public void setAlpha3(final double alpha3) {
 		this.alpha3 = alpha3;
@@ -132,8 +128,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param beta0
-	 *            the beta0 to set
+	 * @param beta0 the beta0 to set
 	 */
 	public void setBeta0(final double beta0) {
 		this.beta0 = beta0;
@@ -147,8 +142,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param beta1
-	 *            the beta1 to set
+	 * @param beta1 the beta1 to set
 	 */
 	public void setBeta1(final double beta1) {
 		this.beta1 = beta1;
@@ -162,8 +156,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param beta2
-	 *            the beta2 to set
+	 * @param beta2 the beta2 to set
 	 */
 	public void setBeta2(final double beta2) {
 		this.beta2 = beta2;
@@ -177,8 +170,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param beta3
-	 *            the beta3 to set
+	 * @param beta3 the beta3 to set
 	 */
 	public void setBeta3(final double beta3) {
 		this.beta3 = beta3;
@@ -192,8 +184,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param a0
-	 *            the a0 to set
+	 * @param a0 the a0 to set
 	 */
 	public void setA0(final double a0) {
 		this.A0 = a0;
@@ -207,8 +198,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param a1
-	 *            the a1 to set
+	 * @param a1 the a1 to set
 	 */
 	public void setA1(final double a1) {
 		this.A1 = a1;
@@ -222,8 +212,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param tot
-	 *            the tot to set
+	 * @param tot the tot to set
 	 */
 	public void setTot(final double tot) {
 		this.tot = tot;
@@ -237,8 +226,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param wNt
-	 *            the wNt to set
+	 * @param wNt the wNt to set
 	 */
 	public void setWNt(final int wNt) {
 		this.WNt = wNt;
@@ -252,8 +240,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param leap
-	 *            the leap to set
+	 * @param leap the leap to set
 	 */
 	public void setLeap(final int leap) {
 		this.leap = leap;
@@ -267,8 +254,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param wNlsf
-	 *            the wNlsf to set
+	 * @param wNlsf the wNlsf to set
 	 */
 	public void setWNlsf(final int wNlsf) {
 		this.WNlsf = wNlsf;
@@ -282,8 +268,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param dN
-	 *            the dN to set
+	 * @param dN the dN to set
 	 */
 	public void setDN(final int dN) {
 		this.DN = dN;
@@ -297,8 +282,7 @@ public class IONOObject implements IGPSObject {
 	}
 	
 	/**
-	 * @param lsf
-	 *            the lsf to set
+	 * @param lsf the lsf to set
 	 */
 	public void setLsf(final int lsf) {
 		this.lsf = lsf;

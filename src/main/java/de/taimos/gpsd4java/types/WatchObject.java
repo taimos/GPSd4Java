@@ -21,22 +21,22 @@ package de.taimos.gpsd4java.types;
  */
 
 /**
- * 
  * @author thoeger
  */
 public class WatchObject implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "WATCH";
 	
 	private boolean enable = true;
 	
 	private boolean dump = false;
 	
-	
 	/**
 	 * Enable (true) or disable (false) watcher mode. Default is true.
-	 * 
+	 *
 	 * @return the enable
 	 */
 	public boolean isEnable() {
@@ -45,9 +45,8 @@ public class WatchObject implements IGPSObject {
 	
 	/**
 	 * Enable (true) or disable (false) watcher mode. Default is true.
-	 * 
-	 * @param enable
-	 *            the enable to set
+	 *
+	 * @param enable the enable to set
 	 */
 	public void setEnable(final boolean enable) {
 		this.enable = enable;
@@ -55,7 +54,7 @@ public class WatchObject implements IGPSObject {
 	
 	/**
 	 * Enable (true) or disable (false) dumping of JSON reports. Default is false.
-	 * 
+	 *
 	 * @return the json
 	 */
 	public boolean isDump() {
@@ -64,9 +63,8 @@ public class WatchObject implements IGPSObject {
 	
 	/**
 	 * Enable (true) or disable (false) dumping of JSON reports. Default is false.
-	 * 
-	 * @param dump
-	 *            the dump to set
+	 *
+	 * @param dump the dump to set
 	 */
 	public void setDump(final boolean dump) {
 		this.dump = dump;

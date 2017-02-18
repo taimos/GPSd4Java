@@ -25,12 +25,13 @@ import java.util.Arrays;
 import de.taimos.gpsd4java.types.IGPSObject;
 
 /**
- * 
  * @author aevdokimov
  */
 public class HEALTH2Object implements IGPSObject {
 	
-	/** the GPSd internal name */
+	/**
+	 * the GPSd internal name
+	 */
 	public static final String NAME = "HEALTH2";
 	
 	private final int[] SV = new int[24];
@@ -38,7 +39,6 @@ public class HEALTH2Object implements IGPSObject {
 	private int toa = -1;
 	
 	private int WNa = -1;
-	
 	
 	/**
 	 * @return the toa
@@ -48,8 +48,7 @@ public class HEALTH2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param toa
-	 *            the toa to set
+	 * @param toa the toa to set
 	 */
 	public void setToa(final int toa) {
 		this.toa = toa;
@@ -63,16 +62,14 @@ public class HEALTH2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param wNa
-	 *            the wNa to set
+	 * @param wNa the wNa to set
 	 */
 	public void setWNa(final int wNa) {
 		this.WNa = wNa;
 	}
 	
 	/**
-	 * @param index
-	 *            the index
+	 * @param index the index
 	 * @return the SV
 	 */
 	public int getSVbyIndex(final int index) {
@@ -80,10 +77,8 @@ public class HEALTH2Object implements IGPSObject {
 	}
 	
 	/**
-	 * @param index
-	 *            the index
-	 * @param SVvalue
-	 *            the SV
+	 * @param index   the index
+	 * @param SVvalue the SV
 	 */
 	public void setSVbyIndex(final int index, final int SVvalue) {
 		this.SV[index] = SVvalue;

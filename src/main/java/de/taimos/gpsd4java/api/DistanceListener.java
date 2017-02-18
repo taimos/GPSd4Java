@@ -25,7 +25,7 @@ import de.taimos.gpsd4java.types.TPVObject;
 
 /**
  * Derive this class to implement a listener for location updates which reacts to changes greater a given threshold
- * 
+ *
  * @author thoeger
  */
 public abstract class DistanceListener extends ObjectListener {
@@ -34,10 +34,8 @@ public abstract class DistanceListener extends ObjectListener {
 	
 	private final double threshold;
 	
-	
 	/**
-	 * @param threshold
-	 *            the threshold to fire in kilometers
+	 * @param threshold the threshold to fire in kilometers
 	 */
 	public DistanceListener(final double threshold) {
 		this.threshold = threshold;

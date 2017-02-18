@@ -22,7 +22,7 @@ package de.taimos.gpsd4java.types;
 
 /**
  * Interface for generic GPSd object
- * 
+ *
  * @author thoeger
  */
 public interface IGPSObject {

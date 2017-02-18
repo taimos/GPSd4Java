@@ -22,7 +22,7 @@ package de.taimos.gpsd4java.types;
 
 /**
  * NMEA Mode of GPSd response
- * 
+ *
  * @author thoeger
  */
 public enum ENMEAMode {
@@ -45,8 +45,7 @@ public enum ENMEAMode {
 	ThreeDimensional;
 	
 	/**
-	 * @param mode
-	 *            - mode integer
+	 * @param mode - mode integer
 	 * @return {@link ENMEAMode}
 	 */
 	public static ENMEAMode fromInt(final int mode) {
