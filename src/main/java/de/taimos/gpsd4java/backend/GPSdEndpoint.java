@@ -346,8 +346,8 @@ public class GPSdEndpoint {
 			
 			this.listenThread = new SocketThread(this.in, this, this.resultParser);
 			this.listenThread.start();
-			if( lastWatch!=null){ // restore watch if we had one.
-					this.syncCommand("?WATCH=" + lastWatch, WatchObject.class);					
+			if (lastWatch != null) { // restore watch if we had one.
+				this.syncCommand(lastWatch, WatchObject.class);
 			}
 		}
 		
