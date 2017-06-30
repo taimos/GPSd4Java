@@ -99,7 +99,7 @@ public class SocketThread extends Thread {
 		
 		while (this.running.get()) {
 			try {
-				running.waitFor(1000);
+				running.waitFor(this.endpoint.getRetryInterval());
 				this.endpoint.handleDisconnected();
 				SocketThread.LOG.debug("Reconnected to GPS socket");
 				running.set(false);

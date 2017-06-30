@@ -351,4 +351,14 @@ public class GPSdEndpoint {
 		retryInterval.set(millis);
 	}
 	
+	/**
+	 * Returns the retry interval for reconnecting to GPSD if the socket closes.
+	 * Default value is 1000ms.
+	 *
+	 * @return retry interval
+	 */
+	public long getRetryInterval() {
+		return retryInterval.get();
+	}
+	
 }
