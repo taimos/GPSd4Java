@@ -64,7 +64,6 @@ public class SocketThread extends Thread {
 		this.endpoint = endpoint;
 		this.resultParser = resultParser;
 		
-		this.setDaemon(true);
 		this.setName("GPS Socket Thread");
 	}
 	
