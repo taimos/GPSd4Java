@@ -114,15 +114,14 @@ public class SocketThread extends Thread {
 	/**
 	 * Halts the socket thread.
 	 *
-	 * @throws InterruptedException
 	 */
-	public void halt() throws InterruptedException {
+	public void halt() {
 		this.running.set(false);
+		
 		try {
 			this.reader.close();
 		} catch (final IOException e) {
 			// ignore
 		}
-		this.join(1000);
 	}
 }

@@ -117,12 +117,6 @@ public class GPSdEndpoint {
 	public void start() {
 		this.listenThread = new SocketThread(this.in, this, this.resultParser);
 		this.listenThread.start();
-		
-		try {
-			Thread.sleep(500);
-		} catch (final InterruptedException e) {
-			GPSdEndpoint.LOG.debug("Interrupted while sleeping", e);
-		}
 	}
 	
 	/**
@@ -136,14 +130,12 @@ public class GPSdEndpoint {
 			GPSdEndpoint.LOG.debug("Close forced: " + e1.getMessage());
 		}
 		
-		try {
-			this.listeners.clear();
-			if (this.listenThread != null) {
-				this.listenThread.halt();
-			}
-		} catch (final Exception e) {
-			GPSdEndpoint.LOG.debug("Interrupted while waiting for listenThread to stop", e);
+		this.listeners.clear();
+		
+		if (this.listenThread != null) {
+			this.listenThread.halt();
 		}
+		
 		this.listenThread = null;
 	}
 	
