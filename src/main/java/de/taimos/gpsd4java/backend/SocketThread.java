@@ -47,9 +47,11 @@ public class SocketThread extends Thread {
 	/**
 	 * @param reader       the socket input
 	 * @param endpoint     the endpoint
-	 * @param resultParser
+	 * @param resultParser the result parser
+	 * @param daemon       whether to configure the thread as a daemon, as defined in {@link Thread#setDaemon}
 	 */
-	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
+	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, 
+							  final AbstractResultParser resultParser, final boolean daemon) {
 		if (reader == null) {
 			throw new IllegalArgumentException("reader can not be null!");
 		}
@@ -64,8 +66,17 @@ public class SocketThread extends Thread {
 		this.endpoint = endpoint;
 		this.resultParser = resultParser;
 		
-		this.setDaemon(true);
+		this.setDaemon(daemon);
 		this.setName("GPS Socket Thread");
+	}
+	
+	/**
+	 * @param reader        the socket input
+	 * @param endpoint      the endpoint
+	 * @param resultParser  the result parser
+	 */
+	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
+		this(reader, endpoint, resultParser, true);
 	}
 	
 	@Override
@@ -99,7 +110,7 @@ public class SocketThread extends Thread {
 		
 		while (this.running.get()) {
 			try {
-				running.waitFor(1000);
+				running.waitFor(this.endpoint.getRetryInterval());
 				this.endpoint.handleDisconnected();
 				SocketThread.LOG.debug("Reconnected to GPS socket");
 				running.set(false);
@@ -114,15 +125,14 @@ public class SocketThread extends Thread {
 	/**
 	 * Halts the socket thread.
 	 *
-	 * @throws InterruptedException
 	 */
-	public void halt() throws InterruptedException {
+	public void halt() {
 		this.running.set(false);
+		
 		try {
 			this.reader.close();
 		} catch (final IOException e) {
 			// ignore
 		}
-		this.join(1000);
 	}
 }
