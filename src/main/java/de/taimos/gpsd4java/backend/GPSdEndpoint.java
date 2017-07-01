@@ -65,6 +65,8 @@ public class GPSdEndpoint {
 	
 	private SocketThread listenThread;
 	
+	private final boolean daemon;
+	
 	private final List<IObjectListener> listeners = new ArrayList<IObjectListener>(1);
 	
 	private IGPSObject asyncResult = null;
@@ -88,11 +90,13 @@ public class GPSdEndpoint {
 	 *
 	 * @param server       the server name or IP
 	 * @param port         the server port
-	 * @param resultParser
+	 * @param resultParser the result parser
+	 * @param daemon       whether to start the underlying socket thread as a daemon, as defined in {@link Thread#setDaemon}  
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
-	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException, IOException {
+	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser, final boolean daemon) 
+			throws UnknownHostException, IOException {
 		this.server = server;
 		this.port = port;
 		if (server == null) {
@@ -109,13 +113,28 @@ public class GPSdEndpoint {
 		this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 		this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 		this.resultParser = resultParser;
+		
+		this.daemon = daemon;
+	}
+	
+	/**
+	 * Instantiate this class to connect to a GPSd server
+	 *
+	 * @param server       the server name or IP
+	 * @param port         the server port
+	 * @param resultParser the result parser
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
+	public GPSdEndpoint(final String server, final int port, final AbstractResultParser resultParser) throws UnknownHostException, IOException {
+		this(server, port, resultParser, true);
 	}
 	
 	/**
 	 * start the endpoint
 	 */
 	public void start() {
-		this.listenThread = new SocketThread(this.in, this, this.resultParser);
+		this.listenThread = new SocketThread(this.in, this, this.resultParser, this.daemon);
 		this.listenThread.start();
 	}
 	
@@ -324,7 +343,7 @@ public class GPSdEndpoint {
 			this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 			this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 			
-			this.listenThread = new SocketThread(this.in, this, this.resultParser);
+			this.listenThread = new SocketThread(this.in, this, this.resultParser, this.daemon);
 			this.listenThread.start();
 			if (lastWatch != null) { // restore watch if we had one.
 				this.syncCommand(lastWatch, WatchObject.class);

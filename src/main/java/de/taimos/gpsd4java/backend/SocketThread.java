@@ -47,9 +47,11 @@ public class SocketThread extends Thread {
 	/**
 	 * @param reader       the socket input
 	 * @param endpoint     the endpoint
-	 * @param resultParser
+	 * @param resultParser the result parser
+	 * @param daemon       whether to configure the thread as a daemon, as defined in {@link Thread#setDaemon}
 	 */
-	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
+	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, 
+							  final AbstractResultParser resultParser, final boolean daemon) {
 		if (reader == null) {
 			throw new IllegalArgumentException("reader can not be null!");
 		}
@@ -64,7 +66,17 @@ public class SocketThread extends Thread {
 		this.endpoint = endpoint;
 		this.resultParser = resultParser;
 		
+		this.setDaemon(daemon);
 		this.setName("GPS Socket Thread");
+	}
+	
+	/**
+	 * @param reader			the socket input
+	 * @param endpoint		the endpoint
+	 * @param resultParser	the result parser
+	 */
+	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
+		this(reader, endpoint, resultParser, true);
 	}
 	
 	@Override
