@@ -71,9 +71,9 @@ public class SocketThread extends Thread {
 	}
 	
 	/**
-	 * @param reader			the socket input
-	 * @param endpoint		the endpoint
-	 * @param resultParser	the result parser
+	 * @param reader        the socket input
+	 * @param endpoint      the endpoint
+	 * @param resultParser  the result parser
 	 */
 	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, final AbstractResultParser resultParser) {
 		this(reader, endpoint, resultParser, true);
