@@ -108,10 +108,7 @@ public class GPSdEndpoint {
 		if (resultParser == null) {
 			throw new IllegalArgumentException("resultParser can not be null!");
 		}
-		
-		this.socket = new Socket(server, port);
-		this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-		this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+
 		this.resultParser = resultParser;
 		
 		this.daemon = daemon;
@@ -236,13 +233,16 @@ public class GPSdEndpoint {
 	 */
 	private <T extends IGPSObject> T syncCommand(final String command, final Class<T> responseClass) throws IOException {
 		synchronized (this.asyncMutex) {
-			this.out.write(command + "\n");
-			this.out.flush();
+			if (out != null) {
+				this.out.write(command + "\n");
+				this.out.flush();
+			}
 			if (responseClass == WatchObject.class) {
 				lastWatch = command;
 			}
 			while (true) {
 				// wait for awaited message
+				// FIXME possible infinite loop if expected result arrives but new result overrides expected result before getting to this point.
 				final IGPSObject result = this.waitForResult();
 				if ((result == null) || result.getClass().equals(responseClass)) {
 					return responseClass.cast(result);
@@ -254,7 +254,6 @@ public class GPSdEndpoint {
 	/*
 	 * send command without response
 	 */
-	@SuppressWarnings("unused")
 	private void voidCommand(final String command) throws IOException {
 		synchronized (this.asyncMutex) {
 			this.out.write(command + "\n");
@@ -338,7 +337,9 @@ public class GPSdEndpoint {
 	 */
 	void handleDisconnected() throws IOException {
 		synchronized (this.asyncMutex) {
-			socket.close();
+			if (socket != null) {
+				socket.close();
+			}
 			this.socket = new Socket(server, port);
 			this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 			this.out = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));

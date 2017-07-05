@@ -52,12 +52,7 @@ public class SocketThread extends Thread {
 	 */
 	public SocketThread(final BufferedReader reader, final GPSdEndpoint endpoint, 
 							  final AbstractResultParser resultParser, final boolean daemon) {
-		if (reader == null) {
-			throw new IllegalArgumentException("reader can not be null!");
-		}
-		if (endpoint == null) {
-			throw new IllegalArgumentException("endpoint can not be null!");
-		}
+
 		if (resultParser == null) {
 			throw new IllegalArgumentException("resultParser can not be null!");
 		}
@@ -81,22 +76,24 @@ public class SocketThread extends Thread {
 	
 	@Override
 	public void run() {
-		while (this.running.get()) {
-			try {
-				// read line from socket
-				final String s = this.reader.readLine();
-				if (s == null) {
-					break;
+		if (this.reader != null) {
+			while (this.running.get()) {
+				try {
+					// read line from socket
+					final String s = this.reader.readLine();
+					if (s == null) {
+						break;
+					}
+					if (!s.isEmpty()) {
+						// parse line and handle it accordingly
+						this.endpoint.handle(this.resultParser.parse(s));
+					}
+				} catch (final SocketException e) {
+					break; // stop 
+				} catch (final Exception e) {
+					// TODO handle this better
+					SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line", e);
 				}
-				if (!s.isEmpty()) {
-					// parse line and handle it accordingly
-					this.endpoint.handle(this.resultParser.parse(s));
-				}
-			} catch (final SocketException e) {
-				break; // stop 
-			} catch (final Exception e) {
-				// TODO handle this better
-				SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line", e);
 			}
 		}
 		if (running.get() && !Thread.interrupted()) {
@@ -106,13 +103,17 @@ public class SocketThread extends Thread {
 	}
 	
 	protected void retry() {
-		SocketThread.LOG.debug("Disconnected from GPS socket, retrying connection");
+		if (reader != null) {
+			SocketThread.LOG.debug("Disconnected from GPS socket, retrying connection");
+		} else {
+			SocketThread.LOG.debug("Connecting to GPSD socket");
+		}
 		
 		while (this.running.get()) {
 			try {
 				running.waitFor(this.endpoint.getRetryInterval());
 				this.endpoint.handleDisconnected();
-				SocketThread.LOG.debug("Reconnected to GPS socket");
+				SocketThread.LOG.debug("Connected to GPS socket");
 				running.set(false);
 			} catch (InterruptedException ix) {
 				break;
