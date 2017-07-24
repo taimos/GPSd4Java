@@ -1,3 +1,5 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.taimos/gpsd4java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.taimos/gpsd4java)
+
 About GPSd4Java
 ===============
 
@@ -13,7 +15,7 @@ You can use GPSd4Java with a Maven project. Just add the following lines to your
 		<dependency>
 			<groupId>de.taimos</groupId>
 			<artifactId>gpsd4java</artifactId>
-			<version>1.8</version>
+			<version>$VERSION</version>
 		</dependency>
 	</dependencies>
 
