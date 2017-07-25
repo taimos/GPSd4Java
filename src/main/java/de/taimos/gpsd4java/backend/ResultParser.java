@@ -256,11 +256,29 @@ public class ResultParser extends AbstractResultParser {
 		IGPSObject gps;
 		// for gpsd version > 3.5
 		final PollObject poll = new PollObject();
-		poll.setTimestamp(this.parseTimestamp(json, "time"));
+		if (json.has("time")) {
+			poll.setTimestamp(this.parseTimestamp(json, "time"));
+		} else if (json.has("timestamp")) {
+			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+		}
+		
 		poll.setActive(json.optInt("active", 0));
-		poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
-		poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
-		poll.setGst(this.parseObjectArray(json.optJSONArray("gst"), GSTObject.class));
+		
+		if (json.has("tpv")) {
+			poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
+		} else if (json.has("fixes")) {
+			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
+		}
+		
+		if (json.has("sky")) {
+			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
+		} else if (json.has("skyviews")) {
+			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
+		}
+		
+		if (json.has("gst")) {
+			poll.setGst(this.parseObjectArray(json.optJSONArray("gst"), GSTObject.class));
+		}
 		gps = poll;
 		return gps;
 	}

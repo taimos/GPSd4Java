@@ -30,9 +30,11 @@ import de.taimos.gpsd4java.types.TPVObject;
 
 /**
  * This class is used to parse responses from GPSd<br>
+ * @deprecated use ResultParser; it handles old fields correctly
  *
  * @author thoeger
  */
+@Deprecated
 public class LegacyResultParser extends ResultParser {
 	
 	@Override
