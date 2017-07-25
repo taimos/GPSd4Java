@@ -128,6 +128,17 @@ public class GPSdEndpoint {
 	}
 	
 	/**
+	 * Instantiate this class to connect to a GPSd server and use default parser
+	 *
+	 * @param server       the server name or IP
+	 * @param port         the server port
+	 * @throws IOException
+	 */
+	public GPSdEndpoint(final String server, final int port) throws IOException {
+		this(server, port, new ResultParser(), true);
+	}
+	
+	/**
 	 * start the endpoint
 	 */
 	public void start() {
