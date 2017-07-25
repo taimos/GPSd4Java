@@ -20,6 +20,8 @@ package de.taimos.gpsd4java.backend;
  * #L%
  */
 
+import org.json.JSONObject;
+
 import de.taimos.gpsd4java.types.ATTObject;
 import de.taimos.gpsd4java.types.DeviceObject;
 import de.taimos.gpsd4java.types.DevicesObject;
@@ -43,8 +45,6 @@ import de.taimos.gpsd4java.types.subframes.HEALTH2Object;
 import de.taimos.gpsd4java.types.subframes.HEALTHObject;
 import de.taimos.gpsd4java.types.subframes.IONOObject;
 import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
-
-import org.json.JSONObject;
 
 /**
  * This class is used to parse responses from GPSd<br>
@@ -109,7 +109,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseIONO(final JSONObject json) {
+	protected IGPSObject parseIONO(final JSONObject json) {
 		IGPSObject gps;
 		final IONOObject iono = new IONOObject();
 		iono.setAlpha0(json.optDouble("a0", Double.NaN));
@@ -132,7 +132,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseHEALTH2(final JSONObject json) {
+	protected IGPSObject parseHEALTH2(final JSONObject json) {
 		IGPSObject gps;
 		final HEALTH2Object health2 = new HEALTH2Object();
 		health2.setToa(json.optInt("toa"));
@@ -144,7 +144,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseHEALTH(final JSONObject json) {
+	protected IGPSObject parseHEALTH(final JSONObject json) {
 		IGPSObject gps;
 		final HEALTHObject health = new HEALTHObject();
 		health.setData_id(json.optInt("data_id"));
@@ -158,7 +158,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseERD(final JSONObject json) {
+	protected IGPSObject parseERD(final JSONObject json) {
 		IGPSObject gps;
 		final ERDObject erd = new ERDObject();
 		erd.setAi(json.optInt("ai"));
@@ -169,7 +169,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseEPHEM3(final JSONObject json) {
+	protected IGPSObject parseEPHEM3(final JSONObject json) {
 		IGPSObject gps;
 		final EPHEM3Object emphem3 = new EPHEM3Object();
 		emphem3.setIODE(json.optInt("IODE"));
@@ -185,7 +185,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseEPHEM2(final JSONObject json) {
+	protected IGPSObject parseEPHEM2(final JSONObject json) {
 		IGPSObject gps;
 		final EPHEM2Object emphem2 = new EPHEM2Object();
 		emphem2.setIODE(json.optInt("IODE"));
@@ -203,7 +203,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseEPHEM1(final JSONObject json) {
+	protected IGPSObject parseEPHEM1(final JSONObject json) {
 		IGPSObject gps;
 		final EPHEM1Object emphem1 = new EPHEM1Object();
 		emphem1.setWN(json.optInt("WN"));
@@ -221,7 +221,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseALMANAC(final JSONObject json) {
+	protected IGPSObject parseALMANAC(final JSONObject json) {
 		IGPSObject gps;
 		final ALMANACObject almanac = new ALMANACObject();
 		almanac.setID(json.optInt("ID"));
@@ -240,7 +240,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parsePRN(final JSONObject json) {
+	protected IGPSObject parsePRN(final JSONObject json) {
 		IGPSObject gps;
 		final SATObject sat = new SATObject();
 		sat.setPRN(json.optInt("PRN", -1));
@@ -252,7 +252,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parsePOLL(final JSONObject json) throws ParseException {
+	protected IGPSObject parsePOLL(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		// for gpsd version > 3.5
 		final PollObject poll = new PollObject();
@@ -265,7 +265,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseWATCH(final JSONObject json) {
+	protected IGPSObject parseWATCH(final JSONObject json) {
 		IGPSObject gps;
 		final WatchObject watch = new WatchObject();
 		watch.setEnable(json.optBoolean("enable", true));
@@ -274,7 +274,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseDEVICE(final JSONObject json) {
+	protected IGPSObject parseDEVICE(final JSONObject json) {
 		IGPSObject gps;
 		final DeviceObject dev = new DeviceObject();
 		dev.setPath(json.optString("path", null));
@@ -290,7 +290,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseDEVICES(final JSONObject json) throws ParseException {
+	protected IGPSObject parseDEVICES(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		final DevicesObject devs = new DevicesObject();
 		devs.setDevices(this.parseObjectArray(json.optJSONArray("devices"), DeviceObject.class));
@@ -298,7 +298,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseVERSION(final JSONObject json) {
+	protected IGPSObject parseVERSION(final JSONObject json) {
 		IGPSObject gps;
 		final VersionObject ver = new VersionObject();
 		ver.setRelease(json.optString("release", null));
@@ -309,7 +309,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseSUBFRAME(final JSONObject json) throws ParseException {
+	protected IGPSObject parseSUBFRAME(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		final SUBFRAMEObject subframe = new SUBFRAMEObject();
 		subframe.setDevice(json.optString("device", null));
@@ -343,7 +343,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseATT(final JSONObject json) {
+	protected IGPSObject parseATT(final JSONObject json) {
 		IGPSObject gps;
 		final ATTObject att = new ATTObject();
 		att.setTag(json.optString("tag", null));
@@ -374,7 +374,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseGST(final JSONObject json) {
+	protected IGPSObject parseGST(final JSONObject json) {
 		IGPSObject gps;
 		final GSTObject gst = new GSTObject();
 		gst.setTag(json.optString("tag", null));
@@ -391,7 +391,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseSKY(final JSONObject json) throws ParseException {
+	protected IGPSObject parseSKY(final JSONObject json) throws ParseException {
 		IGPSObject gps;
 		final SKYObject sky = new SKYObject();
 		sky.setTag(json.optString("tag", null));
@@ -409,7 +409,7 @@ public class ResultParser extends AbstractResultParser {
 		return gps;
 	}
 	
-	private IGPSObject parseTPV(final JSONObject json) {
+	protected IGPSObject parseTPV(final JSONObject json) {
 		IGPSObject gps;
 		final TPVObject tpv = new TPVObject();
 		tpv.setTag(json.optString("tag", null));
