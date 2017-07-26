@@ -193,11 +193,11 @@ public class PollObject implements IGPSObject {
 		sb.append(", active=");
 		sb.append(this.active);
 		sb.append(", fixes=");
-		sb.append(this.fixes.size());
+		sb.append(((this.fixes == null) ? 0 : this.fixes.size()));
 		sb.append(", skyviews=");
-		sb.append(this.skyviews.size());
+		sb.append(((this.skyviews == null) ? 0 : this.skyviews.size()));
 		sb.append(", gst=");
-		sb.append(this.gst.size());
+		sb.append(((this.gst == null) ? 0 : this.gst.size()));
 		sb.append("}");
 		
 		return sb.toString();
