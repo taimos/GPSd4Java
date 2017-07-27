@@ -20,6 +20,8 @@ package de.taimos.gpsd4java.backend;
  * #L%
  */
 
+import java.util.Collections;
+
 import org.json.JSONObject;
 
 import de.taimos.gpsd4java.types.ATTObject;
@@ -260,6 +262,9 @@ public class ResultParser extends AbstractResultParser {
 			poll.setTimestamp(this.parseTimestamp(json, "time"));
 		} else if (json.has("timestamp")) {
 			poll.setTimestamp(json.optDouble("timestamp", Double.NaN));
+		} else {
+			// fallback to current timestamp
+			poll.setTimestamp(System.currentTimeMillis());
 		}
 		
 		poll.setActive(json.optInt("active", 0));
@@ -268,16 +273,22 @@ public class ResultParser extends AbstractResultParser {
 			poll.setFixes(this.parseObjectArray(json.optJSONArray("tpv"), TPVObject.class));
 		} else if (json.has("fixes")) {
 			poll.setFixes(this.parseObjectArray(json.optJSONArray("fixes"), TPVObject.class));
+		} else {
+			poll.setFixes(Collections.<TPVObject>emptyList());
 		}
 		
 		if (json.has("sky")) {
 			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("sky"), SKYObject.class));
 		} else if (json.has("skyviews")) {
 			poll.setSkyviews(this.parseObjectArray(json.optJSONArray("skyviews"), SKYObject.class));
+		} else {
+			poll.setSkyviews(Collections.<SKYObject>emptyList());
 		}
 		
 		if (json.has("gst")) {
 			poll.setGst(this.parseObjectArray(json.optJSONArray("gst"), GSTObject.class));
+		} else {
+			poll.setGst(Collections.<GSTObject>emptyList());
 		}
 		gps = poll;
 		return gps;
