@@ -109,6 +109,11 @@ public abstract class AbstractResultParser {
 				return date.getTime() / 1000.0;
 			}
 		} catch (final Exception ex) {
+			// trying to parse field as double
+			double d = json.optDouble(fieldName, Double.NaN);
+			if (d != Double.NaN) {
+				return d;
+			}
 			AbstractResultParser.LOG.info("Failed to parse time", ex);
 		}
 		return Double.NaN;

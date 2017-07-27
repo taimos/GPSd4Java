@@ -96,14 +96,16 @@ public class SocketThread extends Thread {
 				}
 			}
 		}
-		if (running.get() && !Thread.interrupted()) {
-			SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line, attempting restart");
+		if (this.running.get() && !Thread.interrupted()) {
+			if (this.reader != null) {
+				SocketThread.LOG.warn("Problem encountered while reading/parsing/handling line, attempting restart");
+			}
 			retry();
 		}
 	}
 	
 	protected void retry() {
-		if (reader != null) {
+		if (this.reader != null) {
 			SocketThread.LOG.debug("Disconnected from GPS socket, retrying connection");
 		} else {
 			SocketThread.LOG.debug("Connecting to GPSD socket");
@@ -111,10 +113,10 @@ public class SocketThread extends Thread {
 		
 		while (this.running.get()) {
 			try {
-				running.waitFor(this.endpoint.getRetryInterval());
+				this.running.waitFor(this.endpoint.getRetryInterval());
 				this.endpoint.handleDisconnected();
 				SocketThread.LOG.debug("Connected to GPS socket");
-				running.set(false);
+				this.running.set(false);
 			} catch (InterruptedException ix) {
 				break;
 			} catch (IOException e) {
