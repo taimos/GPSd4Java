@@ -148,7 +148,9 @@ public class GPSdEndpoint {
 	public void stop() {
 		
 		try {
-			this.socket.close();
+			if (this.socket != null) {
+				this.socket.close();
+			}
 		} catch (final IOException e1) {
 			GPSdEndpoint.LOG.debug("Close forced: " + e1.getMessage());
 		}
