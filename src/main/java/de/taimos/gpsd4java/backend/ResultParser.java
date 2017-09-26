@@ -20,33 +20,11 @@ package de.taimos.gpsd4java.backend;
  * #L%
  */
 
-import java.util.Collections;
-
+import de.taimos.gpsd4java.types.*;
+import de.taimos.gpsd4java.types.subframes.*;
 import org.json.JSONObject;
 
-import de.taimos.gpsd4java.types.ATTObject;
-import de.taimos.gpsd4java.types.DeviceObject;
-import de.taimos.gpsd4java.types.DevicesObject;
-import de.taimos.gpsd4java.types.ENMEAMode;
-import de.taimos.gpsd4java.types.EParity;
-import de.taimos.gpsd4java.types.GSTObject;
-import de.taimos.gpsd4java.types.IGPSObject;
-import de.taimos.gpsd4java.types.ParseException;
-import de.taimos.gpsd4java.types.PollObject;
-import de.taimos.gpsd4java.types.SATObject;
-import de.taimos.gpsd4java.types.SKYObject;
-import de.taimos.gpsd4java.types.TPVObject;
-import de.taimos.gpsd4java.types.VersionObject;
-import de.taimos.gpsd4java.types.WatchObject;
-import de.taimos.gpsd4java.types.subframes.ALMANACObject;
-import de.taimos.gpsd4java.types.subframes.EPHEM1Object;
-import de.taimos.gpsd4java.types.subframes.EPHEM2Object;
-import de.taimos.gpsd4java.types.subframes.EPHEM3Object;
-import de.taimos.gpsd4java.types.subframes.ERDObject;
-import de.taimos.gpsd4java.types.subframes.HEALTH2Object;
-import de.taimos.gpsd4java.types.subframes.HEALTHObject;
-import de.taimos.gpsd4java.types.subframes.IONOObject;
-import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
+import java.util.Collections;
 
 /**
  * This class is used to parse responses from GPSd<br>
@@ -87,6 +65,10 @@ public class ResultParser extends AbstractResultParser {
 			gps = this.parseWATCH(json);
 		} else if (PollObject.NAME.equals(clazz)) {
 			gps = this.parsePOLL(json);
+		} else if (PpsObject.NAME.equals(clazz)) {
+			gps = this.parsePPS(json);
+		} else if (ToffObject.NAME.equals(clazz)) {
+			gps = this.parseTOFF(json);
 		} else if (json.has("PRN")) { // SATObject
 			gps = this.parsePRN(json);
 		} else if (json.has("deltai")) { // ALMANACObject
@@ -110,7 +92,7 @@ public class ResultParser extends AbstractResultParser {
 		}
 		return gps;
 	}
-	
+
 	protected IGPSObject parseIONO(final JSONObject json) {
 		IGPSObject gps;
 		final IONOObject iono = new IONOObject();
@@ -459,6 +441,31 @@ public class ResultParser extends AbstractResultParser {
 		tpv.setClimbRateError(json.optDouble("epc", Double.NaN));
 		tpv.setMode(ENMEAMode.fromInt(json.optInt("mode", 0)));
 		gps = tpv;
+		return gps;
+	}
+
+	protected IGPSObject parsePPS(final JSONObject json) {
+		IGPSObject gps;
+		final PpsObject pps = new PpsObject();
+		pps.setDevice(json.optString("device", null));
+		pps.setRealSec(json.optDouble("real_sec", Double.NaN));
+		pps.setRealNsec(json.optDouble("real_nsec", Double.NaN));
+		pps.setClockSec(json.optDouble("clock_sec", Double.NaN));
+		pps.setClockNsec(json.optDouble("clock_nsec", Double.NaN));
+		pps.setPrecision(json.optDouble("precision", Double.NaN));
+		gps = pps;
+		return gps;
+	}
+
+	protected IGPSObject parseTOFF(final JSONObject json) {
+		IGPSObject gps;
+		final ToffObject toff = new ToffObject();
+		toff.setDevice(json.optString("device", null));
+		toff.setRealSec(json.optDouble("real_sec", Double.NaN));
+		toff.setRealNsec(json.optDouble("real_nsec", Double.NaN));
+		toff.setClockSec(json.optDouble("clock_sec", Double.NaN));
+		toff.setClockNsec(json.optDouble("clock_nsec", Double.NaN));
+		gps = toff;
 		return gps;
 	}
 }
