@@ -1,6 +1,13 @@
 package de.taimos.gpsd4java.types;
 
 /**
+ * This message is emitted on each cycle and reports the offset between the host's clock time and the GPS time at top
+ * of second (actually, when the first data for the reporting cycle is received).
+ * This message exactly mirrors the PPS message except for two details.
+ * TOFF emits no NTP precision, this is assumed to be -2. See the NTP documentation for their definition of precision.
+ * The TOFF message reports the GPS time as derived from the GPS serial data stream. The PPS message reports the GPS
+ * time as derived from the GPS PPS pulse.
+ *
  * @author dpishchukhin
  */
 public class ToffObject implements IGPSObject {

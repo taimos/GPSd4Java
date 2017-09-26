@@ -4,7 +4,8 @@ package de.taimos.gpsd4java.types;
  * This message is emitted each time the daemon sees a valid PPS (Pulse Per Second) strobe from a device.
  * This message exactly mirrors the TOFF message except for two details.
  * PPS emits the NTP precision. See the NTP documentation for their definition of precision.
- * The TOFF message reports the GPS time as derived from the GPS serial data stream. The PPS message reports the GPS time as derived from the GPS PPS pulse.
+ * The TOFF message reports the GPS time as derived from the GPS serial data stream.
+ * The PPS message reports the GPS time as derived from the GPS PPS pulse.
  *
  * @author dpishchukhin
  */
