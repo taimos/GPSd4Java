@@ -1,0 +1,5 @@
+
+tasks:
+  - init: mvn install -DskipTests=false
+
+

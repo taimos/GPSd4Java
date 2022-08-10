@@ -20,11 +20,34 @@ package de.taimos.gpsd4java.backend;
  * #L%
  */
 
-import de.taimos.gpsd4java.types.*;
-import de.taimos.gpsd4java.types.subframes.*;
+import java.util.Collections;
 import org.json.JSONObject;
 
-import java.util.Collections;
+import de.taimos.gpsd4java.types.ATTObject;
+import de.taimos.gpsd4java.types.DeviceObject;
+import de.taimos.gpsd4java.types.DevicesObject;
+import de.taimos.gpsd4java.types.ENMEAMode;
+import de.taimos.gpsd4java.types.EParity;
+import de.taimos.gpsd4java.types.GSTObject;
+import de.taimos.gpsd4java.types.IGPSObject;
+import de.taimos.gpsd4java.types.ParseException;
+import de.taimos.gpsd4java.types.PollObject;
+import de.taimos.gpsd4java.types.PpsObject;
+import de.taimos.gpsd4java.types.SATObject;
+import de.taimos.gpsd4java.types.SKYObject;
+import de.taimos.gpsd4java.types.TPVObject;
+import de.taimos.gpsd4java.types.ToffObject;
+import de.taimos.gpsd4java.types.VersionObject;
+import de.taimos.gpsd4java.types.WatchObject;
+import de.taimos.gpsd4java.types.subframes.ALMANACObject;
+import de.taimos.gpsd4java.types.subframes.EPHEM1Object;
+import de.taimos.gpsd4java.types.subframes.EPHEM2Object;
+import de.taimos.gpsd4java.types.subframes.EPHEM3Object;
+import de.taimos.gpsd4java.types.subframes.ERDObject;
+import de.taimos.gpsd4java.types.subframes.HEALTH2Object;
+import de.taimos.gpsd4java.types.subframes.HEALTHObject;
+import de.taimos.gpsd4java.types.subframes.IONOObject;
+import de.taimos.gpsd4java.types.subframes.SUBFRAMEObject;
 
 /**
  * This class is used to parse responses from GPSd<br>
