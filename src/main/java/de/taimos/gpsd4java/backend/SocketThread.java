@@ -132,10 +132,12 @@ public class SocketThread extends Thread {
 	public void halt() {
 		this.running.set(false);
 		
-		try {
-			this.reader.close();
-		} catch (final IOException e) {
-			// ignore
+		if (this.reader != null) {
+			try {
+				this.reader.close();
+			} catch (final IOException e) {
+				// ignore
+			}
 		}
 	}
 }
