@@ -254,6 +254,7 @@ public class ResultParser extends AbstractResultParser {
     sat.setElevation(json.optInt("el", -1));
     sat.setSignalStrength(json.optInt("ss", -1));
     sat.setUsed(json.optBoolean("used", false));
+    sat.setGnssId(json.optInt("gnssid", -1));
     gps = sat;
     return gps;
   }
