@@ -36,6 +36,8 @@ public class SATObject implements IGPSObject {
 
   private int signalStrength = -1;
 
+  private int gnssId = -1;
+
   private boolean used = false;
 
   /**
@@ -132,6 +134,24 @@ public class SATObject implements IGPSObject {
     this.used = used;
   }
 
+  /**
+   * The GNSSID field of the satellite, if available.
+   *
+   * @return gnssId
+   */
+  public int getGnssId() {
+    return gnssId;
+  }
+
+  /**
+   * The GNSSID field of the satellite, if available.
+   *
+   * @param gnssId the GNSSID field to set
+   */
+  public void setGnssId(final int gnssId) {
+    this.gnssId = gnssId;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -144,6 +164,8 @@ public class SATObject implements IGPSObject {
     temp = Double.doubleToLongBits(this.elevation);
     result = (prime * result) + (int) (temp ^ (temp >>> 32));
     temp = Double.doubleToLongBits(this.signalStrength);
+    result = (prime * result) + (int) (temp ^ (temp >>> 32));
+    temp = Double.doubleToLongBits(this.gnssId);
     result = (prime * result) + (int) (temp ^ (temp >>> 32));
     result = (prime * result) + ((this.used) ? 1 : 0);
     return result;
