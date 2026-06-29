@@ -7,7 +7,7 @@
 		<version>5</version>
 	</parent>
 	<artifactId>gpsd4java</artifactId>
-	<version>1.11-SNAPSHOT</version>
+	<version>1.11</version>
 	<packaging>bundle</packaging>
 	<name>GPSd4Java</name>
 	<description>Java Client library for GPSd deamon</description>
@@ -71,7 +71,7 @@
 		<connection>scm:git:git@github.com:taimos/GPSd4Java.git</connection>
 		<developerConnection>scm:git:git@github.com:taimos/GPSd4Java.git</developerConnection>
 		<url>git@github.com:taimos/GPSd4Java.git</url>
-		<tag>HEAD</tag>
+		<tag>v1.11</tag>
 	</scm>
 
 	<build>
@@ -99,7 +99,7 @@
 				<version>3.0.2</version>
 				<configuration>
 					<archive>
-						<addMavenDescriptor/>
+						<addMavenDescriptor />
 						<compress>true</compress>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
